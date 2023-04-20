@@ -8,7 +8,7 @@ module com.example.projekti_knk {
     exports com.example.projekti_knk;
 
     exports service to javafx.graphics;
-    exports modules to javafx.graphics;
+    exports models to javafx.graphics;
     exports repository to javafx.graphics;
     exports controller to javafx.graphics;
 }

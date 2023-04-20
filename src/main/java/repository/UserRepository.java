@@ -1,6 +1,6 @@
 package repository;
 
-import modules.User;
+import models.User;
 import service.ConnectionUtil;
 
 import java.sql.Connection;
