@@ -5,6 +5,8 @@ module com.example.projekti_knk {
 
 
     opens com.example.projekti_knk to javafx.fxml;
+    opens controller to javafx.fxml; // Dafina B: e shtova
+
     exports com.example.projekti_knk;
 
     exports service to javafx.graphics;
