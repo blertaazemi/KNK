@@ -22,7 +22,3 @@ public class HelloApplication extends Application {
     }
 }
 
-//te resources me kriju migration edhe 0001 migration, per cdo ekzekutim te ri krijojme nje new migration file p.sh
-//0002-migration, 0003-migration qtj...
-//me rujt historine e ekzekutimit te kodit
-//historine e migrimeve secili e bartim hap pas hapi ne databazat tona
