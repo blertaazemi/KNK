@@ -3,12 +3,12 @@ Tema: Zhvillimi i Sistemit Interaktiv për aplikimin dhe menaxhimin e bursave t�
 
 Grupi punues: 
 
-[Besmira Berisha](github.com/Besmira75)
+Besmira Berisha
 
-[Blerta Azemi](github.com/bl3rt4)
+Blerta Azemi
 
-[Dafina Balaj](github.com/daf1na)
+Dafina Balaj
 
-[Dafina Sadiku](github.com/dafiinaa)
+Dafina Sadiku
 
-[Dëshira Randobrava](github.com/d3shira)
+Dëshira Randobrava
