@@ -17,7 +17,7 @@
                   <Button mnemonicParsing="false" text="info" />
               </items>
             </ToolBar>
-            <ImageView fx:id="image1" fitHeight="400.0" fitWidth="500.0" layoutX="43.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="image1" fitHeight="184.0" fitWidth="477.0" layoutX="49.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../java/images/Rektorati_-_Universiteti_i_Prishtines.jpg" />
                </image>
