@@ -11,16 +11,16 @@
   <content>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
          <children>
-            <ToolBar layoutX="-1.0" prefHeight="40.0" prefWidth="600.0">
+            <ToolBar layoutX="-1.0" prefHeight="40.0" prefWidth="800.0">
               <items>
                 <Button fx:id="btnLogin" mnemonicParsing="false" text="Kyçja" />
                   <Button mnemonicParsing="false" text="info" />
                   <ImageView fitHeight="28.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" />
               </items>
             </ToolBar>
-            <ImageView fx:id="image1" fitHeight="184.0" fitWidth="477.0" layoutX="-51.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageView" fitHeight="306.0" fitWidth="650.0" layoutX="47.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../java/images/Rektorati_-_Universiteti_i_Prishtines.jpg" />
+                  <Image url="@../Images/Rektorati_-_Universiteti_i_Prishtines.jpg" />
                </image>
             </ImageView>
          </children></AnchorPane>
