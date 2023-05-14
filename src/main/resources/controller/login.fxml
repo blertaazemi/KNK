@@ -16,7 +16,7 @@
    <left>
       <AnchorPane prefHeight="400.0" prefWidth="250.0" style="-fx-background-color: #94CDFF;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="179.0" fitWidth="178.0" layoutX="36.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="bookImageView" fitHeight="179.0" fitWidth="178.0" layoutX="36.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/book.png" />
                </image>
@@ -37,9 +37,9 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="118.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="userImageView" fitHeight="150.0" fitWidth="200.0" layoutX="118.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Images/free-user-group-icon-296-thumb.png" />
+                  <Image url="@../Images/user.png" />
                </image>
             </ImageView>
             <Label layoutX="57.0" layoutY="260.0" text="Emri i përdoruesit:">
@@ -54,16 +54,21 @@
             </Label>
             <TextField fx:id="perdoruesiTextField" layoutX="57.0" layoutY="290.0" prefHeight="25.0" prefWidth="290.0" promptText="Emri i përdoruesit..." />
             <PasswordField fx:id="enterPasswordField" layoutX="57.0" layoutY="360.0" prefHeight="25.0" prefWidth="290.0" promptText="Fjalëkalimi..." />
-            <Button fx:id="loginButton" layoutX="57.0" layoutY="414.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="290.0" style="-fx-background-color: #94CDFF;" text="Kyçu">
+            <Button fx:id="loginButton" layoutX="57.0" layoutY="425.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="290.0" style="-fx-background-color: #94CDFF;" text="Kyçu">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="cancelButton" layoutX="57.0" layoutY="456.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="26.0" prefWidth="290.0" style="-fx-background-color: #94CDFF;" text="Anulo">
+            <Button fx:id="cancelButton" layoutX="57.0" layoutY="465.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="26.0" prefWidth="290.0" style="-fx-background-color: #94CDFF;" text="Anulo">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
+            <Label fx:id="loginMessageLabel" alignment="CENTER" layoutX="57.0" layoutY="396.0" prefHeight="20.0" prefWidth="290.0" textFill="#f70000">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </right>

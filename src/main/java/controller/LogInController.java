@@ -4,18 +4,22 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import models.User;
 import service.UserAuthService;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class LogInController {
+public class LogInController implements Initializable{
     @FXML
     private TextField perdoruesiTextField;
     @FXML
@@ -23,9 +27,45 @@ public class LogInController {
 
     @FXML
     private Button cancelButton;
+
+    @FXML
+    private Label loginMessageLabel;
+
+    @FXML
+    private ImageView bookImageView;
+
+    @FXML
+    private ImageView userImageView;
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle){
+        File bookFile = new File("/Images/book.png");
+        Image bookImage = new Image(bookFile.toURI().toString());
+        bookImageView.setImage(bookImage);
+
+        File userFile = new File("/Images/user.png");
+        Image userImage = new Image(userFile.toURI().toString());
+        userImageView.setImage(userImage);
+    }
+
+    public void loginButtonOnAction(ActionEvent event){
+        loginMessageLabel.setText("Provoni te kyceni");
+        if(perdoruesiTextField.getText().isBlank()==false && enterPasswordField.getText().isBlank()==false){
+            validateLogin();
+        }else{
+            loginMessageLabel.setText("Ju lutem shkruani emrin e përdoruesit dhe fjalëkalimin");
+        }
+
+    }
+
     public void cancelButtonOnAction(ActionEvent event){
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
+    }
+
+    public void validateLogin(){
+
     }
 
 
