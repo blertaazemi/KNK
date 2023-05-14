@@ -16,7 +16,7 @@ public class AppController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Image image = new Image(getClass().getResourceAsStream("/Images/Rektorati_-_Universiteti_i_Prishtines.jpg"));
+        Image image = new Image(getClass().getResourceAsStream("/Images/students.jpg"));
         this.imageView.setImage(image);
     }
 }

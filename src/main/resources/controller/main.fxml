@@ -15,12 +15,11 @@
               <items>
                 <Button fx:id="btnLogin" mnemonicParsing="false" text="Kyçja" />
                   <Button mnemonicParsing="false" text="info" />
-                  <ImageView fitHeight="28.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" />
               </items>
             </ToolBar>
-            <ImageView fx:id="imageView" fitHeight="306.0" fitWidth="650.0" layoutX="47.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageView" fitHeight="472.0" fitWidth="578.0" layoutX="86.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Images/Rektorati_-_Universiteti_i_Prishtines.jpg" />
+                  <Image url="@../Images/students.jpg" />
                </image>
             </ImageView>
          </children></AnchorPane>
