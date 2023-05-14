@@ -23,7 +23,7 @@
             </ImageView>
             <Text fill="WHITE" layoutX="25.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sistemi interaktiv për aplikimin dhe menaxhimin e bursave" textAlignment="CENTER" wrappingWidth="200.54014587402344">
                <font>
-                  <Font size="24.0" />
+                  <Font name="System Bold" size="24.0" />
                </font>
             </Text>
          </children>
@@ -39,7 +39,7 @@
             </Label>
             <ImageView fx:id="userImageView" fitHeight="150.0" fitWidth="200.0" layoutX="118.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Images/user.png" />
+                  <Image url="@../Images/free-user-group-icon-296-thumb.png" />
                </image>
             </ImageView>
             <Label layoutX="57.0" layoutY="260.0" text="Emri i përdoruesit:">
