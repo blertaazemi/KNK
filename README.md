@@ -1,14 +1,13 @@
 # PROJEKTI_KNK_GRUPI20
 Tema: Zhvillimi i Sistemit Interaktiv për aplikimin dhe menaxhimin e bursave të studentëve
 
-Grupi punues: 
+# Grupi punues:
+•[Dafina Balaj](https://github.com/dafinabalaj) 
 
-Besmira Berisha
+•[Dafina Sadiku](https://github.com/dafiinaa) 
 
-Blerta Azemi
+•[Dëshira Randobrava](https://github.com/d3shira) 
 
-Dafina Balaj
+•[Blerta Azemi](https://github.com/bl3rt4)
 
-Dafina Sadiku
-
-Dëshira Randobrava
+•[Besmira Berisha](https://github.com/Besmira75)
