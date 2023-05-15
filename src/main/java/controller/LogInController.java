@@ -10,11 +10,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import models.User;
+import service.ConnectionUtilDafina;
 import service.UserAuthService;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -49,7 +51,7 @@ public class LogInController implements Initializable{
         userImageView.setImage(userImage);
     }
 
-    public void loginButtonOnAction(ActionEvent event){
+    public void loginButtonOnAction(ActionEvent event) throws SQLException {
         loginMessageLabel.setText("Provoni te kyceni");
         if(perdoruesiTextField.getText().isBlank()==false && enterPasswordField.getText().isBlank()==false){
             validateLogin();
@@ -64,7 +66,11 @@ public class LogInController implements Initializable{
         stage.close();
     }
 
-    public void validateLogin(){
+    public void validateLogin() throws SQLException {
+        ConnectionUtilDafina connectionNow=new ConnectionUtilDafina();
+        Connection connectiontoDB=connectionNow.getConnection();
+
+        String verify
 
     }
 
