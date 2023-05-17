@@ -62,14 +62,7 @@ public class LogInController implements Initializable{
     }
 
     public void validateLogin() throws SQLException {
-<<<<<<< Updated upstream
-        ConnectionUtilDafina connectionNow=new ConnectionUtilDafina();
-        Connection connectiontoDB=connectionNow.getConnection();
 
-       // String verify
-=======
-     
->>>>>>> Stashed changes
 
     }
 
