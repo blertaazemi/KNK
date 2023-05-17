@@ -9,16 +9,12 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import models.User;
-import service.ConnectionUtilDafina;
-import service.UserAuthService;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class LogInController implements Initializable{
@@ -66,10 +62,14 @@ public class LogInController implements Initializable{
     }
 
     public void validateLogin() throws SQLException {
+<<<<<<< Updated upstream
         ConnectionUtilDafina connectionNow=new ConnectionUtilDafina();
         Connection connectiontoDB=connectionNow.getConnection();
 
        // String verify
+=======
+     
+>>>>>>> Stashed changes
 
     }
 
