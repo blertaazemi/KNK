@@ -1,0 +1,13 @@
+Si te kycemi te databaza e njejte?
+Realisht nuk mund te kycemi te gjithe tek databaza e njejte, por secili duhet te krijoje databaza
+ me emra te njejte dhe password te njejte.
+Migrimet: tek resources kemi krijuar nje file te quajtur "Migrations", ne kete file ruajme cdo ndryshim qe behet
+ ne databazen tone p.sh 1 ndryshim ruhet ne file 0001, ndryshimi i rradhes ne 0002 etj.
+Ne menyre qe databazat tona te gjitha te jene te njejta, duhet ti marrim ndryshimet e bera nga njeri tjetri ne renditje si te Migrations
+Migrations paraqet historine e ndryshimeve qe jane bere ne databazat tona ne menyre qe te perputhen ato dhe te jene te njejta
+ (te pershtaten me kodet tona).
+
+ //te resources me kriju migration edhe 0001 migration, per cdo ekzekutim te ri krijojme nje new migration file p.sh
+ //0002-migration, 0003-migration etj...
+ //me rujt historine e ekzekutimit te kodit
+ //historine e migrimeve secili e bartim hap pas hapi ne databazat tona

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="564.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LogInController">
+   <left>
+      <AnchorPane prefHeight="400.0" prefWidth="250.0" style="-fx-background-color: #94CDFF;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="bookImageView" fitHeight="179.0" fitWidth="178.0" layoutX="36.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/book.png" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" layoutX="25.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sistemi interaktiv për aplikimin dhe menaxhimin e bursave" textAlignment="CENTER" wrappingWidth="200.54014587402344">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </left>
+   <right>
+      <AnchorPane prefHeight="400.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="161.0" layoutY="191.0" prefHeight="67.0" prefWidth="126.0" text="Kyçu:">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="userImageView" fitHeight="150.0" fitWidth="200.0" layoutX="118.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/user.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="57.0" layoutY="260.0" text="Emri i përdoruesit:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="57.0" layoutY="330.0" text="Fjalëkalimi:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="perdoruesiTextField" layoutX="57.0" layoutY="290.0" prefHeight="25.0" prefWidth="290.0" promptText="Emri i përdoruesit..." />
+            <PasswordField fx:id="enterPasswordField" layoutX="57.0" layoutY="360.0" prefHeight="25.0" prefWidth="290.0" promptText="Fjalëkalimi..." />
+            <Button fx:id="loginButton" layoutX="57.0" layoutY="425.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="290.0" style="-fx-background-color: #94CDFF;" text="Kyçu">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="cancelButton" layoutX="57.0" layoutY="465.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="26.0" prefWidth="290.0" style="-fx-background-color: #94CDFF;" text="Anulo">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Label fx:id="loginMessageLabel" alignment="CENTER" layoutX="57.0" layoutY="396.0" prefHeight="20.0" prefWidth="290.0" textFill="#f70000">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>
