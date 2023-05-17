@@ -41,15 +41,14 @@ public class LogInController implements Initializable{
 
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle){
-        File bookFile = new File("/Images/book.png");
-        Image bookImage = new Image(bookFile.toURI().toString());
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Image bookImage = new Image(getClass().getResourceAsStream("/Images/book.png"));
         bookImageView.setImage(bookImage);
 
-        File userFile = new File("/Images/user.png");
-        Image userImage = new Image(userFile.toURI().toString());
+        Image userImage = new Image(getClass().getResourceAsStream("/Images/user.png"));
         userImageView.setImage(userImage);
     }
+
 
     public void loginButtonOnAction(ActionEvent event) throws SQLException {
         loginMessageLabel.setText("Provoni te kyceni");
@@ -70,7 +69,7 @@ public class LogInController implements Initializable{
         ConnectionUtilDafina connectionNow=new ConnectionUtilDafina();
         Connection connectiontoDB=connectionNow.getConnection();
 
-        String verify
+       // String verify
 
     }
 

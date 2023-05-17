@@ -13,7 +13,7 @@ public class ConnectionUtil {
         if (connection == null || connection.isClosed()) {
             String url = "jdbc:mysql://localhost:3306/PROJEKTI_KNK";
             String user = "root";
-            String password = "Mysqlshira2022";
+            String password = "bbddd23";
             connection = DriverManager.getConnection(url, user, password);
         }
         return connection;
