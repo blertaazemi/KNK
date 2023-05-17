@@ -49,3 +49,6 @@ CREATE TABLE tbl_admin (
 query sa me testu
 INSERT INTO tbl_students (first_name, last_name, username, email, password)
 VALUES ('John', 'Doe', 'johndoe', 'johndoe@example.com', 'password123');
+
+INSERT INTO tbl_students (first_name, last_name, username, email, password)
+VALUES ('Johnny', 'Doer', 'johnnydoer', 'johnnydoer@example.com', 'password123');
