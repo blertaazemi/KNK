@@ -4,9 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="97a2584f-7020-4803-bbd0-e2ce8616a201" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Migrations/0001_migration.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Migrations/0001_migration.sql" afterDir="false" />
+=======
+    <list default="true" id="dac91f83-6c27-4089-882d-63e55c06cf89" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/BursatController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/controller/bursat.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,7 +25,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+<<<<<<< Updated upstream
         <option value="FxmlFile" />
+=======
+>>>>>>> Stashed changes
       </list>
     </option>
   </component>
@@ -44,6 +55,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+<<<<<<< Updated upstream
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
@@ -67,6 +79,11 @@
       </list>
     </recent_temporary>
   </component>
+=======
+    "settings.editor.selected.configurable": "preferences.JavaFX"
+  }
+}]]></component>
+>>>>>>> Stashed changes
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -78,4 +95,22 @@
     </task>
     <servers />
   </component>
+<<<<<<< Updated upstream
+=======
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+>>>>>>> Stashed changes
 </project>
