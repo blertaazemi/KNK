@@ -67,6 +67,8 @@ ALTER TABLE tbl_students ADD COLUMN gender VARCHAR(1) NOT NULL;
 INSERT INTO tbl_students (first_name, last_name, username, email, password, faculty, gender)
 VALUES ('Johnny', 'Doer', 'johnnydoer', 'johnnydoer@example.com', 'password123','FIEK','F'); //nuk tlen ma shume se F OSE M \
 
+INSERT INTO tbl_students (first_name, last_name, gender, faculty, email)
+VALUES ('Blerta', 'Azemi', 'F', 'Computer Science', 'blertaazemi@example.com');
 
 
 
