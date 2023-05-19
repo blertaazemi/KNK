@@ -61,7 +61,7 @@
          </font>
       </Label>
       <PasswordField fx:id="confirmPasswordField" layoutX="150.0" layoutY="420.0" prefHeight="26.0" prefWidth="336.0" promptText="Konfirmo fjalëkalimin..." />
-      <Button fx:id="registerButton" layoutX="150.0" layoutY="460.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="336.0" style="-fx-background-color: #94CDFF;" text="Regjistrohu">
+      <Button fx:id="registerButton" layoutX="150.0" layoutY="460.0" mnemonicParsing="false" onAction="#register" prefHeight="26.0" prefWidth="336.0" style="-fx-background-color: #94CDFF;" text="Regjistrohu">
          <font>
             <Font size="14.0" />
          </font>
