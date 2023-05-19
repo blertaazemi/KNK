@@ -1,8 +1,9 @@
 package service;
 
 //servisi nuk permban te dhena, duhet te jete klase statike qe ofron metoda qe na i perdorim
-
+//PER LOG IN
 import models.User;
+import repository.UserRepository;
 
 import java.sql.SQLException;
 
