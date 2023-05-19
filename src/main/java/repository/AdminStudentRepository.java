@@ -14,35 +14,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdminStudentRepository {
-    public static List<AdminStudent> populateStudentsTable(TableView<AdminStudent> tableView) throws SQLException {
-        List<AdminStudent> students = new ArrayList<>();
-        String sql = "SELECT * FROM tbl_students";
-        Connection connection = ConnectionUtil.getConnection();
+
+    public static List<AdminStudent> getStudents(Connection connection) throws SQLException {
+        List<AdminStudent> studentList = new ArrayList<>();
+        String sql = "Select * from tbl_students";
         PreparedStatement statement = connection.prepareStatement(sql);
         ResultSet resultSet = statement.executeQuery();
-
         while (resultSet.next()) {
-            int id = resultSet.getInt("id");
-            String firstname = resultSet.getString("first_name");
-            String lastname = resultSet.getString("last_name");
+            int id = resultSet.getInt("Id");
+            String first_name = resultSet.getString("first_name");
+            String last_name = resultSet.getString("last_name");
             String username = resultSet.getString("username");
             String email = resultSet.getString("email");
             String password = resultSet.getString("password");
 
-            AdminStudent student = new AdminStudent(id, firstname, lastname, username, email, password);
-            students.add(student);
+            AdminStudent studentModel = new AdminStudent(id, first_name, last_name, username, email, password);
+            studentList.add(studentModel);
         }
-
-        // Set the data in the TableView
-        ObservableList<AdminStudent> studentList = FXCollections.observableArrayList(students);
-        tableView.setItems(studentList);
-
-        // Close the resources
         resultSet.close();
         statement.close();
-        connection.close();
+        return studentList;
 
-        return students;
     }
-
 }
+
+
