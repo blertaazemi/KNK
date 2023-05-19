@@ -12,12 +12,11 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import service.ConnectionUtil;
 
-import java.io.File;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
 
-public class LogInController implements Initializable{
+public class LoginController implements Initializable{
     @FXML
     private TextField perdoruesiTextField;
     @FXML

@@ -2,15 +2,19 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import service.ConnectionUtil;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -20,7 +24,13 @@ import static service.ConnectionUtil.getConnection;
 import service.PasswordHasher;
 import java.util.Base64;
 
+
+
 public class RegisterController implements Initializable {
+    @FXML
+    private AnchorPane signup_form;
+    @FXML
+    private AnchorPane login_form;
     @FXML
     private TextField emriTextField;
     @FXML
@@ -37,6 +47,8 @@ public class RegisterController implements Initializable {
     private Button registerButton;
     @FXML
     private Button mbyllButton;
+    @FXML
+    private Button kycuNeseKiLlogari;
     @FXML
     private ImageView logoImageView;
     @FXML
@@ -111,10 +123,22 @@ public class RegisterController implements Initializable {
         confirmPasswordField.setText("");
     }
 
-    public void switchForm(ActionEvent event){
-        if(event.getSource() == )
+    public void switchForm(ActionEvent event) {
+        if (event.getSource() == kycuNeseKiLlogari) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("resources/controller/login.fxml"));
+                Parent login_form = loader.load();
+                LoginController loginController = loader.getController();
 
+                // Perform any necessary operations or pass data to the LoginController
+
+                signup_form.getScene().setRoot(login_form);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
