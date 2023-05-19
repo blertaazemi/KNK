@@ -111,10 +111,10 @@ public class RegisterController implements Initializable {
         confirmPasswordField.setText("");
     }
 
-    public void switchForm(ActionEvent event){
+   /* public void switchForm(ActionEvent event){
         if(event.getSource() == )
 
-    }
+    }*/
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
