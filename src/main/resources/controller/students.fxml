@@ -1,25 +1,21 @@
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TableView?>
+<?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-        <?xml version="1.0" encoding="UTF-8"?>
 
-        <?import javafx.scene.control.TableColumn?>
-        <?import javafx.scene.control.TableView?>
-        <?import javafx.scene.control.TextField?>
-        <?import javafx.scene.layout.AnchorPane?>
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="826.0" stylesheets="@admindashboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StudentAController">
-    <children>
-        <TableView layoutX="66.0" layoutY="151.0" prefHeight="200.0" prefWidth="674.0">
-            <columns>
-                <TableColumn fx:id="col_studentId" prefWidth="144.0" text="Student Id" />
-                <TableColumn fx:id="col_firstName" prefWidth="130.0" text="First Name" />
-                <TableColumn fx:id="col_lastName" prefWidth="130.0" text="Last Name" />
-                <TableColumn fx:id="col_username" prefWidth="130.0" text="Username" />
-                <TableColumn fx:id="col_email" prefWidth="144.0" text="Email" />
-            </columns>
-        </TableView>
-        <TextField layoutX="66.0" layoutY="104.0" promptText="search.." />
-    </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="826.0" stylesheets="@admindashboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminStudentController">
+   <children>
+      <TableView fx:id="studentTableView" layoutX="66.0" layoutY="151.0" prefHeight="194.0" prefWidth="682.0">
+        <columns>
+          <TableColumn fx:id="col_studentId" prefWidth="144.0" text="Student Id" />
+          <TableColumn fx:id="col_firstName" prefWidth="130.0" text="First Name" />
+            <TableColumn fx:id="col_lastName" prefWidth="130.0" text="Last Name" />
+            <TableColumn fx:id="col_username" prefWidth="130.0" text="Username" />
+            <TableColumn fx:id="col_email" prefWidth="144.0" text="Email" />
+        </columns>
+      </TableView>
+      <TextField layoutX="66.0" layoutY="104.0" promptText="search.." />
+   </children>
 </AnchorPane>

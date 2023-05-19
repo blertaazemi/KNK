@@ -123,6 +123,7 @@ public class RegisterController implements Initializable {
         confirmPasswordField.setText("");
     }
 
+
     public void switchForm(ActionEvent event) {
         if (event.getSource() == kycuNeseKiLlogari) {
             try {
@@ -138,6 +139,11 @@ public class RegisterController implements Initializable {
             }
         }
     }
+
+
+   /* public void switchForm(ActionEvent event){
+        if(event.getSource() == )*/
+
 
 
     @Override
