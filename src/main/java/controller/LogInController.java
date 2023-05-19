@@ -10,11 +10,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import service.ConnectionUtil;
 
 import java.io.File;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 public class LogInController implements Initializable{
@@ -35,6 +35,12 @@ public class LogInController implements Initializable{
     @FXML
     private ImageView userImageView;
 
+    private Connection connection;
+
+    private PreparedStatement prepareStatement;
+    private ResultSet resultSet;
+    private Statement statement;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -43,6 +49,12 @@ public class LogInController implements Initializable{
 
         Image userImage = new Image(getClass().getResourceAsStream("/Images/user.png"));
         userImageView.setImage(userImage);
+
+        try {
+            connection = ConnectionUtil.getConnection(); // Initialize the connection
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -62,11 +74,30 @@ public class LogInController implements Initializable{
     }
 
     public void validateLogin() throws SQLException {
+            String username = perdoruesiTextField.getText();
+            String password = enterPasswordField.getText();
+
+            String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);        //
+            statement.setString(1, username);
+            statement.setString(2, password);
+
+            ResultSet resultSet = statement.executeQuery();                       //
+
+            if (resultSet.next()) {
+                loginMessageLabel.setText("Jeni kyçur me sukses!");
+                // Perform any other actions you need after successful login
+            } else {
+                loginMessageLabel.setText("Përdoruesi ose fjalëkalimi i gabuar!");
+            }
+
+            statement.close();
+            resultSet.close();
+        }
+
 
 
     }
-
-
 //    @FXML
 //    private void loginClick(ActionEvent e){
 //        String username = this.txtUsername.getText();
@@ -102,4 +133,3 @@ public class LogInController implements Initializable{
 //        translate.getString("Login.button.text");
 //        this.btnLogin.setText(translate.getString("Login.button.text"));
 //    }
-}

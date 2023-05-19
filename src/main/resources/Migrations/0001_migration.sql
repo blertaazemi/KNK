@@ -1,7 +1,7 @@
 create database projekti_knk;
 use projekti_knk;
 
-tabelat
+17.05.2023 Deshira tabelat
 
 CREATE TABLE tbl_students (
   id INT NOT NULL AUTO_INCREMENT,
@@ -46,6 +46,7 @@ CREATE TABLE tbl_admin (
   PRIMARY KEY (id)
 );
 
+18.05.2023 Deshira
 query sa me testu
 INSERT INTO tbl_students (first_name, last_name, username, email, password)
 VALUES ('John', 'Doe', 'johndoe', 'johndoe@example.com', 'password123');
