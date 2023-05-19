@@ -53,3 +53,19 @@ VALUES ('John', 'Doe', 'johndoe', 'johndoe@example.com', 'password123');
 
 INSERT INTO tbl_students (first_name, last_name, username, email, password)
 VALUES ('Johnny', 'Doer', 'johnnydoer', 'johnnydoer@example.com', 'password123');
+
+//BLERTA E DAFINA
+ALTER TABLE tbl_students ADD COLUMN faculty VARCHAR(255) NOT NULL;
+
+
+INSERT INTO tbl_students (first_name, last_name, username, email, password,faculty)
+VALUES ('Johnny', 'Doer', 'johnnydoer', 'johnnydoer@example.com', 'password123','FIEK');
+
+ALTER TABLE tbl_students ADD COLUMN gender VARCHAR(1) NOT NULL;
+
+INSERT INTO tbl_students (first_name, last_name, username, email, password, faculty, gender)
+VALUES ('Johnny', 'Doer', 'johnnydoer', 'johnnydoer@example.com', 'password123','FIEK','F'); //nuk tlen ma shume se F OSE M \
+
+
+
+
