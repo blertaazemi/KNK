@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import models.AdminStudent;
 import repository.AdminStudentRepository;
 import service.ConnectionUtil;
@@ -40,14 +41,47 @@ public class AdminStudentController implements Initializable {
 
     @FXML
     private TableView<AdminStudent> studentTableView;
+    @FXML
+    private TextField StudentIdField;
+    @FXML
+    private TextField FirstNameField;
+    @FXML
+    private TextField LastNameField;
+
+    @FXML
+    private TextField UsernameField;
+
+    @FXML
+    private TextField EmailField;
+
+
+
+
+
+    public void SelectStudent() {
+        AdminStudent student = studentTableView.getSelectionModel().getSelectedItem();
+        int num = studentTableView.getSelectionModel().getSelectedIndex();
+
+        if ((num - 1) < -1) {
+            return;
+        }
+       StudentIdField.setText(String.valueOf(student.getId()));
+        FirstNameField.setText(student.getFirst_name());
+        LastNameField.setText(student.getLast_name());
+        UsernameField.setText(student.getUsername());
+        EmailField.setText(student.getEmail());
+
+
+
+    }
 
     public void initialize(URL location, ResourceBundle resources) {
-        col_studentId.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().id).asObject());
-        col_firstName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().first_name));
-        col_lastName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().last_name));
-        col_username.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().username));
-        col_email.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().email));
-        col_password.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().password));
+        col_studentId.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
+        col_firstName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFirst_name()));
+        col_lastName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getLast_name()));
+        col_username.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getUsername()));
+        col_email.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEmail()));
+        col_password.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPassword()));
 
         List<AdminStudent> studentModelList = null;
         Connection connection = null;
@@ -69,4 +103,9 @@ public class AdminStudentController implements Initializable {
         studentTableView.setItems(studentObservableList);
 
     }
+
+
+
 }
+
+
