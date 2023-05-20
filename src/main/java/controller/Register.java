@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+
 import java.io.IOException;
 import java.util.Locale;
 
@@ -24,5 +25,6 @@ public class Register extends Application {
         stage.setTitle("Sistemi Interaktiv për aplikimin dhe menaxhimin e bursave të studentëve\n");
         stage.setScene(scene);
         stage.show();
+
     }
 }

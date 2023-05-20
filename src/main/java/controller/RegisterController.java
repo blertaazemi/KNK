@@ -151,4 +151,7 @@ public class RegisterController implements Initializable {
 
     }
 
+    public void setFormData(String firstName, String lastName, String email) {
+
+    }
 }
