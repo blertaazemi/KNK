@@ -2,14 +2,13 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="842.0" prefWidth="1168.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.studentiController">
+<AnchorPane prefHeight="842.0" prefWidth="1168.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.blerta">
    <children>
       <AnchorPane prefHeight="859.0" prefWidth="200.0" style="-fx-background-color: gray;">
          <children>
@@ -32,34 +31,19 @@
          </font>
       </Label>
       <TextField layoutX="224.0" layoutY="293.0" prefHeight="26.0" prefWidth="259.0" promptText="Mbiemri i studentit.." />
-      <Label layoutX="224.0" layoutY="347.0" text="Gjinia:">
+      <Label layoutX="230.0" layoutY="352.0" text="Username:">
          <font>
             <Font size="26.0" />
          </font>
       </Label>
-      <RadioButton layoutX="337.0" layoutY="353.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="59.0" selected="true" text="F">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </RadioButton>
-      <RadioButton layoutX="405.0" layoutY="358.0" mnemonicParsing="false" text="M">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </RadioButton>
-      <Label layoutX="223.0" layoutY="410.0" text="Fakulteti:">
+      <TextField layoutX="224.0" layoutY="409.0" prefHeight="26.0" prefWidth="259.0" promptText="Emri i perdoruesit.." />
+      <Label layoutX="226.0" layoutY="458.0" text="Email:">
          <font>
             <Font size="26.0" />
          </font>
       </Label>
-      <TextField layoutX="224.0" layoutY="456.0" prefHeight="26.0" prefWidth="259.0" promptText="Fakulteti i studentit.." />
-      <Label layoutX="224.0" layoutY="516.0" text="Email:">
-         <font>
-            <Font size="26.0" />
-         </font>
-      </Label>
-      <TextField layoutX="224.0" layoutY="567.0" prefHeight="26.0" prefWidth="259.0" promptText="Email e studentit.." />
-      <Button layoutX="226.0" layoutY="622.0" mnemonicParsing="false" style="-fx-background-color: #44545f;" text="Apliko per burse" textFill="WHITE">
+      <TextField layoutX="226.0" layoutY="505.0" prefHeight="26.0" prefWidth="259.0" promptText="Email e studentit.." />
+      <Button layoutX="225.0" layoutY="565.0" mnemonicParsing="false" style="-fx-background-color: #44545f;" text="Apliko per burse" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
