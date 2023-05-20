@@ -1,6 +1,7 @@
 package controller;
 
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -15,8 +16,8 @@ public class Register extends Application {
 
         //set default locALE TO ENGLISH ose ndonje gjuhe tjeter
 
-        Locale.setDefault(new Locale("en","KS"));
-        Locale.setDefault(new Locale("de","KS"));
+        Locale.setDefault(new Locale("en", "KS"));
+        Locale.setDefault(new Locale("de", "KS"));
 
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("register.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 650, 564);
@@ -24,6 +25,4 @@ public class Register extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
-
 }
