@@ -54,14 +54,20 @@
                </font>
             </Label>
             <TextField fx:id="EmailField" layoutX="398.0" layoutY="111.0" prefHeight="26.0" prefWidth="95.0" />
-            <Button layoutX="668.0" layoutY="264.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" styleClass="add-btn" stylesheets="@admindashboard.css" text="Add" />
-            <Button layoutX="551.0" layoutY="264.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" stylesheets="@admindashboard.css" text="Update">
+            <Button fx:id="addStudentBtn" layoutX="668.0" layoutY="264.0" mnemonicParsing="false" onAction="#addStudentClick" prefHeight="34.0" prefWidth="102.0" styleClass="add-btn" stylesheets="@admindashboard.css" text="Add" />
+            <Button fx:id="updateStudentBtn" layoutX="551.0" layoutY="264.0" mnemonicParsing="false" onAction="#updateStudentClick" prefHeight="34.0" prefWidth="102.0" stylesheets="@admindashboard.css" text="Update">
                <styleClass>
                   <String fx:value="delete-btn" />
                   <String fx:value="update-btn" />
                </styleClass>
             </Button>
-            <Button layoutX="433.0" layoutY="264.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" styleClass="delete-btn" stylesheets="@admindashboard.css" text="Delete" />
+            <Button fx:id="deleteStudentBtn" layoutX="433.0" layoutY="264.0" mnemonicParsing="false" onAction="#deleteStudentClick" prefHeight="34.0" prefWidth="102.0" styleClass="delete-btn" stylesheets="@admindashboard.css" text="Delete" />
+            <Label layoutX="318.0" layoutY="170.0" text="Password:">
+               <font>
+                  <Font name="Tahoma" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="PasswordField" layoutX="398.0" layoutY="166.0" prefHeight="26.0" prefWidth="95.0" />
          </children>
       </AnchorPane>
    </children>

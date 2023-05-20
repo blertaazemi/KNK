@@ -1,35 +1,29 @@
-package models;
+package models.dto;
 
-public class AdminStudent {
-    private int id;
-    private  String first_name;
+public class UpdateStudentDto {
+
+    //private int id;
+    private String first_name;
     private String last_name;
-    private  String username;
-
-    private  String email;
-    private  String password;
-
+    private String username;
+    private String email;
+    private String password;
     private String salt;
 
+    public UpdateStudentDto(String first_name, String last_name, String username, String email,String password,String salt) {
 
-
-
-    public AdminStudent(int id, String first_name, String last_name, String username, String email, String password) {
-        this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
         this.username = username;
         this.email = email;
-        this.password = password;
+        this.password=password;
+        this.salt=salt;
     }
-
-    public int getId() {
+  /*  public int getId(){
         return id;
     }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    public void setId(int id){
+        this.id=id;}*/
 
     public String getFirst_name() {
         return first_name;
@@ -71,9 +65,11 @@ public class AdminStudent {
         this.password = password;
     }
 
-
-
     public String getSalt() {
         return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 }

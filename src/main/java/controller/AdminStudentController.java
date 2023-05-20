@@ -6,12 +6,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import models.AdminStudent;
+import models.dto.CreateStudentDto;
+import models.dto.UpdateStudentDto;
 import repository.AdminStudentRepository;
 import service.ConnectionUtil;
+import service.PasswordHasher;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -57,7 +61,113 @@ public class AdminStudentController implements Initializable {
 
 
 
+    @FXML
+    private TextField PasswordField;
 
+    @FXML
+    private Button addStudentBtn;
+
+    @FXML
+    private Button deleteStudentBtn;
+
+    @FXML
+    private Button updateStudentBtn;
+
+
+
+    // Logjika e buttonit add
+    @FXML
+    public void addStudentClick() {
+        // Gather student information from input fields or other sources
+        String firstName = FirstNameField.getText();
+        String lastName = LastNameField.getText();
+        String username = UsernameField.getText();
+        String email = EmailField.getText();
+        String password = PasswordField.getText();
+        String salt = PasswordHasher.generateSalt();
+        String saltedHash = PasswordHasher.generateSaltedHash(PasswordField.getText(),salt);
+
+        CreateStudentDto student = new CreateStudentDto(firstName, lastName, username, email,password,salt);
+
+
+        try {
+            AdminStudent insertedStudent = AdminStudentRepository.insert(student);
+            if (insertedStudent != null) {
+                studentTableView.getItems().add(insertedStudent);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+    }
+ // logjika e buttonit delete
+    public void deleteStudentClick() {
+
+            AdminStudent selectedStudent = studentTableView.getSelectionModel().getSelectedItem();
+
+            if (selectedStudent != null) {
+                CreateStudentDto studentToDelete = new CreateStudentDto(
+                        selectedStudent.getFirst_name(),
+                        selectedStudent.getLast_name(),
+                        selectedStudent.getUsername(),
+                        selectedStudent.getEmail(),
+                        selectedStudent.getPassword(),
+                        selectedStudent.getSalt()
+                );
+
+                try {
+                    boolean isDeleted = AdminStudentRepository.deleteStudent(studentToDelete);
+
+                    if (isDeleted) {
+                        // Remove the deleted student from the TableView
+                        studentTableView.getItems().remove(selectedStudent);
+
+                        System.out.println("User with username '" + studentToDelete.getUsername() + "' has been deleted successfully.");
+                    } else {
+                        System.out.println("Failed to delete user with username '" + studentToDelete.getUsername() + "'.");
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                System.out.println("No student is selected.");
+            }
+        }
+
+
+
+// logjika e buttonit update
+public void updateStudentClick() {
+    // Gather student information from input fields or other sources
+    //int id = Integer.parseInt(StudentIdField.getText());
+    String firstName = FirstNameField.getText();
+    String lastName = LastNameField.getText();
+    String username = UsernameField.getText();
+    String email = EmailField.getText();
+    String password=PasswordField.getText();
+    String salt = PasswordHasher.generateSalt();
+
+    UpdateStudentDto student = new UpdateStudentDto(firstName, lastName, username, email,password,salt);
+
+    try {
+        AdminStudent updatedStudent = AdminStudentRepository.updateStudent(student);
+
+        // Get the ObservableList from the TableView
+        ObservableList<AdminStudent> students = studentTableView.getItems();
+
+
+            // Refresh the TableView to reflect the changes
+            studentTableView.refresh();
+    } catch (SQLException e) {
+        e.printStackTrace();
+        // Handle any exceptions that occurred during the update process
+    }
+}
+
+
+
+    // Selektimi nga tableview qe ka te dhenat e databazes
     public void SelectStudent() {
         AdminStudent student = studentTableView.getSelectionModel().getSelectedItem();
         int num = studentTableView.getSelectionModel().getSelectedIndex();
