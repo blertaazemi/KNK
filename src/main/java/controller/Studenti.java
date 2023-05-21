@@ -11,15 +11,12 @@ public class Studenti extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("studenti.fxml"));
-        AnchorPane root = loader.load();
-        Scene scene = new Scene(root, 650, 564);
-        stage.setTitle("Studenti Controller");
+        FXMLLoader loader = new FXMLLoader(Studenti.class.getResource("studenti.fxml"));
+        Scene scene = new Scene(loader.load(), 650, 564);
+        stage.setTitle("Sistemi Interaktiv për aplikimin dhe menaxhimin e bursave të studentëve\n");
         stage.setScene(scene);
         stage.show();
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+
 }
