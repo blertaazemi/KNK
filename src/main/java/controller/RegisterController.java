@@ -142,12 +142,11 @@ public class RegisterController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
-<<<<<<< Updated upstream
+
 
     public void setFormData(String firstName, String lastName, String email) {
 
     }
-=======
->>>>>>> Stashed changes
+
 }
 
