@@ -1,6 +1,10 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<<<<<<< Updated upstream
 <?import javafx.scene.control.TextArea?>
+=======
+<?import javafx.scene.control.ScrollBar?>
+>>>>>>> Stashed changes
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -47,7 +51,17 @@
       <TextField fx:id="mbiemriTextField" layoutX="242.0" layoutY="163.0" promptText="Mbiemri i studentit.." />
       <TextField fx:id="notaMesatareTextField" layoutX="242.0" layoutY="223.0" promptText="Nota mesatare.." />
       <TextField fx:id="vitStudimiTextField" layoutX="242.0" layoutY="294.0" promptText="Viti i studimeve.." />
+<<<<<<< Updated upstream
       <Button fx:id="btnOpenFile" layoutX="242.0" layoutY="376.0" mnemonicParsing="false" onAction="#chooseFileClicked" text="choose pdf file" />
       <TextArea layoutX="374.0" layoutY="370.0" prefHeight="39.0" prefWidth="122.0" />
+=======
+      <ImageView fx:id="image" fitHeight="116.0" fitWidth="200.0" layoutX="251.0" layoutY="362.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/puthere.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnOpenFile" layoutX="263.0" layoutY="492.0" mnemonicParsing="false" onAction="#handleOpenFile" onMouseClicked="#showImage" text="choose image" />
+      <ScrollBar />
+>>>>>>> Stashed changes
    </children>
 </AnchorPane>

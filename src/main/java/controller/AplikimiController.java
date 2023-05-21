@@ -36,4 +36,12 @@ public class AplikimiController {
     public void setStage(Stage stage) {
         this.stage = stage;
     }
+
+    public void handleOpenFile(ActionEvent actionEvent) {
+
+    }
+
+    public void showImage(javafx.scene.input.MouseEvent mouseEvent) {
+
+    }
 }
