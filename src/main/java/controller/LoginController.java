@@ -2,21 +2,30 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import models.AdminLogin;
+import models.Login;
+import repository.LoginRepository;
 import service.ConnectionUtil;
 
+import java.io.IOException;
 import java.net.URL;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ResourceBundle;
 
-public class LoginController implements Initializable{
+public class LoginController implements Initializable {
     @FXML
     private TextField perdoruesiTextField;
     @FXML
@@ -24,6 +33,8 @@ public class LoginController implements Initializable{
 
     @FXML
     private Button cancelButton;
+    @FXML
+    private Button loginButton;
 
     @FXML
     private Label loginMessageLabel;
@@ -57,78 +68,60 @@ public class LoginController implements Initializable{
     }
 
 
-    public void loginButtonOnAction(ActionEvent event) throws SQLException {
+    public void loginButtonOnAction(ActionEvent event) throws SQLException, IOException {
         loginMessageLabel.setText("Provoni te kyceni");
-        if(perdoruesiTextField.getText().isBlank()==false && enterPasswordField.getText().isBlank()==false){
-            validateLogin();
-        }else{
+        if (!perdoruesiTextField.getText().isBlank() && !enterPasswordField.getText().isBlank()) {
+            validateLogin(event);
+        } else {
             loginMessageLabel.setText("Ju lutem shkruani emrin e përdoruesit dhe fjalëkalimin");
         }
-
     }
 
-    public void cancelButtonOnAction(ActionEvent event){
+    public void cancelButtonOnAction(ActionEvent event) {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
 
-    public void validateLogin() throws SQLException {
-            String username = perdoruesiTextField.getText();
-            String password = enterPasswordField.getText();
+    public void validateLogin(ActionEvent event) throws SQLException, IOException {
+        alertMessage alertMessage = new alertMessage();
+        try {
+            Connection connection = ConnectionUtil.getConnection();
 
-            String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
-            PreparedStatement statement = connection.prepareStatement(sql);        //
-            statement.setString(1, username);
-            statement.setString(2, password);
+            if (connection != null) {
 
-            ResultSet resultSet = statement.executeQuery();                       //
+                Login loginModel = new Login(perdoruesiTextField.getText(), enterPasswordField.getText());
+                LoginRepository loginRepository = new LoginRepository();
+                boolean validLogin = loginRepository.login(loginModel, connection);
 
-            if (resultSet.next()) {
-                loginMessageLabel.setText("Jeni kyçur me sukses!");
-                // Perform any other actions you need after successful login
-            } else {
-                loginMessageLabel.setText("Përdoruesi ose fjalëkalimi i gabuar!");
+                System.out.println("validLogin: " + validLogin); // po del false dmth sosht tu bo logini :(
+
+                if (validLogin) {
+                    // Redirect to student dashboard
+                    try {
+                        FXMLLoader fxmlLoader = new FXMLLoader(Register.class.getResource("register.fxml"));
+                        Pane pane = fxmlLoader.load();
+                        Scene scene = new Scene(pane);
+                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        stage.setScene(scene);
+                        stage.show();
+                    } catch (IOException e) {
+                        alertMessage.errorMessage("Failed to load student dashboard");
+                    }
+
+                } else {
+                    alertMessage.errorMessage("Përdoruesi ose fjalëkalimi i gabuar!");
+                }
+
             }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
 
-            statement.close();
-            resultSet.close();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException();
         }
-
-
-
     }
-//    @FXML
-//    private void loginClick(ActionEvent e){
-//        String username = this.txtUsername.getText();
-//        String password = this.pwdPassword.getText();
-//
-//        try{
-//            User user = UserAuthService.login(username,password);
-//            if(user==null){
-//                //mesazh
-//                System.out.println("Username or password is incorrect! ");
-//                return;
-//            }
-//            System.out.println("User is correct!");
-//        }catch(SQLException sqlException){
-//            System.out.println("Gabim ne baze te te dhenave!!");
-//        }
-//
-//        //System.out.printf("Username: %s, Password: %s", username, password);
-//    }
-//    @FXML
-//    private void cancelClick(ActionEvent e){
-//        this.txtUsername.setText("");
-//        this.pwdPassword.setText("");
-//    }
-//
-//
-//    @Override
-//    public void initialize(URL url, ResourceBundle resourceBundle) {
-//        System.out.println("Initialize");
-//
-//        Locale locale=Locale.getDefault();
-//        ResourceBundle translate=ResourceBundle.getBundle("translations.content",locale);
-//        translate.getString("Login.button.text");
-//        this.btnLogin.setText(translate.getString("Login.button.text"));
-//    }
+
+
+
+
+}

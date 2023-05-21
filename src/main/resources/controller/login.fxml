@@ -53,7 +53,7 @@
             </Label>
             <TextField fx:id="perdoruesiTextField" layoutX="57.0" layoutY="290.0" prefHeight="25.0" prefWidth="290.0" promptText="Emri i përdoruesit..." />
             <PasswordField fx:id="enterPasswordField" layoutX="57.0" layoutY="360.0" prefHeight="25.0" prefWidth="290.0" promptText="Fjalëkalimi..." />
-            <Button fx:id="loginButton" layoutX="57.0" layoutY="425.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="290.0" style="-fx-background-color: #94CDFF;" text="Kyçu">
+            <Button fx:id="loginButton" layoutX="57.0" layoutY="425.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="26.0" prefWidth="290.0" style="-fx-background-color: #94CDFF;" text="Kyçu">
                <font>
                   <Font size="14.0" />
                </font>
@@ -68,6 +68,12 @@
                   <Font size="14.0" />
                </font>
             </Label>
+            <Label layoutX="88.0" layoutY="527.0" text="Nuk keni llogari? Klikoni këtu për tu regjistruar:" />
+            <Button fx:id="krijoLlogariNeseSki" layoutX="57.0" layoutY="545.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="290.0" style="-fx-background-color: #94CDFF;" text="Regjistrohu">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </right>
