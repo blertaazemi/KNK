@@ -1,7 +1,7 @@
 create database projekti_knk;
 use projekti_knk;
 
-17.05.2023 Deshira tabelat
+17.05.2023 #Deshira tabelat
 
 CREATE TABLE tbl_students (
   id INT NOT NULL AUTO_INCREMENT,

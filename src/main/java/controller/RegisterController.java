@@ -1,30 +1,26 @@
 package controller;
 
+import javafx.stage.Stage;
+import models.dto.CreateStudentDto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import service.ConnectionUtil;
+import models.Student;
+import repository.StudentRepository;
+import service.PasswordHasher;
 
-import java.io.File;
+
 import java.io.IOException;
 import java.net.URL;
-import java.sql.*;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
-
-import static service.ConnectionUtil.getConnection;
-
-import service.PasswordHasher;
-import java.util.Base64;
-
-
 
 public class RegisterController implements Initializable {
     @FXML
@@ -50,71 +46,57 @@ public class RegisterController implements Initializable {
     @FXML
     private Button kycuNeseKiLlogari;
     @FXML
-    private ImageView logoImageView;
+    private Button krijoLlogariNeseSki;
+
     @FXML
-    //private Label errorRegister; //me hek edhe ne scene builder
+    private ImageView logoImageView;
 
-    private PreparedStatement prepareStatement;
-    private ResultSet resultSet;
-    private Statement statement;
-    private Connection connection;
+    private StudentRepository studentRepository;
 
-    public void register(ActionEvent event)throws SQLException {
+    public RegisterController() {
+        this.studentRepository = new StudentRepository();
+    }
 
+    public void register(ActionEvent event) throws SQLException {
         alertMessage alert = new alertMessage();
-        //kontrollojme nese fushat jane te zbrazeta
         try {
-            if (emriTextField.getText().isEmpty() || mbiemriTextField.getText().isEmpty() || emailTextField.getText().isEmpty() || perdoruesiTextField.getText().isEmpty() || setPasswordField.getText().isEmpty() || confirmPasswordField.getText().isEmpty()) {
+            if (emriTextField.getText().isEmpty() || mbiemriTextField.getText().isEmpty() ||
+                    emailTextField.getText().isEmpty() || perdoruesiTextField.getText().isEmpty() ||
+                    setPasswordField.getText().isEmpty() || confirmPasswordField.getText().isEmpty()) {
                 alert.errorMessage("Duhet ti plotesoni te gjitha fushat!!");
                 return;
-        }else if(setPasswordField.getText()==confirmPasswordField.getText()){         //a eshte passwordi konfirmues i sakte
+            } else if (!setPasswordField.getText().equals(confirmPasswordField.getText())) {
                 alert.errorMessage("Fjalekalimet nuk perputhen. Provoni perseri.");
-
-            }else if(setPasswordField.getLength()<8){                  //gjatesia e passwordit me a madhe se 8
+            } else if (setPasswordField.getLength() < 8) {
                 alert.errorMessage("Gjatesia e fjalekalimit duhet te jete te pakten 8 karaktera!");
+            } else {
 
-            }else{
-                String checkUsername = "SELECT * FROM tbl_students WHERE username = '"+perdoruesiTextField.getText()+"'";
-                connection = getConnection();
-                statement = connection.createStatement();
-                resultSet = statement.executeQuery(checkUsername);
+                String first_name = emriTextField.getText();
+                String last_name = mbiemriTextField.getText();
+                String username = perdoruesiTextField.getText();
+                String email = emailTextField.getText();
+                String password = setPasswordField.getText();
+                String confirm = confirmPasswordField.getText();
+                String salt = PasswordHasher.generateSalt();
+                String saltedHash = PasswordHasher.generateSaltedHash(password, salt);
 
-                if(resultSet.next()){
-                    alert.errorMessage("Perdoruesi "+perdoruesiTextField.getText() + "nuk eshte i lire per perdorim.");
-                }else{
-                    String salt = PasswordHasher.generateSalt();
-                    String saltedHash = PasswordHasher.generateSaltedHash(setPasswordField.getText(),salt);
+                CreateStudentDto createStudentDto = new CreateStudentDto(first_name, last_name, username, email, saltedHash, salt);
 
-                    String insertData = "INSERT INTO tbl_students "
-                            + "(first_name, last_name, username, email, password, salt)"
-                            + "VALUES(?, ?, ?, ?, ?, ?)";
-                    prepareStatement = connection.prepareStatement(insertData);
-                    prepareStatement.setString(1,emriTextField.getText());
-                    prepareStatement.setString(2,mbiemriTextField.getText());
-                    prepareStatement.setString(3,perdoruesiTextField.getText());
-                    prepareStatement.setString(4,emailTextField.getText());
-                    prepareStatement.setString(5, saltedHash);
-                    prepareStatement.setString(6, Base64.getEncoder().encodeToString(salt.getBytes()));
+                Student student = new Student(first_name, last_name, username, email, saltedHash, salt);
 
 
-                    prepareStatement.executeUpdate();
 
-                    alert.successMessage("Jeni regjistruar me sukses!!");   //me bo qe me direktu te home page
+                studentRepository.createStudent(student);
 
-                    registerClearFields();
-
-                }
-
+                alert.successMessage("Jeni regjistruar me sukses!!");
+                registerClearFields();
             }
-
-        }catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
-
         }
     }
 
-    //fshihen fushat pas regjistrimit
-    public void registerClearFields(){
+    public void registerClearFields() {
         emriTextField.setText("");
         mbiemriTextField.setText("");
         perdoruesiTextField.setText("");
@@ -123,35 +105,49 @@ public class RegisterController implements Initializable {
         confirmPasswordField.setText("");
     }
 
-
     public void switchForm(ActionEvent event) {
         if (event.getSource() == kycuNeseKiLlogari) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("resources/controller/login.fxml"));
-                Parent login_form = loader.load();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/controller/login.fxml"));
+                Parent loginForm = loader.load();
                 LoginController loginController = loader.getController();
 
                 // Perform any necessary operations or pass data to the LoginController
 
-                signup_form.getScene().setRoot(login_form);
+                signup_form.getScene().setRoot(loginForm);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else if (event.getSource() == krijoLlogariNeseSki) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/controller/signup.fxml"));
+                Parent signupForm = loader.load();
+                RegisterController registerController = loader.getController();
+
+                // Perform any necessary operations or pass data to the RegisterController
+
+                login_form.getScene().setRoot(signupForm);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
 
-
-   /* public void switchForm(ActionEvent event){
-        if(event.getSource() == )*/
-
-
+    public void cancelButtonOnAction(ActionEvent event){
+        Stage stage = (Stage) mbyllButton.getScene().getWindow();
+        stage.close();
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
+<<<<<<< Updated upstream
 
     public void setFormData(String firstName, String lastName, String email) {
 
     }
+=======
+>>>>>>> Stashed changes
 }
+
