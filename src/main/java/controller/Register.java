@@ -17,6 +17,7 @@ public class Register extends Application {
 
         //set default locALE TO ENGLISH ose ndonje gjuhe tjeter
 
+
         Locale.setDefault(new Locale("en", "KS"));
         Locale.setDefault(new Locale("de", "KS"));
 

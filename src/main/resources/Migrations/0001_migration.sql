@@ -22,7 +22,7 @@ CREATE TABLE tbl_bursa (
   amount DECIMAL(4,2) NOT NULL,
   PRIMARY KEY (id)
 );
-
+ALTER TABLE tbl_bursa MODIFY amount DECIMAL(6,2);
 CREATE TABLE tbl_aplikimet (
   id INT NOT NULL AUTO_INCREMENT,
   student_id INT NOT NULL,
