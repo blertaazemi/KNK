@@ -150,7 +150,7 @@ public void updateStudentClick() {
     String saltedHash = PasswordHasher.generateSaltedHash(password, salt);
 
     UpdateStudentDto updatedStudent = new UpdateStudentDto(studentId, firstName, lastName, username, email, saltedHash, salt);
-    // Find the corresponding AdminStudent object in the table's data list
+    
     AdminStudent selectedStudent = null;
     for (AdminStudent student : studentTableView.getItems()) {
         if (student.getId() == studentId) {
@@ -173,20 +173,19 @@ public void updateStudentClick() {
 
 
         try {
-            // Update the student in the database using the AdminStudentRepository instance
+
             boolean isUpdated = AdminStudentRepository.updateStudent(updatedStudent);
             if (isUpdated) {
-                // Display a success message or perform other actions
+
                 System.out.println("Student updated successfully.");
                 studentTableView.refresh();
             } else {
-                // Display an error message or perform error handling
+
                 System.out.println("Failed to update student.");
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            // Display an error message or perform error handling
-            System.out.println("Failed to update student.");
+
         }
 
     }
