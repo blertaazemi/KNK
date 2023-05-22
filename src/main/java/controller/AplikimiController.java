@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import models.Student;
@@ -98,6 +99,16 @@ public class AplikimiController {
         }
 
 
+    }
+    @FXML
+    private void navigateToStudenti(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Studenti.class.getResource("studenti.fxml"));
+        AnchorPane studentiPane = loader.load();
+
+        Scene scene = new Scene(studentiPane, 650, 564);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
 
