@@ -139,39 +139,51 @@ public class AdminStudentController implements Initializable {
 
 // logjika e buttonit update
 public void updateStudentClick() {
-    // Get the selected user from the TableView
-    // Get the selected user from the TableView
-   AdminStudent selectedStudent = studentTableView.getSelectionModel().getSelectedItem();
+    // Get the selected student ID and updated student information from input fields or other sources
+    int studentId = Integer.parseInt(StudentIdField.getText());
+    String firstName = FirstNameField.getText();
+    String lastName = LastNameField.getText();
+    String username = UsernameField.getText();
+    String email = EmailField.getText();
+    String password = PasswordField.getText();
+    String salt = PasswordHasher.generateSalt();
+    String saltedHash = PasswordHasher.generateSaltedHash(password, salt);
+
+    UpdateStudentDto updatedStudent = new UpdateStudentDto(studentId, firstName, lastName, username, email, saltedHash, salt);
+    // Find the corresponding AdminStudent object in the table's data list
+    AdminStudent selectedStudent = null;
+    for (AdminStudent student : studentTableView.getItems()) {
+        if (student.getId() == studentId) {
+            selectedStudent = student;
+            break;
+        }
+    }
+
+    if (selectedStudent != null) {
+        // Update the AdminStudent object with the updated information
+        selectedStudent.setFirst_name(firstName);
+        selectedStudent.setLast_name(lastName);
+        selectedStudent.setUsername(username);
+        selectedStudent.setEmail(email);
 
 
-    // Create an instance of UpdateStudentDto with the updated user information
-    UpdateStudentDto updatedStudent = new UpdateStudentDto(selectedStudent.getId(),
-            FirstNameField.getText(),
-            LastNameField.getText(),
-            UsernameField.getText(),
-            EmailField.getText(),
-            PasswordField.getText(),
-            selectedStudent.getSalt()
-    );
+        try {
+            // Update the student in the database using the AdminStudentRepository instance
+            boolean isUpdated = AdminStudentRepository.updateStudent(updatedStudent);
+            if (isUpdated) {
+                // Display a success message or perform other actions
+                System.out.println("Student updated successfully.");
+                studentTableView.refresh();
+            } else {
+                // Display an error message or perform error handling
+                System.out.println("Failed to update student.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Display an error message or perform error handling
+            System.out.println("Failed to update student.");
+        }
 
-
-    try {
-        // Call the update() method in AdminStudentRepository
-        AdminStudentRepository.update(updatedStudent);
-
-        // Update the user in the TableView
-        selectedStudent.setFirst_name(updatedStudent.getFirst_name());
-        selectedStudent.setLast_name(updatedStudent.getLast_name());
-        selectedStudent.setUsername(updatedStudent.getUsername());
-        selectedStudent.setEmail(updatedStudent.getEmail());
-        selectedStudent.setPassword(updatedStudent.getPassword());
-        selectedStudent.setSalt(updatedStudent.getSalt());
-
-        // Refresh the TableView to reflect the changes
-       studentTableView.refresh();
-    } catch (SQLException e) {
-        e.printStackTrace();
-        // Handle the exception appropriately
     }
 }
 

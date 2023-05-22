@@ -4,7 +4,6 @@ import models.AdminStudent;
 import models.dto.CreateStudentDto;
 import models.dto.UpdateStudentDto;
 import service.ConnectionUtil;
-import service.PasswordHasher;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -78,20 +77,30 @@ public class AdminStudentRepository {
 
     // perditesimi-editimi i nje studenti
 
-    public static void update(UpdateStudentDto student) throws SQLException {
-        String sql = "UPDATE tbl_students SET first_name=?, last_name=?, username=?, email=?,password=?,salt=? WHERE id=?";
-        try (Connection connection = ConnectionUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, student.getFirst_name());
-            statement.setString(2, student.getLast_name());
-            statement.setString(3, student.getUsername());
-            statement.setString(4, student.getEmail());
-            statement.setInt(5, student.getId());
-            statement.setString(6, student.getPassword());
-            statement.setString(7,student.getSalt());
-            statement.executeUpdate();
+
+        public static boolean updateStudent(UpdateStudentDto studentDto) throws SQLException{
+            String updatesql = "UPDATE tbl_students SET first_name=?, last_name=?, username=?, email=?, password=?, salt=? WHERE id=?";
+             Connection connection = ConnectionUtil.getConnection();
+                 PreparedStatement statement = connection.prepareStatement(updatesql) ;
+
+                statement.setString(1, studentDto.getFirst_name());
+                statement.setString(2, studentDto.getLast_name());
+                statement.setString(3, studentDto.getUsername());
+                statement.setString(4, studentDto.getEmail());
+                statement.setString(5, studentDto.getPassword());
+                statement.setString(6, studentDto.getSalt());
+                statement.setInt(7, studentDto.getId());
+
+                int rowsAffected = statement.executeUpdate();
+
+                if (rowsAffected > 0) {
+                    System.out.println("Student updated successfully.");
+                } else {
+                    System.out.println("Failed to update student.");
+                }
+
+            return rowsAffected>0;
         }
-    }
 
 
 
