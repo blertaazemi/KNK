@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Locale;
+import java.util.ResourceBundle;
 
 
 public class Register extends Application {
@@ -18,8 +19,8 @@ public class Register extends Application {
         //set default locALE TO ENGLISH ose ndonje gjuhe tjeter
 
 
-        Locale.setDefault(new Locale("en", "KS"));
-        Locale.setDefault(new Locale("de", "KS"));
+        //Locale.setDefault(new Locale("en", "KS"));
+        //Locale.setDefault(new Locale("sq", "KS"));
 
         FXMLLoader fxmlLoader = new FXMLLoader(Register.class.getResource("register.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 650, 564);

@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import models.dto.CreateStudentDto;
 import javafx.event.ActionEvent;
@@ -20,6 +21,7 @@ import service.PasswordHasher;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class RegisterController implements Initializable {
@@ -53,9 +55,56 @@ public class RegisterController implements Initializable {
 
     private StudentRepository studentRepository;
 
+    @FXML
+    private Label emriLabel;
+    @FXML
+    private Label fjalekalimiLabel;
+
+    @FXML
+    private Label konfirmofjalekaliminLabel;
+    @FXML
+    private Label mbiemriLabel;
+    @FXML
+    private Label perdoruesiLabel;
+
+    @FXML
+    private Label regjistrohuLabel;
+
     public RegisterController() {
         this.studentRepository = new StudentRepository();
     }
+    private ResourceBundle bundle;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Locale locale = Locale.getDefault();
+        ResourceBundle translate = ResourceBundle.getBundle("translations.content", locale);
+    }
+
+    private void translateElements() {
+        emriLabel.setText(bundle.getString("emriLabel"));
+        mbiemriLabel.setText(bundle.getString("mbiemriLabel"));
+        perdoruesiLabel.setText(bundle.getString("perdoruesiLabel"));
+        fjalekalimiLabel.setText(bundle.getString("fjalekalimiLabel"));
+        konfirmofjalekaliminLabel.setText(bundle.getString("konfirmofjalekaliminLabel"));
+        registerButton.setText(bundle.getString("registerButton"));
+        mbyllButton.setText(bundle.getString("mbyllButton"));
+        kycuNeseKiLlogari.setText(bundle.getString("kycuNeseKiLlogari"));
+        // Translate other elements in a similar manner
+    }
+
+    public void translateEn(ActionEvent event){
+        Locale.setDefault(new Locale("en"));
+        bundle = ResourceBundle.getBundle("translations.content", Locale.getDefault());
+        this.translateElements();
+    }
+
+    public void translateAl(ActionEvent event){
+        Locale.setDefault(new Locale("sq"));
+        bundle = ResourceBundle.getBundle("translations.content", Locale.getDefault());
+        this.translateElements();
+    }
+
 
     public void register(ActionEvent event) throws SQLException {
         alertMessage alert = new alertMessage();
@@ -138,10 +187,7 @@ public class RegisterController implements Initializable {
         stage.close();
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
 
-    }
 
 
     public void setFormData(String firstName, String lastName, String email) {
