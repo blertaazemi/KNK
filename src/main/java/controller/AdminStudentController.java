@@ -85,9 +85,9 @@ public class AdminStudentController implements Initializable {
         String email = EmailField.getText();
         String password = PasswordField.getText();
         String salt = PasswordHasher.generateSalt();
-        String saltedHash = PasswordHasher.generateSaltedHash(PasswordField.getText(),salt);
+        String saltedHash = PasswordHasher.generateSaltedHash(password,salt);
 
-        CreateStudentDto student = new CreateStudentDto(firstName, lastName, username, email,password,salt);
+        CreateStudentDto student = new CreateStudentDto(firstName, lastName, username, email,saltedHash,salt);
 
 
         try {
@@ -139,29 +139,39 @@ public class AdminStudentController implements Initializable {
 
 // logjika e buttonit update
 public void updateStudentClick() {
-    // Gather student information from input fields or other sources
-    //int id = Integer.parseInt(StudentIdField.getText());
-    String firstName = FirstNameField.getText();
-    String lastName = LastNameField.getText();
-    String username = UsernameField.getText();
-    String email = EmailField.getText();
-    String password=PasswordField.getText();
-    String salt = PasswordHasher.generateSalt();
+    // Get the selected user from the TableView
+    // Get the selected user from the TableView
+   AdminStudent selectedStudent = studentTableView.getSelectionModel().getSelectedItem();
 
-    UpdateStudentDto student = new UpdateStudentDto(firstName, lastName, username, email,password,salt);
+
+    // Create an instance of UpdateStudentDto with the updated user information
+    UpdateStudentDto updatedStudent = new UpdateStudentDto(selectedStudent.getId(),
+            FirstNameField.getText(),
+            LastNameField.getText(),
+            UsernameField.getText(),
+            EmailField.getText(),
+            PasswordField.getText(),
+            selectedStudent.getSalt()
+    );
+
 
     try {
-        AdminStudent updatedStudent = AdminStudentRepository.updateStudent(student);
+        // Call the update() method in AdminStudentRepository
+        AdminStudentRepository.update(updatedStudent);
 
-        // Get the ObservableList from the TableView
-        ObservableList<AdminStudent> students = studentTableView.getItems();
+        // Update the user in the TableView
+        selectedStudent.setFirst_name(updatedStudent.getFirst_name());
+        selectedStudent.setLast_name(updatedStudent.getLast_name());
+        selectedStudent.setUsername(updatedStudent.getUsername());
+        selectedStudent.setEmail(updatedStudent.getEmail());
+        selectedStudent.setPassword(updatedStudent.getPassword());
+        selectedStudent.setSalt(updatedStudent.getSalt());
 
-
-            // Refresh the TableView to reflect the changes
-            studentTableView.refresh();
+        // Refresh the TableView to reflect the changes
+       studentTableView.refresh();
     } catch (SQLException e) {
         e.printStackTrace();
-        // Handle any exceptions that occurred during the update process
+        // Handle the exception appropriately
     }
 }
 

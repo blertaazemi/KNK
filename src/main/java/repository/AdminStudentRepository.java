@@ -27,8 +27,9 @@ public class AdminStudentRepository {
             String username = resultSet.getString("username");
             String email = resultSet.getString("email");
             String password = resultSet.getString("password");
+            String salt=resultSet.getString("salt");
 
-            AdminStudent studentModel = new AdminStudent(id, first_name, last_name, username, email, password);
+            AdminStudent studentModel = new AdminStudent(id, first_name, last_name, username, email, password,salt);
             studentList.add(studentModel);
         }
         resultSet.close();
@@ -77,24 +78,19 @@ public class AdminStudentRepository {
 
     // perditesimi-editimi i nje studenti
 
-    public static AdminStudent updateStudent(UpdateStudentDto student) throws SQLException {
-        String updateSql = "UPDATE tbl_students SET first_name=?, last_name=?, username=?, email=? ,password=? WHERE id=?";
-        Connection connection = ConnectionUtil.getConnection();
-
-        PreparedStatement statement = connection.prepareStatement(updateSql);
-        //statement.setInt(1, student.getId());
-        statement.setString(1, student.getFirst_name());
-        statement.setString(2, student.getLast_name());
-        statement.setString(3, student.getUsername());
-        statement.setString(4, student.getEmail());
-        statement.setString(5,student.getPassword());
-        statement.setString(6,student.getSalt());
-
-
-        statement.executeUpdate();
-        statement.close();
-
-        return AdminStudentRepository.getByUsername(student.getUsername());
+    public static void update(UpdateStudentDto student) throws SQLException {
+        String sql = "UPDATE tbl_students SET first_name=?, last_name=?, username=?, email=?,password=?,salt=? WHERE id=?";
+        try (Connection connection = ConnectionUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, student.getFirst_name());
+            statement.setString(2, student.getLast_name());
+            statement.setString(3, student.getUsername());
+            statement.setString(4, student.getEmail());
+            statement.setInt(5, student.getId());
+            statement.setString(6, student.getPassword());
+            statement.setString(7,student.getSalt());
+            statement.executeUpdate();
+        }
     }
 
 
@@ -112,7 +108,8 @@ public class AdminStudentRepository {
                 String lastName = resultSet.getString("last_name");
                 String email=resultSet.getString("email");
                 String password=resultSet.getString("password");
-                return new AdminStudent(id,firstName,lastName,username,email,password);
+                String salt=resultSet.getString("salt");
+                return new AdminStudent(id,firstName,lastName,username,email,password,salt);
             } else {
                 return null;
             }

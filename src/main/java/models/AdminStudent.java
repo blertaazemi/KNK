@@ -14,13 +14,14 @@ public class AdminStudent {
 
 
 
-    public AdminStudent(int id, String first_name, String last_name, String username, String email, String password) {
+    public AdminStudent(int id, String first_name, String last_name, String username, String email, String password,String salt) {
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.salt=salt;
     }
 
     public int getId() {
@@ -75,5 +76,9 @@ public class AdminStudent {
 
     public String getSalt() {
         return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 }
