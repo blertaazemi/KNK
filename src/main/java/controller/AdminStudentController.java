@@ -106,7 +106,7 @@ public class AdminStudentController implements Initializable {
     public void deleteStudentClick() {
 
             AdminStudent selectedStudent = studentTableView.getSelectionModel().getSelectedItem();
-
+            
             if (selectedStudent != null) {
                 CreateStudentDto studentToDelete = new CreateStudentDto(
                         selectedStudent.getFirst_name(),

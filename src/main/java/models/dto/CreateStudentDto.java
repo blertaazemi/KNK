@@ -1,5 +1,9 @@
 package models.dto;
 
+import service.PasswordHasher;
+
+import java.security.NoSuchAlgorithmException;
+
 public class CreateStudentDto {
     private String first_name;
     private String last_name;
@@ -8,12 +12,12 @@ public class CreateStudentDto {
     private String password;
     private String salt;
 
-    public CreateStudentDto(String first_name, String last_name, String username, String email, String password, String salt) {
+    public CreateStudentDto(String first_name, String last_name, String username, String email, String password, String salt) throws NoSuchAlgorithmException {
         this.first_name = first_name;
         this.last_name = last_name;
         this.username = username;
         this.email = email;
-        this.password = password;
+        this.password = PasswordHasher.generateSaltedHash(password, salt);;
         this.salt = salt;
     }
 

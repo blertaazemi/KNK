@@ -1,6 +1,9 @@
 package controller;
 
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import models.dto.CreateStudentDto;
 import javafx.event.ActionEvent;
@@ -15,11 +18,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import models.Student;
 import repository.StudentRepository;
+import service.ConnectionUtil;
 import service.PasswordHasher;
 
 
 import java.io.IOException;
 import java.net.URL;
+import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -106,7 +112,7 @@ public class RegisterController implements Initializable {
     }
 
 
-    public void register(ActionEvent event) throws SQLException {
+    public void register(ActionEvent event) {
         alertMessage alert = new alertMessage();
         try {
             if (emriTextField.getText().isEmpty() || mbiemriTextField.getText().isEmpty() ||
@@ -114,36 +120,62 @@ public class RegisterController implements Initializable {
                     setPasswordField.getText().isEmpty() || confirmPasswordField.getText().isEmpty()) {
                 alert.errorMessage("Duhet ti plotesoni te gjitha fushat!!");
                 return;
-            } else if (!setPasswordField.getText().equals(confirmPasswordField.getText())) {
-                alert.errorMessage("Fjalekalimet nuk perputhen. Provoni perseri.");
-            } else if (setPasswordField.getLength() < 8) {
-                alert.errorMessage("Gjatesia e fjalekalimit duhet te jete te pakten 8 karaktera!");
+            }
+            Connection connection = ConnectionUtil.getConnection();
+            if (connection != null) {
+                CreateStudentDto StudentDto = new CreateStudentDto(emriTextField.getText(), mbiemriTextField.getText(), emailTextField.getText(),
+                        perdoruesiTextField.getText() ,setPasswordField.getText(),PasswordHasher.generateSalt());
+                StudentRepository studentRepository = new StudentRepository();
+                studentRepository.insert(StudentDto, connection);
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("Login.fxml"));
+                    Pane pane = fxmlLoader.load();
+                    Scene scene = new Scene(pane);
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (IOException e) {
+                    System.err.println("Error loading FXML file: " + e.getMessage());
+                }
             } else {
-
-                String first_name = emriTextField.getText();
-                String last_name = mbiemriTextField.getText();
-                String username = perdoruesiTextField.getText();
-                String email = emailTextField.getText();
-                String password = setPasswordField.getText();
-                String confirm = confirmPasswordField.getText();
-                String salt = PasswordHasher.generateSalt();
-                String saltedHash = PasswordHasher.generateSaltedHash(password, salt);
-
-                CreateStudentDto createStudentDto = new CreateStudentDto(first_name, last_name, username, email, saltedHash, salt);
-
-                Student student = new Student(first_name, last_name, username, email, saltedHash, salt);
-
-
-
-                studentRepository.createStudent(student);
-
-                alert.successMessage("Jeni regjistruar me sukses!!");
-                registerClearFields();
+                System.out.println("Failed to insert user in the database");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Error inserting user into database: " + e.getMessage());
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
         }
     }
+//else if (!setPasswordField.getText().equals(confirmPasswordField.getText())) {
+//                alert.errorMessage("Fjalekalimet nuk perputhen. Provoni perseri.");
+//            } else if (setPasswordField.getLength() < 8) {
+//                alert.errorMessage("Gjatesia e fjalekalimit duhet te jete te pakten 8 karaktera!");
+//            } else {
+
+//                String first_name = emriTextField.getText();
+//                String last_name = mbiemriTextField.getText();
+//                String username = perdoruesiTextField.getText();
+//                String email = emailTextField.getText();
+//                String password = setPasswordField.getText();
+//                String confirm = confirmPasswordField.getText();
+//                String salt = PasswordHasher.generateSalt();
+//                String saltedHash = PasswordHasher.generateSaltedHash(password, salt);
+//
+//                CreateStudentDto createStudentDto = new CreateStudentDto(first_name, last_name, username, email, saltedHash, salt);
+//
+//                Student student = new Student(first_name, last_name, username, email, saltedHash, salt);
+
+
+//
+//                studentRepository.insert(student,connection);
+//
+//                alert.successMessage("Jeni regjistruar me sukses!!");
+//                registerClearFields();
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+
 
     public void registerClearFields() {
         emriTextField.setText("");

@@ -1,6 +1,7 @@
 package repository;
 
 import models.Student;
+import models.dto.CreateStudentDto;
 import service.ConnectionUtil;
 import service.PasswordHasher;
 
@@ -12,52 +13,24 @@ import java.sql.SQLException;
 import java.util.Base64;
 
 public class StudentRepository {
-    public void createStudent(Student student) throws SQLException {
-        Connection connection = null;
-        PreparedStatement prepareStatement = null;
-        ResultSet resultSet = null;
-
-        try {
-            connection = ConnectionUtil.getConnection();
-
-            String checkUsername = "SELECT * FROM tbl_students WHERE username = ?";
-            prepareStatement = connection.prepareStatement(checkUsername);
-            prepareStatement.setString(1, student.getUsername());
-            resultSet = prepareStatement.executeQuery();
-
-            if (resultSet.next()) {
-                throw new SQLException("Perdoruesi " + student.getUsername() + " nuk eshte i lire per perdorim.");
-            } else {
-                String salt = PasswordHasher.generateSalt();
-                String saltedHash = PasswordHasher.generateSaltedHash(student.getPassword(), salt);
+    public void insert(CreateStudentDto student, Connection connection) throws SQLException {
 
                 String insertData = "INSERT INTO tbl_students "
                         + "(first_name, last_name, username, email, password, salt, role)"
                         + "VALUES(?, ?, ?, ?, ?, ?, ?)";
-                prepareStatement = connection.prepareStatement(insertData);
-                prepareStatement.setString(1, student.getFirst_name());
-                prepareStatement.setString(2, student.getLast_name());
+                PreparedStatement prepareStatement = connection.prepareStatement(insertData);
+                prepareStatement.setString(1, student.getFirstName());
+                prepareStatement.setString(2, student.getLastName());
                 prepareStatement.setString(3, student.getUsername());
                 prepareStatement.setString(4, student.getEmail());
-                prepareStatement.setString(5, saltedHash);
-                prepareStatement.setString(6, Base64.getEncoder().encodeToString(salt.getBytes()));
+                prepareStatement.setString(5, student.getSalt());
+                prepareStatement.setString(6, student.getPassword());
                 prepareStatement.setString(7, "student");
 
                 prepareStatement.executeUpdate();
             }
-        } finally {
-            // Close the resources in the reverse order of their creation
-            if (resultSet != null) {
-                resultSet.close();
-            }
-            if (prepareStatement != null) {
-                prepareStatement.close();
-            }
-            if (connection != null) {
-                connection.close();
-            }
-        }
-    }
+
+
     public static String getSalt(String username)throws SQLException, NoSuchAlgorithmException{
         Connection connection = ConnectionUtil.getConnection();
         String sql = "SELECT * FROM tbl_students where username = ?";
