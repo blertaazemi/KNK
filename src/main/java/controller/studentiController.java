@@ -4,15 +4,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.PasswordField;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import service.ConnectionUtil;
-
+import java.io.IOException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -73,5 +74,24 @@ public class studentiController {
     private void applyForScholarship() {
         // Code to handle the "Apply for Scholarship" button click event
         // You can add your logic here
+
+
     }
+
+    @FXML
+    private void navigateToAplikimi(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Aplikimi.class.getResource("Aplikimi.fxml"));
+        Pane pane = fxmlLoader.load();
+        ScrollPane scrollPane = new ScrollPane(pane);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
+
+        Scene scene = new Scene(scrollPane, 1400, 600);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
 }
+

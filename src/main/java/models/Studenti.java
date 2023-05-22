@@ -4,17 +4,15 @@ public class Studenti {
     private String first_name;
     private String last_name;
     private String email;
-    private String gender;
     private String faculty;
 
 
 
-    public Studenti(String name, String username, String email, String gender,String faculty) {
+    public Studenti(String name, String username, String email,String faculty) {
 
         this.first_name=first_name;
         this.last_name=last_name;
         this.email=email;
-        this.gender=gender;
         this.faculty=faculty;
     }
 
@@ -34,9 +32,6 @@ public class Studenti {
     public String getemail() {
         return email;
     }
-    public String getgender() {
-        return gender;
-    }
     public String getfaculty() {
         return faculty;
     }
@@ -53,9 +48,6 @@ public class Studenti {
 
     public void setemail(String email) {
         this.email = email;
-    }
-    public void setgender(String gender) {
-        this.gender = gender;
     }
     public void setfaculty(String faculty) {
         this.faculty = faculty;
