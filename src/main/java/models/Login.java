@@ -1,9 +1,6 @@
-//LOGIN FOR STUDENTS
+// Login.java
 package models;
 
-
-import controller.RegisterController;
-import models.dto.CreateStudentDto;
 import repository.StudentRepository;
 import service.PasswordHasher;
 
@@ -14,7 +11,6 @@ public class Login {
     private String username;
     private String password;
 
-    //kur te logohemi i krahason saltedhash passwords duke i marre nga tabela qe vec jemi regjistru (kur u gjeneru salt kur jemi regjistru)
     public Login(String username, String password) throws SQLException, NoSuchAlgorithmException {
         this.username = username;
         this.password = PasswordHasher.generateSaltedHash(password, StudentRepository.getSalt(this.username));
@@ -32,7 +28,9 @@ public class Login {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+//    public void setPassword(String password) {
+//        this.password = password;
+//    }
+
+
 }

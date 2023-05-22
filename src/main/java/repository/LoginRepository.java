@@ -4,18 +4,27 @@ import controller.alertMessage;
 import models.AdminLogin;
 import models.Login;
 
+import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+
+import models.Login;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class LoginRepository {
-    public boolean login(Login login, Connection connection) {
-        String sql = "SELECT * FROM tbl_students WHERE username = ? AND password = ?";
+    public boolean login(Login loginModel, Connection connection) {
+        String sql = "SELECT * FROM tbl_students WHERE username = ? and password = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, login.getUsername());
-            statement.setString(2, login.getPassword());
+            statement.setString(1, loginModel.getUsername());
+            statement.setString(2, loginModel.getPassword());
             ResultSet resultSet = statement.executeQuery();
             if (!resultSet.next()) {
                 // No rows returned, so username is incorrect
@@ -33,8 +42,12 @@ public class LoginRepository {
             return false;
         }
     }
-}
 
+
+
+
+
+}
 
 //    public String adminLogin(AdminLogin adminLogin, Connection connection) {
 //        alertMessage alertMessage = new alertMessage();

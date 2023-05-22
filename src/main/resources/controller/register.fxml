@@ -13,7 +13,7 @@
    <children>
       <AnchorPane prefHeight="82.0" prefWidth="650.0" style="-fx-background-color: #94CDFF;">
          <children>
-            <Label layoutX="69.0" layoutY="18.0" text="Regjistrohu" textFill="WHITE">
+            <Label fx:id="regjistrohuLabel" layoutX="69.0" layoutY="18.0" text="Regjistrohu" textFill="WHITE">
                <font>
                   <Font size="30.0" />
                </font>
@@ -25,19 +25,19 @@
             <Image url="@../Images/book.png" />
          </image>
       </ImageView>
-      <Label layoutX="150.0" layoutY="100.0" text="Emri:">
+      <Label fx:id="emriLabel" layoutX="150.0" layoutY="100.0" text="Emri:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
       <TextField fx:id="emriTextField" layoutX="150.0" layoutY="120.0" prefHeight="25.0" prefWidth="336.0" promptText="Emri..." />
-      <Label layoutX="150.0" layoutY="160.0" text="Mbiemri:">
+      <Label fx:id="mbiemriLabel" layoutX="150.0" layoutY="160.0" text="Mbiemri:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
       <TextField fx:id="mbiemriTextField" layoutX="150.0" layoutY="180.0" prefHeight="25.0" prefWidth="336.0" promptText="Mbiemri..." />
-      <Label layoutX="150.0" layoutY="220.0" text="Emri i përdoruesit:">
+      <Label fx:id="perdoruesiLabel" layoutX="150.0" layoutY="220.0" text="Emri i përdoruesit:">
          <font>
             <Font size="14.0" />
          </font>
@@ -49,7 +49,7 @@
          </font>
       </Label>
       <TextField fx:id="emailTextField" layoutX="150.0" layoutY="300.0" prefHeight="25.0" prefWidth="336.0" promptText="E-mail..." />
-      <Label layoutX="150.0" layoutY="340.0" text="Fjalëkalimi:">
+      <Label fx:id="fjalekalimiLabel" layoutX="150.0" layoutY="340.0" text="Fjalëkalimi:">
          <font>
             <Font size="14.0" />
          </font>

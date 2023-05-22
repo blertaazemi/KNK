@@ -17,7 +17,9 @@ import javafx.stage.Stage;
 import models.AdminLogin;
 import models.Login;
 import repository.LoginRepository;
+import repository.StudentRepository;
 import service.ConnectionUtil;
+import service.PasswordHasher;
 
 import java.io.IOException;
 import java.net.URL;
@@ -71,7 +73,7 @@ public class LoginController implements Initializable {
     public void loginButtonOnAction(ActionEvent event) throws SQLException, IOException {
         loginMessageLabel.setText("Provoni te kyceni");
         if (!perdoruesiTextField.getText().isBlank() && !enterPasswordField.getText().isBlank()) {
-            validateLogin(event);
+            login(event);
         } else {
             loginMessageLabel.setText("Ju lutem shkruani emrin e përdoruesit dhe fjalëkalimin");
         }
@@ -82,42 +84,35 @@ public class LoginController implements Initializable {
         stage.close();
     }
 
-    public void validateLogin(ActionEvent event) throws SQLException, IOException {
-        alertMessage alertMessage = new alertMessage();
+    @FXML
+    void login(ActionEvent event) {
         try {
-            Connection connection = ConnectionUtil.getConnection();
-
+            //Connection  connection = ConnectionUtil.getConnection();
             if (connection != null) {
-
                 Login loginModel = new Login(perdoruesiTextField.getText(), enterPasswordField.getText());
                 LoginRepository loginRepository = new LoginRepository();
-                boolean validLogin = loginRepository.login(loginModel, connection);
-
-                System.out.println("validLogin: " + validLogin); // po del false dmth sosht tu bo logini :(
-
-                if (validLogin) {
-                    // Redirect to student dashboard
+                boolean validlogin = loginRepository.login(loginModel, connection);
+                if(validlogin) {
                     try {
-                        FXMLLoader fxmlLoader = new FXMLLoader(Register.class.getResource("register.fxml"));
+                        FXMLLoader fxmlLoader = new FXMLLoader(Studenti.class.getResource("studenti.fxml"));
                         Pane pane = fxmlLoader.load();
                         Scene scene = new Scene(pane);
                         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         stage.setScene(scene);
                         stage.show();
+
                     } catch (IOException e) {
-                        alertMessage.errorMessage("Failed to load student dashboard");
+                        System.err.println("Error loading FXML file: " + e.getMessage());
                     }
 
-                } else {
-                    alertMessage.errorMessage("Përdoruesi ose fjalëkalimi i gabuar!");
                 }
-
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             System.err.println(e.getMessage());
 
         } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException();
+            throw new RuntimeException(e);
         }
     }
 

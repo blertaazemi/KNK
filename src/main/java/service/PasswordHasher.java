@@ -5,13 +5,17 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Base64;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.util.Base64;
+
 public class PasswordHasher {
-    private static final int SALT_LENGTH = 16; // length of salt in bytes
+    private static final int SALT_LENGTH = 32; // length of salt in bytes
     private static final int HASH_LENGTH = 256; // length of hash in bytes
     private static final String HASH_ALGORITHM = "SHA-256";
 
     //    TODO: Create method that generates salt
-
     public static String generateSalt() {
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[SALT_LENGTH];
