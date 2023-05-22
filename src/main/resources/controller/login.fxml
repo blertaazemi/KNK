@@ -20,7 +20,7 @@
                   <Image url="@../Images/book.png" />
                </image>
             </ImageView>
-            <Text fill="WHITE" layoutX="25.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sistemi interaktiv për aplikimin dhe menaxhimin e bursave" textAlignment="CENTER" wrappingWidth="200.54014587402344">
+            <Text fill="WHITE" layoutX="25.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="e-Bursa" textAlignment="CENTER" wrappingWidth="200.54014587402344">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -31,7 +31,7 @@
    <right>
       <AnchorPane prefHeight="564.0" prefWidth="541.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="161.0" layoutY="191.0" prefHeight="67.0" prefWidth="126.0" text="Kyçu:">
+            <Label fx:id="kycuLabel" layoutX="161.0" layoutY="191.0" prefHeight="67.0" prefWidth="126.0" text="Kyçu:">
                <font>
                   <Font size="24.0" />
                </font>
@@ -41,12 +41,12 @@
                   <Image url="@../Images/user.png" />
                </image>
             </ImageView>
-            <Label layoutX="57.0" layoutY="260.0" text="Emri i përdoruesit:">
+            <Label fx:id="perdoruesiLabel" layoutX="57.0" layoutY="260.0" text="Emri i përdoruesit:">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="57.0" layoutY="330.0" text="Fjalëkalimi:">
+            <Label fx:id="fjalekalimiLabel" layoutX="57.0" layoutY="330.0" text="Fjalëkalimi:">
                <font>
                   <Font size="14.0" />
                </font>

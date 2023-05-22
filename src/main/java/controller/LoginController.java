@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
@@ -46,7 +47,19 @@ public class LoginController implements Initializable {
 
     @FXML
     private ImageView userImageView;
+    @FXML
+    private Label fjalekalimiLabel;
 
+    @FXML
+    private Button krijoLlogariNeseSki;
+
+    @FXML
+    private Label kycuLabel;
+
+    @FXML
+    private Label perdoruesiLabel;
+
+    private ResourceBundle bundle;
     private Connection connection;
 
     private PreparedStatement prepareStatement;
@@ -62,11 +75,37 @@ public class LoginController implements Initializable {
         Image userImage = new Image(getClass().getResourceAsStream("/Images/user.png"));
         userImageView.setImage(userImage);
 
+        Locale locale = Locale.getDefault();
+        ResourceBundle translate = ResourceBundle.getBundle("translations.content", locale);
+
         try {
             connection = ConnectionUtil.getConnection(); // Initialize the connection
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    private void translateElements() {
+        perdoruesiLabel.setText(bundle.getString("perdoruesiLabel"));
+        fjalekalimiLabel.setText(bundle.getString("fjalekalimiLabel"));
+        loginButton.setText(bundle.getString("loginButton"));
+        cancelButton.setText(bundle.getString("cancelButton"));
+        loginMessageLabel.setText(bundle.getString("loginMessageLabel"));
+        kycuLabel.setText(bundle.getString("kycuLabel"));
+        krijoLlogariNeseSki.setText(bundle.getString("krijoLlogariNeseSki"));
+        // Translate other elements in a similar manner
+    }
+
+    public void translateEn(ActionEvent event){
+        Locale.setDefault(new Locale("en"));
+        bundle = ResourceBundle.getBundle("translations.content", Locale.getDefault());
+        this.translateElements();
+    }
+
+    public void translateAl(ActionEvent event){
+        Locale.setDefault(new Locale("sq"));
+        bundle = ResourceBundle.getBundle("translations.content", Locale.getDefault());
+        this.translateElements();
     }
 
 

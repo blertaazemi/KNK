@@ -55,7 +55,7 @@
          </font>
       </Label>
       <PasswordField fx:id="setPasswordField" layoutX="150.0" layoutY="360.0" prefHeight="26.0" prefWidth="336.0" promptText="Fjalëkalimi..." />
-      <Label layoutX="150.0" layoutY="396.0" text="Konfirmo fjalëkalimin:">
+      <Label fx:id="konfirmofjalekaliminLabel" layoutX="150.0" layoutY="396.0" text="Konfirmo fjalëkalimin:">
          <font>
             <Font size="14.0" />
          </font>
@@ -71,7 +71,6 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <Label layoutX="218.0" layoutY="563.0" text="Keni llogari? Klikoni këtu për tu kyçur:" />
       <Button fx:id="kycuNeseKiLLogari" layoutX="150.0" layoutY="581.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="336.0" style="-fx-background-color: #94CDFF;" text="Kyçu">
          <font>
             <Font size="14.0" />
