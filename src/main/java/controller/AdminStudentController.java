@@ -19,6 +19,7 @@ import service.ConnectionUtil;
 import service.PasswordHasher;
 
 import java.net.URL;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -79,60 +80,67 @@ public class AdminStudentController implements Initializable {
     // Logjika e buttonit add
     @FXML
     public void addStudentClick() {
-        // Gather student information from input fields or other sources
-        String firstName = FirstNameField.getText();
-        String lastName = LastNameField.getText();
-        String username = UsernameField.getText();
-        String email = EmailField.getText();
-        String password = PasswordField.getText();
-        String salt = PasswordHasher.generateSalt();
-        String saltedHash = PasswordHasher.generateSaltedHash(password,salt);
-
-        CreateStudentDto student = new CreateStudentDto(firstName, lastName, username, email,saltedHash,salt);
-
-
         try {
-            AdminStudent insertedStudent = AdminStudentRepository.insert(student);
-            if (insertedStudent != null) {
-                studentTableView.getItems().add(insertedStudent);
+            // Gather student information from input fields or other sources
+            String firstName = FirstNameField.getText();
+            String lastName = LastNameField.getText();
+            String username = UsernameField.getText();
+            String email = EmailField.getText();
+            String password = PasswordField.getText();
+            String salt = PasswordHasher.generateSalt();
+            String saltedHash = PasswordHasher.generateSaltedHash(password, salt);
+
+            CreateStudentDto student = new CreateStudentDto(firstName, lastName, username, email, saltedHash, salt);
+
+
+            try {
+                AdminStudent insertedStudent = AdminStudentRepository.insert(student);
+                if (insertedStudent != null) {
+                    studentTableView.getItems().add(insertedStudent);
+
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
 
             }
-        } catch (SQLException e) {
+        }catch(NoSuchAlgorithmException e){
             e.printStackTrace();
-
         }
     }
  // logjika e buttonit delete
     public void deleteStudentClick() {
 
             AdminStudent selectedStudent = studentTableView.getSelectionModel().getSelectedItem();
-            
-            if (selectedStudent != null) {
-                CreateStudentDto studentToDelete = new CreateStudentDto(
-                        selectedStudent.getFirst_name(),
-                        selectedStudent.getLast_name(),
-                        selectedStudent.getUsername(),
-                        selectedStudent.getEmail(),
-                        selectedStudent.getPassword(),
-                        selectedStudent.getSalt()
-                );
+            try {
+                if (selectedStudent != null) {
+                    CreateStudentDto studentToDelete = new CreateStudentDto(
+                            selectedStudent.getFirst_name(),
+                            selectedStudent.getLast_name(),
+                            selectedStudent.getUsername(),
+                            selectedStudent.getEmail(),
+                            selectedStudent.getPassword(),
+                            selectedStudent.getSalt()
+                    );
 
-                try {
-                    boolean isDeleted = AdminStudentRepository.deleteStudent(studentToDelete);
+                    try {
+                        boolean isDeleted = AdminStudentRepository.deleteStudent(studentToDelete);
 
-                    if (isDeleted) {
-                        // Remove the deleted student from the TableView
-                        studentTableView.getItems().remove(selectedStudent);
+                        if (isDeleted) {
+                            // Remove the deleted student from the TableView
+                            studentTableView.getItems().remove(selectedStudent);
 
-                        System.out.println("User with username '" + studentToDelete.getUsername() + "' has been deleted successfully.");
-                    } else {
-                        System.out.println("Failed to delete user with username '" + studentToDelete.getUsername() + "'.");
+                            System.out.println("User with username '" + studentToDelete.getUsername() + "' has been deleted successfully.");
+                        } else {
+                            System.out.println("Failed to delete user with username '" + studentToDelete.getUsername() + "'.");
+                        }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
                     }
-                } catch (SQLException e) {
-                    e.printStackTrace();
+                } else {
+                    System.out.println("No student is selected.");
                 }
-            } else {
-                System.out.println("No student is selected.");
+            }catch(NoSuchAlgorithmException e){
+                e.printStackTrace();
             }
         }
 
@@ -201,6 +209,7 @@ public void updateStudentClick() {
         String usernameFilter = UsernameField.getText();
 
         Connection connection = null;
+        try{
         try {
             connection = ConnectionUtil.getConnection();
         } catch (SQLException e) {
@@ -219,6 +228,9 @@ public void updateStudentClick() {
         // Update the table with the filtered data
         ObservableList<AdminStudent> filteredList = FXCollections.observableList(studentModelList);
         studentTableView.setItems(filteredList);
+    }catch(NoSuchAlgorithmException e){
+            e.printStackTrace();
+        }
     }
 
 
