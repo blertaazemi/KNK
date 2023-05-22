@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -49,17 +50,12 @@
       <TextField fx:id="MbiemriTextField" layoutX="242.0" layoutY="163.0" promptText="Mbiemri i studentit.." />
       <TextField fx:id="NotaMesatareTextField" layoutX="242.0" layoutY="223.0" promptText="Nota mesatare.." />
       <TextField fx:id="VitiStudimiTextField" layoutX="242.0" layoutY="294.0" promptText="Viti i studimeve.." />
-      <RadioButton fx:id="STEM" layoutX="242.0" layoutY="370.0" mnemonicParsing="false" selected="true" text="STEM" />
-      <RadioButton fx:id="Universitare" layoutX="339.0" layoutY="370.0" mnemonicParsing="false" selected="true" text="Universitare" textFill="#6d24ad" />
+      <RadioButton fx:id="STEM" layoutX="242.0" layoutY="370.0" mnemonicParsing="false" selected="true" text="STEM">
+         <toggleGroup>
+            <ToggleGroup fx:id="group" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="Universitare" layoutX="339.0" layoutY="370.0" mnemonicParsing="false" selected="true" text="Universitare" textFill="#6d24ad" toggleGroup="$group" />
       <Button layoutX="302.0" layoutY="439.0" mnemonicParsing="false" onAction="#register" prefHeight="30.0" prefWidth="70.0" text="Apliko" textAlignment="JUSTIFY" />
 
    </children>
 </AnchorPane>
-
-
-
-
-
-
-
-

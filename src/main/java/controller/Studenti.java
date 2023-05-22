@@ -17,6 +17,4 @@ public class Studenti extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
-
 }
