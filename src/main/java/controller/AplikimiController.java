@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import java.io.File;
 
 import java.io.File;
 
@@ -18,18 +19,23 @@ public class AplikimiController {
     private TextArea textArea;
 
     @FXML
+
     private void chooseFileClicked(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open File");
+        fileChooser.setTitle("Open PDF File");
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("PDF Files", "*.pdf")
+        );
 
         Stage stage = (Stage) btnOpenFile.getScene().getWindow();
         File file = fileChooser.showOpenDialog(stage);
 
         if (file != null) {
             // File selected, do something with it
-            textArea.setText("Selected file: " + file.getAbsolutePath());
+            textArea.setText("Selected PDF file: " + file.getAbsolutePath());
         }
     }
+
 
     private Stage stage;
 
