@@ -165,6 +165,11 @@ public void updateStudentClick() {
         selectedStudent.setLast_name(lastName);
         selectedStudent.setUsername(username);
         selectedStudent.setEmail(email);
+        // Update the password only if a new password is provided
+        if (!password.isEmpty()) {
+            selectedStudent.setPassword(saltedHash);
+        }
+
 
 
         try {
