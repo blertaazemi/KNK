@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -150,7 +151,7 @@ public void updateStudentClick() {
     String saltedHash = PasswordHasher.generateSaltedHash(password, salt);
 
     UpdateStudentDto updatedStudent = new UpdateStudentDto(studentId, firstName, lastName, username, email, saltedHash, salt);
-    
+
     AdminStudent selectedStudent = null;
     for (AdminStudent student : studentTableView.getItems()) {
         if (student.getId() == studentId) {
@@ -190,6 +191,35 @@ public void updateStudentClick() {
 
     }
 }
+
+// logjika e buttonit filter
+
+    @FXML
+    void filterStudentClick(ActionEvent event) throws SQLException {
+        String firstNameFilter = FirstNameField.getText();
+        String lastNameFilter = LastNameField.getText();
+        String usernameFilter = UsernameField.getText();
+
+        Connection connection = null;
+        try {
+            connection = ConnectionUtil.getConnection();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        CreateStudentDto studentDto = new CreateStudentDto(firstNameFilter, lastNameFilter, usernameFilter, "", "", "");
+        List<AdminStudent> studentModelList = null;
+
+        try {
+            studentModelList = AdminStudentRepository.filterTable(connection, studentDto);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        // Update the table with the filtered data
+        ObservableList<AdminStudent> filteredList = FXCollections.observableList(studentModelList);
+        studentTableView.setItems(filteredList);
+    }
 
 
 
