@@ -81,6 +81,7 @@ public class AplikimiController {
                 CreateAplikimiDto createAplikimiDto = new CreateAplikimiDto(Integer.parseInt(student_id), bursa_id, Integer.parseInt(viti_studimit), Double.parseDouble(nota_mesatare));
                 AplikimiRepository aplikimiRepository = new AplikimiRepository();
                 aplikimiRepository.createapplication(createAplikimiDto);
+
             }
         } catch (SQLException e) {
             // Handle the SQLException here
