@@ -7,13 +7,9 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-<<<<<<< Updated upstream
-import java.io.File;
-=======
 import models.Student;
 import models.dto.CreateAplikimiDto;
 import repository.AplikimiRepository;
->>>>>>> Stashed changes
 
 import java.sql.SQLException;
 
@@ -26,28 +22,11 @@ public class AplikimiController {
     private TextArea textArea;
 
     @FXML
-<<<<<<< Updated upstream
-
-    private void chooseFileClicked(ActionEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open PDF File");
-        fileChooser.getExtensionFilters().add(
-                new FileChooser.ExtensionFilter("PDF Files", "*.pdf")
-        );
-=======
     private TextField EmriTextField;
->>>>>>> Stashed changes
 
     @FXML
     private TextField MbiemriTextField;
 
-<<<<<<< Updated upstream
-        if (file != null) {
-            // File selected, do something with it
-            textArea.setText("Selected PDF file: " + file.getAbsolutePath());
-        }
-    }
-=======
     @FXML
     private TextField idTextField;
 
@@ -62,8 +41,6 @@ public class AplikimiController {
 
     @FXML
     private RadioButton Universitare;
->>>>>>> Stashed changes
-
 
     private Stage stage;
 
@@ -117,4 +94,4 @@ public class AplikimiController {
         }
     }
 
-    }
+}
