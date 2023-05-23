@@ -14,4 +14,7 @@ module com.example.projekti_knk {
     exports models to javafx.graphics;
     exports repository to javafx.graphics;
     exports controller to javafx.graphics;
+
+    requires java.desktop;
+
 }
