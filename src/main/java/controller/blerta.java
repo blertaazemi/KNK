@@ -1,10 +1,19 @@
 package controller;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.sql.*;
 
 public class blerta {
@@ -15,12 +24,12 @@ public class blerta {
     private TextField firstNameTextField;
     @FXML
     private TextField lastNameTextField;
-    @FXML
-    private RadioButton femaleRadioButton;
-    @FXML
-    private RadioButton maleRadioButton;
-    @FXML
-    private TextField facultyTextField;
+//    @FXML
+//    private RadioButton femaleRadioButton;
+//    @FXML
+//    private RadioButton maleRadioButton;
+//    @FXML
+//    private TextField facultyTextField;
     @FXML
     private TextField emailTextField;
 
@@ -46,20 +55,14 @@ public class blerta {
             while (resultSet.next()) {
                 String firstName = resultSet.getString("first_name");
                 String lastName = resultSet.getString("last_name");
-                String gender = resultSet.getString("gender");
                 String faculty = resultSet.getString("faculty");
                 String email = resultSet.getString("email");
 
                 firstNameTextField.setText(firstName);
                 lastNameTextField.setText(lastName);
 
-                if (gender.equals("F")) {
-                    femaleRadioButton.setSelected(true);
-                } else if (gender.equals("M")) {
-                    maleRadioButton.setSelected(true);
-                }
 
-                facultyTextField.setText(faculty);
+               // facultyTextField.setText(faculty);
                 emailTextField.setText(email);
             }
 
@@ -70,5 +73,19 @@ public class blerta {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void navigateToAplikimi(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Aplikimi.class.getResource("Aplikimi.fxml"));
+        Pane pane = fxmlLoader.load();
+        ScrollPane scrollPane = new ScrollPane(pane);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
+
+        Scene scene = new Scene(scrollPane, 1400, 600);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 }

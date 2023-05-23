@@ -2,15 +2,19 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import models.Student;
 import models.dto.CreateAplikimiDto;
 import repository.AplikimiRepository;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class AplikimiController {
@@ -93,6 +97,24 @@ public class AplikimiController {
             // Handle other exceptions here
             System.out.println("An error occurred: " + e.getMessage());
         }
+
+
+    }
+    @FXML
+    private void navigateToStudenti(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Studenti.class.getResource("studenti.fxml"));
+        AnchorPane studentiPane = loader.load();
+
+        Scene scene = new Scene(studentiPane, 650, 564);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
-}
+
+
+    }
+
+
+
+

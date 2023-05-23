@@ -12,6 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import models.AdminStudent;
+import models.Pagination;
 import models.dto.CreateStudentDto;
 import models.dto.UpdateStudentDto;
 import repository.AdminStudentRepository;
@@ -74,6 +75,8 @@ public class AdminStudentController implements Initializable {
 
     @FXML
     private Button updateStudentBtn;
+
+
 
 
 
@@ -254,6 +257,7 @@ public void updateStudentClick() {
     }
 
     public void initialize(URL location, ResourceBundle resources) {
+
         col_studentId.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
         col_firstName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFirst_name()));
         col_lastName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getLast_name()));
@@ -280,7 +284,13 @@ public void updateStudentClick() {
         ObservableList<AdminStudent> studentObservableList = FXCollections.observableList(studentModelList);
         studentTableView.setItems(studentObservableList);
 
+
+
+
+
     }
+
+    // PAGINATION
 
 
 

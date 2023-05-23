@@ -107,27 +107,29 @@ public class AdminStudentRepository {
             List<AdminStudent> studentList = new ArrayList<>();
             StringBuilder sqlBuilder = new StringBuilder("SELECT * FROM tbl_students WHERE 1=1");
 
-            if (model.getUsername() != null && !model.getUsername().isEmpty()) {
-                sqlBuilder.append(" AND username LIKE ?");
-            }
+
             if (model.getFirstName() != null && !model.getFirstName().isEmpty()) {
                 sqlBuilder.append(" AND first_name LIKE ?");
             }
             if (model.getLastName() != null && !model.getLastName().isEmpty()) {
                 sqlBuilder.append(" AND last_name LIKE ?");
             }
+            if (model.getUsername() != null && !model.getUsername().isEmpty()) {
+                sqlBuilder.append(" AND username LIKE ?");
+            }
 
             PreparedStatement statement = connection.prepareStatement(sqlBuilder.toString());
             int parameterIndex = 1;
 
-            if (model.getUsername() != null && !model.getUsername().isEmpty()) {
-                statement.setString(parameterIndex++, "%" + model.getUsername() + "%");
-            }
+
             if (model.getFirstName() != null && !model.getFirstName().isEmpty()) {
                 statement.setString(parameterIndex++, "%" + model.getFirstName() + "%");
             }
             if (model.getLastName() != null && !model.getLastName().isEmpty()) {
                 statement.setString(parameterIndex++, "%" + model.getLastName() + "%");
+            }
+            if (model.getUsername() != null && !model.getUsername().isEmpty()) {
+                statement.setString(parameterIndex++, "%" + model.getUsername() + "%");
             }
 
             ResultSet resultSet = statement.executeQuery();
@@ -142,7 +144,7 @@ public class AdminStudentRepository {
                 String salt = resultSet.getString("salt");
 
                 // Create an instance of AdminStudent with retrieved data
-                AdminStudent student = new AdminStudent(id, username, firstName, lastName, email, password, salt);
+                AdminStudent student = new AdminStudent(id, firstName, lastName, username, email, password, salt);
                 studentList.add(student);
             }
 

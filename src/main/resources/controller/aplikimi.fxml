@@ -56,6 +56,9 @@
          </toggleGroup></RadioButton>
       <RadioButton fx:id="Universitare" layoutX="339.0" layoutY="370.0" mnemonicParsing="false" selected="true" text="Universitare" textFill="#6d24ad" toggleGroup="$group" />
       <Button layoutX="302.0" layoutY="439.0" mnemonicParsing="false" onAction="#register" prefHeight="30.0" prefWidth="70.0" text="Apliko" textAlignment="JUSTIFY" />
+      <Button fx:id="backButton" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#navigateToStudenti" text="Back" />
+
+
 
    </children>
 </AnchorPane>
