@@ -109,8 +109,8 @@ public class LoginController implements Initializable {
     }
 
 
+    @FXML
     public void loginButtonOnAction(ActionEvent event) throws SQLException, IOException {
-        loginMessageLabel.setText("Provoni te kyceni");
         if (!perdoruesiTextField.getText().isBlank() && !enterPasswordField.getText().isBlank()) {
             login(event);
         } else {
@@ -123,7 +123,6 @@ public class LoginController implements Initializable {
         stage.close();
     }
 
-    @FXML
     void login(ActionEvent event) {
         try {
             //Connection  connection = ConnectionUtil.getConnection();
@@ -133,7 +132,7 @@ public class LoginController implements Initializable {
                 boolean validlogin = loginRepository.login(loginModel, connection);
                 if(validlogin) {
                     try {
-                        FXMLLoader fxmlLoader = new FXMLLoader(Studenti.class.getResource("studenti.fxml"));
+                        FXMLLoader fxmlLoader = new FXMLLoader(Studenti.class.getResource("students.fxml"));
                         Pane pane = fxmlLoader.load();
                         Scene scene = new Scene(pane);
                         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
