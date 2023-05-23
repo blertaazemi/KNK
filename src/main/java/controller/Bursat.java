@@ -18,7 +18,7 @@ public class Bursat extends Application {
         Locale.setDefault(new Locale("en", "KS"));
         Locale.setDefault(new Locale("de", "KS"));
 
-        FXMLLoader fxmlLoader = new FXMLLoader(BursatController.class.getResource("bursat.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Bursat.class.getResource("bursat.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("\n");
         stage.setScene(scene);
