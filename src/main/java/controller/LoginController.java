@@ -1,5 +1,4 @@
 package controller;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +11,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import models.AdminLogin;
@@ -51,6 +53,9 @@ public class LoginController implements Initializable {
     private Label fjalekalimiLabel;
 
     @FXML
+    private BorderPane login_form;
+
+    @FXML
     private Button krijoLlogariNeseSki;
 
     @FXML
@@ -69,6 +74,12 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //qekjo o pjesa per me shku me enter qeta 3 rreshta
+        login_form.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                loginButton.fire();
+            }
+        });
         Image bookImage = new Image(getClass().getResourceAsStream("/Images/book.png"));
         bookImageView.setImage(bookImage);
 
@@ -85,6 +96,7 @@ public class LoginController implements Initializable {
         }
     }
 
+
     private void translateElements() {
         perdoruesiLabel.setText(bundle.getString("perdoruesiLabel"));
         fjalekalimiLabel.setText(bundle.getString("fjalekalimiLabel"));
@@ -96,13 +108,13 @@ public class LoginController implements Initializable {
         // Translate other elements in a similar manner
     }
 
-    public void translateEn(ActionEvent event){
+    public void translateEn(ActionEvent event) {
         Locale.setDefault(new Locale("en"));
         bundle = ResourceBundle.getBundle("translations.content", Locale.getDefault());
         this.translateElements();
     }
 
-    public void translateAl(ActionEvent event){
+    public void translateAl(ActionEvent event) {
         Locale.setDefault(new Locale("sq"));
         bundle = ResourceBundle.getBundle("translations.content", Locale.getDefault());
         this.translateElements();
@@ -123,6 +135,7 @@ public class LoginController implements Initializable {
         stage.close();
     }
 
+    @FXML
     void login(ActionEvent event) {
         try {
             //Connection  connection = ConnectionUtil.getConnection();
@@ -130,10 +143,13 @@ public class LoginController implements Initializable {
                 Login loginModel = new Login(perdoruesiTextField.getText(), enterPasswordField.getText());
                 LoginRepository loginRepository = new LoginRepository();
                 boolean validlogin = loginRepository.login(loginModel, connection);
-                if(validlogin) {
+                if (validlogin) {
                     try {
                         FXMLLoader fxmlLoader = new FXMLLoader(Studenti.class.getResource("studenti.fxml"));
                         Pane pane = fxmlLoader.load();
+                        studentiController studentiController=fxmlLoader.getController();
+                        studentiController.GetUsername(perdoruesiTextField.getText());
+
                         Scene scene = new Scene(pane);
                         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         stage.setScene(scene);
@@ -145,16 +161,11 @@ public class LoginController implements Initializable {
 
                 }
             }
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             System.err.println(e.getMessage());
 
         } catch (NoSuchAlgorithmException e) {  // try block per qit catch ku e ki
             throw new RuntimeException(e);
         }
     }
-
-
-
-
-}
+    };

@@ -6,10 +6,7 @@ import service.ConnectionUtil;
 import service.PasswordHasher;
 
 import java.security.NoSuchAlgorithmException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Base64;
 
 public class StudentRepository {
@@ -59,5 +56,24 @@ public class StudentRepository {
             return null;
         }
     }
+    public Student GetUser( String username) throws SQLException, NoSuchAlgorithmException {
+        Connection connection = ConnectionUtil.getConnection();
+        Student student =  null;
+        String sql = "SELECT * FROM tbl_students WHERE username=?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, username);
+        ResultSet result = statement.executeQuery();
+        while (result.next()) {
+            String first_name = result.getString("first_name");
+            String last_name = result.getString("last_name");
+            String Username = result.getString("username");
+            String email = result.getString("email");
+
+            student = new Student(first_name, last_name, username, email, "", "");
+
+        }
+        return student;
+    }
+
 }
 

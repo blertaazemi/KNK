@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="842.0" prefWidth="1168.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.blerta">
+<AnchorPane prefHeight="842.0" prefWidth="1168.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.studentiController">
    <children>
       <AnchorPane prefHeight="859.0" prefWidth="200.0" style="-fx-background-color: gray;">
          <children>
@@ -24,25 +24,25 @@
             <Font size="26.0" />
          </font>
       </Label>
-      <TextField layoutX="224.0" layoutY="204.0" prefHeight="26.0" prefWidth="259.0" promptText="Emri i studentit..." />
+      <TextField fx:id="emritxt" layoutX="224.0" layoutY="204.0" prefHeight="26.0" prefWidth="259.0" promptText="Emri i studentit..." />
       <Label layoutX="224.0" layoutY="255.0" text="Mbiemri:">
          <font>
             <Font size="26.0" />
          </font>
       </Label>
-      <TextField layoutX="224.0" layoutY="293.0" prefHeight="26.0" prefWidth="259.0" promptText="Mbiemri i studentit.." />
+      <TextField fx:id="mbiemritxt" layoutX="224.0" layoutY="293.0" prefHeight="26.0" prefWidth="259.0" promptText="Mbiemri i studentit.." />
       <Label layoutX="230.0" layoutY="352.0" text="Username:">
          <font>
             <Font size="26.0" />
          </font>
       </Label>
-      <TextField layoutX="224.0" layoutY="409.0" prefHeight="26.0" prefWidth="259.0" promptText="Emri i perdoruesit.." />
+      <TextField fx:id="usernametxt" layoutX="224.0" layoutY="409.0" prefHeight="26.0" prefWidth="259.0" promptText="Emri i perdoruesit.." />
       <Label layoutX="226.0" layoutY="458.0" text="Email:">
          <font>
             <Font size="26.0" />
          </font>
       </Label>
-      <TextField layoutX="226.0" layoutY="505.0" prefHeight="26.0" prefWidth="259.0" promptText="Email e studentit.." />
+      <TextField fx:id="emailtxt" layoutX="226.0" layoutY="505.0" prefHeight="26.0" prefWidth="259.0" promptText="Email e studentit.." />
       <Button fx:id="studentibtn" layoutX="225.0" layoutY="565.0" mnemonicParsing="false" onAction="#navigateToAplikimi" style="-fx-background-color: #44545f;" text="Apliko per burse" textFill="WHITE">
          <font>
             <Font size="15.0" />

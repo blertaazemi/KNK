@@ -9,14 +9,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import models.Student;
+import repository.StudentRepository;
 import service.ConnectionUtil;
 import java.io.IOException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ResourceBundle;
 
@@ -25,7 +30,7 @@ import static service.ConnectionUtil.getConnection;
 import service.PasswordHasher;
 import java.util.Base64;
 
-public class studentiController {
+public class studentiController implements Initializable{
     @FXML
     private AnchorPane studentPane;
     @FXML
@@ -38,8 +43,23 @@ public class studentiController {
     private Label emailLabel;
     @FXML
     private Button applyButton;
+    public  String SetUsername;
 
-    public void initializeStudentData(String username) {
+    @FXML
+    private TextField emritxt;
+
+    @FXML
+    private TextField mbiemritxt;
+
+    @FXML
+    private TextField emailtxt;
+
+    @FXML
+    private TextField usernametxt;
+
+    /*public void initializeStudentData(String username) {
+
+
         try {
             Connection connection = getConnection();
             Statement statement = connection.createStatement();
@@ -61,7 +81,11 @@ public class studentiController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
+
+    }*/
+
+
+
 
     private Connection getConnection() throws SQLException {
         String url = "jdbc:mysql://localhost/projekti_knk";
@@ -91,7 +115,29 @@ public class studentiController {
         stage.setScene(scene);
         stage.show();
     }
+    public void GetUsername(String username){
+        SetUsername=username;
 
+    }
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        StudentRepository studentRepository=new StudentRepository();
+        try {
+            Student student =studentRepository.GetUser(SetUsername);
+            usernametxt.setText(student.getUsername());
+            emailtxt.setText(student.getEmail());
+            emritxt.setText(student.getFirst_name());
+            mbiemritxt.setText(student.getLast_name());
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }
 
