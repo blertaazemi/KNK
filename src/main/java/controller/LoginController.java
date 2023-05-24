@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,12 +17,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import models.AdminLogin;
 import models.Login;
 import repository.LoginRepository;
-import repository.StudentRepository;
 import service.ConnectionUtil;
-import service.PasswordHasher;
 
 import java.io.IOException;
 import java.net.URL;
@@ -63,6 +61,9 @@ public class LoginController implements Initializable {
 
     @FXML
     private Label perdoruesiLabel;
+
+    @FXML
+    private Button loginkthehu;
 
     private ResourceBundle bundle;
     private Connection connection;
@@ -168,4 +169,35 @@ public class LoginController implements Initializable {
             throw new RuntimeException(e);
         }
     }
-    };
+
+    @FXML
+    public void regjistrohu(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(controller.Register.class.getResource("register.fxml"));
+            Parent parent = fxmlLoader.load();
+            Scene scene = new Scene(parent);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading FXML file: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    public void loginkthehu(ActionEvent event) throws IOException {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(ButtonsLogin.class.getResource("buttonslogin.fxml"));
+            Pane pane = fxmlLoader.load();
+            Scene scene = new Scene(pane);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading FXML file: " + e.getMessage());
+        }
+    }
+
+
+
+}

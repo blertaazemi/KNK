@@ -120,9 +120,28 @@ public class RegisterController implements Initializable {
                     setPasswordField.getText().isEmpty() || confirmPasswordField.getText().isEmpty()) {
                 alert.errorMessage("Duhet ti plotesoni te gjitha fushat!!");
                 return;
+            }else if (!setPasswordField.getText().equals(confirmPasswordField.getText())) {
+                alert.errorMessage("Fjalekalimet nuk perputhen. Provoni perseri.");
+            } else if (setPasswordField.getLength() < 8) {
+                alert.errorMessage("Gjatesia e fjalekalimit duhet te jete te pakten 8 karaktera!");
             }
+
             Connection connection = ConnectionUtil.getConnection();
             if (connection != null) {
+            boolean usernameExists = studentRepository.checkUsernameExists(perdoruesiTextField.getText(), connection);
+            boolean emailExists = studentRepository.checkEmailExists(emailTextField.getText(), connection);
+
+            if (usernameExists) {
+                alert.errorMessage("Perdoruesi ekziston. Provoni nje perdorues tjeter.");
+                return;
+            }
+
+            if (emailExists) {
+                alert.errorMessage("Emaili ekziston. Provoni nje email tjeter.");
+                return;
+            }
+
+
                 CreateStudentDto StudentDto = new CreateStudentDto(emriTextField.getText(), mbiemriTextField.getText(), perdoruesiTextField.getText(),
                         emailTextField.getText() ,setPasswordField.getText(),PasswordHasher.generateSalt());
                 StudentRepository studentRepository = new StudentRepository();
@@ -146,35 +165,6 @@ public class RegisterController implements Initializable {
             throw new RuntimeException(e);
         }
     }
-//else if (!setPasswordField.getText().equals(confirmPasswordField.getText())) {
-//                alert.errorMessage("Fjalekalimet nuk perputhen. Provoni perseri.");
-//            } else if (setPasswordField.getLength() < 8) {
-//                alert.errorMessage("Gjatesia e fjalekalimit duhet te jete te pakten 8 karaktera!");
-//            } else {
-
-//                String first_name = emriTextField.getText();
-//                String last_name = mbiemriTextField.getText();
-//                String username = perdoruesiTextField.getText();
-//                String email = emailTextField.getText();
-//                String password = setPasswordField.getText();
-//                String confirm = confirmPasswordField.getText();
-//                String salt = PasswordHasher.generateSalt();
-//                String saltedHash = PasswordHasher.generateSaltedHash(password, salt);
-//
-//                CreateStudentDto createStudentDto = new CreateStudentDto(first_name, last_name, username, email, saltedHash, salt);
-//
-//                Student student = new Student(first_name, last_name, username, email, saltedHash, salt);
-
-
-//
-//                studentRepository.insert(student,connection);
-//
-//                alert.successMessage("Jeni regjistruar me sukses!!");
-//                registerClearFields();
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
 
 
     public void registerClearFields() {
@@ -186,31 +176,17 @@ public class RegisterController implements Initializable {
         confirmPasswordField.setText("");
     }
 
+    @FXML
     public void switchForm(ActionEvent event) {
-        if (event.getSource() == kycuNeseKiLlogari) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/controller/login.fxml"));
-                Parent loginForm = loader.load();
-                LoginController loginController = loader.getController();
-
-                // Perform any necessary operations or pass data to the LoginController
-
-                signup_form.getScene().setRoot(loginForm);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else if (event.getSource() == krijoLlogariNeseSki) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/controller/signup.fxml"));
-                Parent signupForm = loader.load();
-                RegisterController registerController = loader.getController();
-
-                // Perform any necessary operations or pass data to the RegisterController
-
-                login_form.getScene().setRoot(signupForm);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("login.fxml"));
+            Parent parent = fxmlLoader.load();
+            Scene scene = new Scene(parent);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading FXML file: " + e.getMessage());
         }
     }
 

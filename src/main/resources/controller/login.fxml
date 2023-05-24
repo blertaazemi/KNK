@@ -69,7 +69,12 @@
                </font>
             </Label>
             <Label layoutX="88.0" layoutY="527.0" text="Nuk keni llogari? Klikoni këtu për tu regjistruar:" />
-            <Button fx:id="krijoLlogariNeseSki" layoutX="57.0" layoutY="545.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="290.0" style="-fx-background-color: #94CDFF;" text="Regjistrohu">
+            <Button fx:id="krijoLlogariNeseSki" layoutX="57.0" layoutY="545.0" mnemonicParsing="false" onAction="#regjistrohu" prefHeight="26.0" prefWidth="290.0" style="-fx-background-color: #94CDFF;" text="Regjistrohu">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="kthehuStudent" layoutX="57.0" layoutY="601.0" mnemonicParsing="false" onAction="#loginkthehu" prefHeight="26.0" prefWidth="290.0" style="-fx-background-color: #94CDFF;" text="Kthehu">
                <font>
                   <Font size="14.0" />
                </font>

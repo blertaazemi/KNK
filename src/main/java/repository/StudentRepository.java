@@ -74,6 +74,20 @@ public class StudentRepository {
         }
         return student;
     }
+    public boolean checkUsernameExists(String username, Connection connection) throws SQLException {
+        String sql = "SELECT * FROM tbl_students WHERE username = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, username);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        return resultSet.next();
+    }
 
+    public boolean checkEmailExists(String email, Connection connection) throws SQLException {
+        String sql = "SELECT * FROM tbl_students WHERE email = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, email);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        return resultSet.next();
+    }
 }
 

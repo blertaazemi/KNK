@@ -1,54 +1,40 @@
-package models;
+package models.dto;
 
-import java.util.Date;
+import service.PasswordHasher;
 
-public class AdminStudent {
-    private int id;
-    private  String first_name;
+import java.security.NoSuchAlgorithmException;
+
+public class CreateAdminDto {
+    private String first_name;
     private String last_name;
-    private  String username;
-
-    private  String email;
-    private  String password;
-
+    private String username;
+    private String email;
+    private String password;
     private String salt;
 
-
-
-
-
-    public AdminStudent(int id, String first_name, String last_name, String username, String email, String password,String salt) {
-        this.id = id;
+    public CreateAdminDto(String first_name, String last_name, String username, String email, String password, String salt) throws NoSuchAlgorithmException {
         this.first_name = first_name;
         this.last_name = last_name;
         this.username = username;
         this.email = email;
-        this.password = password;
-        this.salt=salt;
+        this.password = PasswordHasher.generateSaltedHash(password, salt);;
+        this.salt = salt;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getFirst_name() {
+    public String getFirstName() {
         return first_name;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.first_name = firstName;
     }
 
-    public String getLast_name() {
+    public String getLastName() {
         return last_name;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.last_name = lastName;
     }
 
     public String getUsername() {
@@ -74,8 +60,6 @@ public class AdminStudent {
     public void setPassword(String password) {
         this.password = password;
     }
-
-
 
     public String getSalt() {
         return salt;
