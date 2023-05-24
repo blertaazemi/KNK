@@ -7,12 +7,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
 import models.AdminStudent;
-import models.Pagination;
 import models.dto.CreateStudentDto;
 import models.dto.UpdateStudentDto;
 import repository.AdminStudentRepository;
@@ -75,6 +72,8 @@ public class AdminStudentController implements Initializable {
 
     @FXML
     private Button updateStudentBtn;
+    @FXML
+    private Pagination pagination;
 
 
 
@@ -282,7 +281,18 @@ public void updateStudentClick() {
         }
 
         ObservableList<AdminStudent> studentObservableList = FXCollections.observableList(studentModelList);
-        studentTableView.setItems(studentObservableList);
+        int itemsPerPage = 10;
+        int pageCount = (studentObservableList.size() + itemsPerPage - 1) / itemsPerPage;
+        pagination.setPageCount(pageCount);
+        pagination.setPageFactory(pageIndex->{
+            int fromIndex = pageIndex * itemsPerPage;
+            int toIndex = Math.min(fromIndex + itemsPerPage,studentObservableList.size());
+            studentTableView.setItems(FXCollections.observableArrayList(studentObservableList.subList(fromIndex,toIndex)));
+            studentTableView.setVisible(true);
+            pagination.setVisible(true);
+            return new Pane();
+        });
+
 
 
 
