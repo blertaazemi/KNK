@@ -10,10 +10,10 @@ module com.example.projekti_knk {
 
     exports com.example.projekti_knk;
 
-    exports service to javafx.graphics;
-    exports models to javafx.graphics;
-    exports repository to javafx.graphics;
-    exports controller to javafx.graphics;
+    exports service;
+    exports models;
+    exports repository;
+    exports controller;
 
     requires java.desktop;
 
