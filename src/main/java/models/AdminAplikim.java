@@ -8,6 +8,7 @@ public class AdminAplikim {
     private int viti_studimit;
     private double nota_mesatare;
 
+
     public AdminAplikim(int id,int student_id, int bursa_id, int viti_studimit,double nota_mesatare){
         this.id=id;
         this.student_id=student_id;

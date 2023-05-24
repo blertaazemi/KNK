@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,14 +13,16 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import models.AdminLogin;
 import models.Login;
 import repository.LoginRepository;
-import repository.StudentRepository;
 import service.ConnectionUtil;
-import service.PasswordHasher;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,6 +32,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
+
     @FXML
     private TextField perdoruesiTextField;
     @FXML
@@ -59,16 +63,27 @@ public class LoginController implements Initializable {
     @FXML
     private Label perdoruesiLabel;
 
+    @FXML
+    private Button loginkthehu;
+
     private ResourceBundle bundle;
     private Connection connection;
 
     private PreparedStatement prepareStatement;
     private ResultSet resultSet;
     private Statement statement;
+    @FXML
+    private BorderPane login_form;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        login_form.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                loginButton.fire();
+            }
+        });
+
         Image bookImage = new Image(getClass().getResourceAsStream("/Images/book.png"));
         bookImageView.setImage(bookImage);
 
@@ -154,7 +169,33 @@ public class LoginController implements Initializable {
         }
     }
 
+    @FXML
+    public void regjistrohu(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(controller.Register.class.getResource("register.fxml"));
+            Parent parent = fxmlLoader.load();
+            Scene scene = new Scene(parent);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading FXML file: " + e.getMessage());
+        }
+    }
 
+    @FXML
+    public void loginkthehu(ActionEvent event) throws IOException {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(ButtonsLogin.class.getResource("buttonslogin.fxml"));
+            Pane pane = fxmlLoader.load();
+            Scene scene = new Scene(pane);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading FXML file: " + e.getMessage());
+        }
+    }
 
 
 }

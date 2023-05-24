@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="561.0" prefWidth="743.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminLogin">
+   <children>
+      <TextField fx:id="adminusername" layoutX="297.0" layoutY="210.0" />
+      <Label fx:id="adminusernameLabel" layoutX="229.0" layoutY="214.0" text="Perdoruesi" />
+      <Label fx:id="adminfjalekalimiLabel" layoutX="229.0" layoutY="316.0" text="Fjalekalimi" />
+      <Button fx:id="adminloginButton" layoutX="346.0" layoutY="413.0" mnemonicParsing="false" onAction="#adminloginButtonOnAction" text="Kycu" />
+      <Button fx:id="adminkthehuButton" layoutX="346.0" layoutY="464.0" mnemonicParsing="false" onAction="#adminkthehuButtonOnAction" text="Kthehu" />
+      <Text layoutX="314.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADMIN">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
+      <PasswordField fx:id="adminpassword" layoutX="299.0" layoutY="312.0" />
+   </children>
+</AnchorPane>

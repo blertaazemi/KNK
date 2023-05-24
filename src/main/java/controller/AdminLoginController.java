@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Locale;
 
-public class Login extends Application {
+public class AdminLoginController extends Application {
 
     public void start(Stage stage) throws IOException {
 
@@ -17,11 +17,10 @@ public class Login extends Application {
         Locale.setDefault(new Locale("en","KS"));
         Locale.setDefault(new Locale("sq","KS"));
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("login.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("adminlogin.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 650, 564);
         stage.setTitle("Sistemi Interaktiv për aplikimin dhe menaxhimin e bursave të studentëve\n");
         stage.setScene(scene);
         stage.show();
     }
-
 }

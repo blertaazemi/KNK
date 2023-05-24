@@ -1,15 +1,17 @@
 package repository;
 
-import models.Login;
+import models.AdminLoginModel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class LoginRepository {
-    public boolean login(Login loginModel, Connection connection) {
-        String sql = "SELECT * FROM tbl_students WHERE username = ? and password = ?";
+
+
+public class AdminLoginRepository {
+    public boolean login(AdminLoginModel loginModel, Connection connection) {
+        String sql = "SELECT * FROM tbl_admin WHERE username = ? and password = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, loginModel.getUsername());
