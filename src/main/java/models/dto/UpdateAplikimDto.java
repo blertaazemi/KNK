@@ -1,8 +1,6 @@
-package models;
+package models.dto;
 
-import java.time.LocalDate;
-
-public class AdminAplikim {
+public class UpdateAplikimDto {
 
     private int id;
     private int student_id;
@@ -11,7 +9,7 @@ public class AdminAplikim {
     private double nota_mesatare;
 
 
-    public AdminAplikim(int id, int student_id, int bursa_id, int viti_studimit, double nota_mesatare){
+    public UpdateAplikimDto(int id,int student_id,int bursa_id,int viti_studimit,double nota_mesatare){
         this.id=id;
         this.student_id=student_id;
         this.bursa_id=bursa_id;
