@@ -12,7 +12,7 @@
 
 <AnchorPane prefHeight="694.0" prefWidth="906.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminAplikimetController">
    <children>
-      <TableView fx:id="aplikimTableView" layoutX="47.0" layoutY="100.0" onMouseClicked="#SelectAplikim" prefHeight="206.0" prefWidth="659.0" styleClass="column-header-background" stylesheets="@admindashboard.css">
+      <TableView fx:id="aplikimTableView" layoutX="123.0" layoutY="100.0" onMouseClicked="#SelectAplikim" prefHeight="206.0" prefWidth="638.0" styleClass="column-header-background" stylesheets="@admindashboard.css">
          <columns>
             <TableColumn fx:id="col_aplikimId" prefWidth="84.80001449584961" text="Aplikim ID" />
             <TableColumn fx:id="col_StudentID" prefWidth="130.3999786376953" text="Student ID" />
@@ -47,20 +47,20 @@
                </font>
             </Label>
             <TextField fx:id="NmesField" layoutX="398.0" layoutY="58.0" prefHeight="26.0" prefWidth="95.0" />
-            <Button layoutX="668.0" layoutY="264.0" mnemonicParsing="false" onAction="#addAplikimClick" prefHeight="34.0" prefWidth="102.0" styleClass="add-btn" stylesheets="@admindashboard.css" text="Add" />
-            <Button layoutX="551.0" layoutY="264.0" mnemonicParsing="false" onAction="#updateAplikimClick" prefHeight="34.0" prefWidth="102.0" stylesheets="@admindashboard.css" text="Update">
+            <Button fx:id="addAplikimBtn" layoutX="668.0" layoutY="264.0" mnemonicParsing="false" onAction="#addAplikimClick" prefHeight="34.0" prefWidth="102.0" styleClass="add-btn" stylesheets="@admindashboard.css" text="Add" />
+            <Button fx:id="updateAplikimBtn" layoutX="551.0" layoutY="264.0" mnemonicParsing="false" onAction="#updateAplikimClick" prefHeight="34.0" prefWidth="102.0" stylesheets="@admindashboard.css" text="Update">
                <styleClass>
                   <String fx:value="delete-btn" />
                   <String fx:value="update-btn" />
                </styleClass>
             </Button>
-            <Button layoutX="433.0" layoutY="264.0" mnemonicParsing="false" onAction="#deleteAplikimClick" prefHeight="34.0" prefWidth="102.0" styleClass="delete-btn" stylesheets="@admindashboard.css" text="Delete" />
+            <Button fx:id="deleteAplikimBtn" layoutX="433.0" layoutY="264.0" mnemonicParsing="false" onAction="#deleteAplikimClick" prefHeight="34.0" prefWidth="102.0" styleClass="delete-btn" stylesheets="@admindashboard.css" text="Delete" />
             <Label layoutX="318.0" layoutY="170.0">
                <font>
                   <Font name="Tahoma" size="14.0" />
                </font>
             </Label>
-            <Button layoutX="55.0" layoutY="264.0" mnemonicParsing="false" onAction="#filterAplikimClick" prefHeight="34.0" prefWidth="86.0" styleClass="update-btn" stylesheets="@admindashboard.css" text="Filter" />
+            <Button fx:id="filterAplikimBtn" layoutX="55.0" layoutY="264.0" mnemonicParsing="false" onAction="#filterAplikimClick" prefHeight="34.0" prefWidth="86.0" styleClass="update-btn" stylesheets="@admindashboard.css" text="Filter" />
             <Label layoutX="62.0" layoutY="35.0" text="Aplikim ID:">
                <font>
                   <Font name="Tahoma" size="14.0" />

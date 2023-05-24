@@ -72,6 +72,9 @@ public class AdminStudentController implements Initializable {
 
     @FXML
     private Button updateStudentBtn;
+
+    @FXML
+    private Button filterStudentBtn;
     @FXML
     private Pagination pagination;
 

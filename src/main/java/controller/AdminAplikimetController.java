@@ -69,6 +69,17 @@ public class AdminAplikimetController implements Initializable {
    @FXML
    private Pagination pagination;
 
+   @FXML
+   private Button filterAplikimBtn;
+
+   @FXML
+   private Button addAplikimBtn;
+
+   @FXML
+   private Button deleteAplikimBtn;
+   @FXML
+   private Button updateAplikimBtn;
+
 
     // Selektimi nga tableview qe ka te dhenat e databazes
     public void SelectAplikim() {

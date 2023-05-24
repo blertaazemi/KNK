@@ -44,30 +44,18 @@ public class AdminController {
 
     public void studentsbtnClick(ActionEvent actionEvent) {
         try {
-            // Load the FXML file
+
             Parent root = FXMLLoader.load(getClass().getResource("students.fxml"));
 
-            // Create a new AnchorPane to hold the content of the new scene
             AnchorPane newPane = new AnchorPane(root);
 
-            // Replace the content of the current pane with the new pane
             mainSplitPane.getItems().remove(currentPane);
             mainSplitPane.getItems().add(newPane);
             currentPane = newPane;
 
-//            // Create a new stage
-//            Stage stage = new Stage();
-//            stage.setTitle("Students"); // Set the title of the new window
-//            stage.setScene(new Scene(root));
-//
-//            // Show the new window
-//            stage.show();
-
-            // Close the current window (optional)
-           // ((Stage) studentButton.getScene().getWindow()).close();
         } catch (IOException e) {
             e.printStackTrace();
-            // Handle the exception properly
+
         }
     }
 
@@ -77,33 +65,36 @@ public class AdminController {
 
     public void aplbtnClick(ActionEvent actionEvent) {
         try {
-            // Load the FXML file
+
             Parent root = FXMLLoader.load(getClass().getResource("adminAplikimet.fxml"));
 
-            // Create a new AnchorPane to hold the content of the new scene
             AnchorPane newPane = new AnchorPane(root);
 
-            // Replace the content of the current pane with the new pane
             mainSplitPane.getItems().remove(currentPane);
             mainSplitPane.getItems().add(newPane);
             currentPane = newPane;
 
-//            // Create a new stage
-//            Stage stage = new Stage();
-//            stage.setTitle("Students"); // Set the title of the new window
-//            stage.setScene(new Scene(root));
-//
-//            // Show the new window
-//            stage.show();
 
-            // Close the current window (optional)
-            // ((Stage) studentButton.getScene().getWindow()).close();
         } catch (IOException e) {
             e.printStackTrace();
-            // Handle the exception properly
+
         }
     }
 
     public void logBtnClick(ActionEvent actionEvent) {
+        try {
+
+            Parent root = FXMLLoader.load(getClass().getResource("adminlogin.fxml"));
+
+            Stage stage = new Stage();
+            stage.setTitle("Students"); // Set the title of the new window
+            stage.setScene(new Scene(root));
+
+            stage.show();
+             ((Stage) logBtn.getScene().getWindow()).close();
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
     }
 }

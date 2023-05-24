@@ -116,7 +116,7 @@ public class AdminLogin implements Initializable {
                 boolean validlogin = adminloginRepository.login(loginModel, connection);
                 if (validlogin) {
                     try {
-                        FXMLLoader fxmlLoader = new FXMLLoader(AdminDashboard.class.getResource("students.fxml"));
+                        FXMLLoader fxmlLoader = new FXMLLoader(AdminDashboard.class.getResource("admin.fxml"));
                         Pane pane = fxmlLoader.load();
                         Scene scene = new Scene(pane);
                         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
