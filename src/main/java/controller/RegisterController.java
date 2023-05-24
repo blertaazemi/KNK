@@ -116,15 +116,15 @@ public class RegisterController implements Initializable {
         alertMessage alert = new alertMessage();
         try {
             if (emriTextField.getText().isEmpty() || mbiemriTextField.getText().isEmpty() ||
-                    emailTextField.getText().isEmpty() || perdoruesiTextField.getText().isEmpty() ||
+                    perdoruesiTextField.getText().isEmpty() || emailTextField.getText().isEmpty() ||
                     setPasswordField.getText().isEmpty() || confirmPasswordField.getText().isEmpty()) {
                 alert.errorMessage("Duhet ti plotesoni te gjitha fushat!!");
                 return;
             }
             Connection connection = ConnectionUtil.getConnection();
             if (connection != null) {
-                CreateStudentDto StudentDto = new CreateStudentDto(emriTextField.getText(), mbiemriTextField.getText(), emailTextField.getText(),
-                        perdoruesiTextField.getText() ,setPasswordField.getText(),PasswordHasher.generateSalt());
+                CreateStudentDto StudentDto = new CreateStudentDto(emriTextField.getText(), mbiemriTextField.getText(), perdoruesiTextField.getText(),
+                        emailTextField.getText() ,setPasswordField.getText(),PasswordHasher.generateSalt());
                 StudentRepository studentRepository = new StudentRepository();
                 studentRepository.insert(StudentDto, connection);
                 try {
