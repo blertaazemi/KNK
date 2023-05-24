@@ -7,11 +7,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
-public class bursat2Controller {
-
-
+public class updateBursaController {
     @FXML
-    private AnchorPane deshira;
+    private AnchorPane Bursa;
 
     @FXML
     private SplitPane child;
@@ -32,12 +30,26 @@ public class bursat2Controller {
     private Button aplikimetbtn;
 
     @FXML
-    private SplitPane bursat;
+    private AnchorPane updateBursa1;
 
+
+    @FXML
+    private TextField id;
+
+    @FXML
+    private TextField name;
+
+    @FXML
+    private TextField nota_mesatare;
+    @FXML
+    private TextArea description;
+
+    @FXML
+    private TextField amount;
+
+    @FXML
+    private Button updateBursa;
 
 
 
 }
-
-
-
