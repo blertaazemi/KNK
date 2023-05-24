@@ -132,7 +132,7 @@ public class LoginController implements Initializable {
                 boolean validlogin = loginRepository.login(loginModel, connection);
                 if(validlogin) {
                     try {
-                        FXMLLoader fxmlLoader = new FXMLLoader(Studenti.class.getResource("students.fxml"));
+                        FXMLLoader fxmlLoader = new FXMLLoader(Studenti.class.getResource("studenti.fxml"));
                         Pane pane = fxmlLoader.load();
                         Scene scene = new Scene(pane);
                         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -149,7 +149,7 @@ public class LoginController implements Initializable {
         catch (SQLException e) {
             System.err.println(e.getMessage());
 
-        } catch (NoSuchAlgorithmException e) {
+        } catch (NoSuchAlgorithmException e) {  // try block per qit catch ku e ki
             throw new RuntimeException(e);
         }
     }

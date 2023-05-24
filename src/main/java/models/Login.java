@@ -13,7 +13,7 @@ public class Login {
 
     public Login(String username, String password) throws SQLException, NoSuchAlgorithmException {
         this.username = username;
-        this.password = PasswordHasher.generateSaltedHash(password, StudentRepository.getSalt(this.username));
+        this.password = StudentRepository.getPassword(this.username);
     }
 
     public String getUsername() {
