@@ -75,7 +75,15 @@ public class LoginController implements Initializable {
     @FXML
     private BorderPane login_form;
 
+    @FXML
+    private Button kthehuStudent;
 
+    @FXML
+    private Button translateAL;
+    @FXML
+    private Button translateEN;
+    @FXML
+    private Label loginMessage;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         login_form.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
@@ -108,7 +116,9 @@ public class LoginController implements Initializable {
         loginMessageLabel.setText(bundle.getString("loginMessageLabel"));
         kycuLabel.setText(bundle.getString("kycuLabel"));
         krijoLlogariNeseSki.setText(bundle.getString("krijoLlogariNeseSki"));
-        // Translate other elements in a similar manner
+        kthehuStudent.setText(bundle.getString("kthehuStudent"));
+        loginMessage.setText(bundle.getString("loginMessage"));
+
     }
 
     public void translateEn(ActionEvent event){

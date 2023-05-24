@@ -73,6 +73,25 @@ public class AdminLogin implements Initializable {
         }
     }
 
+    private void translateElements() {
+        adminusernameLabel.setText(bundle.getString("adminusernameLabel"));
+        adminfjalekalimiLabel.setText(bundle.getString("adminfjalekalimiLabel"));
+        adminloginButton.setText(bundle.getString("adminloginButton"));
+        adminkthehuButton.setText(bundle.getString("adminkthehuButton"));
+    }
+
+    public void translateEn(ActionEvent event){
+        Locale.setDefault(new Locale("en"));
+        bundle = ResourceBundle.getBundle("translations.content", Locale.getDefault());
+        this.translateElements();
+    }
+
+    public void translateAl(ActionEvent event){
+        Locale.setDefault(new Locale("sq"));
+        bundle = ResourceBundle.getBundle("translations.content", Locale.getDefault());
+        this.translateElements();
+    }
+
     @FXML
     public void adminkthehuButtonOnAction(ActionEvent event) throws IOException {
         try {
