@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Date;
+
 public class AdminStudent {
     private int id;
     private  String first_name;
@@ -10,6 +12,7 @@ public class AdminStudent {
     private  String password;
 
     private String salt;
+
 
 
 
