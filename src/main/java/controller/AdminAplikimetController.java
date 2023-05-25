@@ -334,7 +334,7 @@ public class AdminAplikimetController implements Initializable {
             throw new RuntimeException(e);
         }
 
-        // Update the table with the filtered data
+
         ObservableList<AdminAplikim> filteredList = FXCollections.observableList(aplikimModelList);
         aplikimTableView.setItems(filteredList);
     }

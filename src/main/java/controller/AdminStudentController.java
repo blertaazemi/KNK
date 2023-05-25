@@ -307,7 +307,7 @@ public void updateStudentClick() {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            // Handle the exception as needed
+
         }
 
         ObservableList<AdminStudent> studentObservableList = FXCollections.observableList(studentModelList);
