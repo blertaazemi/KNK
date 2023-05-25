@@ -59,6 +59,8 @@
                             <TableColumn fx:id="col_amount" prefWidth="86.0" text="Shuma:" />
                         </columns>
                     </TableView>
+                  <Button fx:id="translateAL" layoutX="557.0" layoutY="31.0" mnemonicParsing="false" onAction="#translateAl" text="Shqip" />
+                  <Button fx:id="translateEN" layoutX="637.0" layoutY="31.0" mnemonicParsing="false" onAction="#translateEn" text="English" />
                 </children>
             </AnchorPane>
 

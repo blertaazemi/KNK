@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -28,7 +29,9 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import models.Bursat;
 
@@ -53,7 +56,7 @@ public class BursatController implements Initializable {
     private Button studentetButton;
 
     @FXML
-    private Button bursa;
+    private Button bursabtn;
 
     @FXML
     private Button aplikimetbtn;
@@ -81,6 +84,69 @@ public class BursatController implements Initializable {
     @FXML
     private TableColumn<Bursat, Double> col_amount;
 
+    @FXML
+    private Button translateAL;
+    @FXML
+    private Button translateEN;
+
+    private ResourceBundle bundle;
+    private Connection connection;
+
+
+
+
+
+    private void translateElements() {
+
+        Locale locale = Locale.getDefault();
+        ResourceBundle translate = ResourceBundle.getBundle("translations.content", locale);
+
+        homeButton.setText(bundle.getString("homeButton"));
+        studentetButton.setText(bundle.getString("studentetButton"));
+        bursabtn.setText(bundle.getString("bursabtn"));
+        aplikimetbtn.setText(bundle.getString("aplikimetbtn"));
+        col_id.setText(bundle.getString("col_id"));
+        col_name.setText(bundle.getString("col_name"));
+        col_nota_mesatare.setText(bundle.getString("col_nota_mesatare"));
+        col_description.setText(bundle.getString("col_description"));
+        col_amount.setText(bundle.getString("col_amount"));
+
+    }
+
+
+    public void translateEn(ActionEvent event) {
+        Locale.setDefault(new Locale("en"));
+        bundle = ResourceBundle.getBundle("translations.content", Locale.getDefault());
+        this.translateElements();
+    }
+
+    public void translateAl(ActionEvent event) {
+        Locale.setDefault(new Locale("sq"));
+        bundle = ResourceBundle.getBundle("translations.content", Locale.getDefault());
+        this.translateElements();
+    }
+    public void initializeStudentData(String username) {
+        try {
+            Connection connection = getConnection();
+            Statement statement = connection.createStatement();
+            String query = "SELECT * FROM tbl_students WHERE username = '" + username + "'";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            if (resultSet.next()) {
+                String emri = resultSet.getString("first_name");
+                String mbiemri = resultSet.getString("last_name");
+                String email = resultSet.getString("email");
+
+                emriid1.setText(emri);
+                mbiemriid1.setText(mbiemri);
+                usernameid1.setText(username);
+                emailid1.setText(email);
+            }
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
 
     @Override
