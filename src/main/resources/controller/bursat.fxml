@@ -26,7 +26,7 @@
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
-                  <Button fx:id="homeButton" layoutY="216.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="324.0" style="-fx-background-color: #3f2b63;" text="HOME" textFill="WHITE">
+                  <Button fx:id="homeButton1" layoutY="216.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="324.0" style="-fx-background-color: #3f2b63;" text="HOME" textFill="WHITE">
                      <font>
                         <Font size="16.0" />
                      </font>

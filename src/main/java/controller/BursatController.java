@@ -35,6 +35,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import models.Bursat;
 
+import static service.ConnectionUtil.getConnection;
 
 
 public class BursatController implements Initializable {
@@ -50,7 +51,7 @@ public class BursatController implements Initializable {
     private AnchorPane sidebar;
 
     @FXML
-    private Button homeButton;
+    private Button homeButton1;
 
     @FXML
     private Button studentetButton;
@@ -63,8 +64,6 @@ public class BursatController implements Initializable {
 
     @FXML
     private AnchorPane bursat;
-
-
 
 
     @FXML
@@ -93,15 +92,12 @@ public class BursatController implements Initializable {
     private Connection connection;
 
 
-
-
-
     private void translateElements() {
 
         Locale locale = Locale.getDefault();
         ResourceBundle translate = ResourceBundle.getBundle("translations.content", locale);
 
-        homeButton.setText(bundle.getString("homeButton"));
+        homeButton1.setText(bundle.getString("homeButton1"));
         studentetButton.setText(bundle.getString("studentetButton"));
         bursabtn.setText(bundle.getString("bursabtn"));
         aplikimetbtn.setText(bundle.getString("aplikimetbtn"));
@@ -125,28 +121,7 @@ public class BursatController implements Initializable {
         bundle = ResourceBundle.getBundle("translations.content", Locale.getDefault());
         this.translateElements();
     }
-    public void initializeStudentData(String username) {
-        try {
-            Connection connection = getConnection();
-            Statement statement = connection.createStatement();
-            String query = "SELECT * FROM tbl_students WHERE username = '" + username + "'";
-            ResultSet resultSet = statement.executeQuery(query);
 
-            if (resultSet.next()) {
-                String emri = resultSet.getString("first_name");
-                String mbiemri = resultSet.getString("last_name");
-                String email = resultSet.getString("email");
-
-                emriid1.setText(emri);
-                mbiemriid1.setText(mbiemri);
-                usernameid1.setText(username);
-                emailid1.setText(email);
-            }
-
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
 
     @Override
@@ -219,7 +194,7 @@ public class BursatController implements Initializable {
         bursatTableView.getColumns().add(colActions);
 
         try {
-            Connection connection = ConnectionUtil.getConnection();
+            Connection connection = getConnection();
             ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM tbl_bursa");
 
             ObservableList<Bursat> bursatList = FXCollections.observableArrayList();
