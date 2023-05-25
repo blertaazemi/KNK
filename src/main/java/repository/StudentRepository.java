@@ -1,6 +1,7 @@
 package repository;
 
 import models.Student;
+import models.Studenti;
 import models.dto.CreateStudentDto;
 import service.ConnectionUtil;
 import service.PasswordHasher;
@@ -74,4 +75,26 @@ public class StudentRepository {
         ResultSet resultSet = preparedStatement.executeQuery();
         return resultSet.next();
     }
+
+//    public Studenti getByUsername(String username) throws SQLException{
+//        String sql = "SELECT * from tbl_students WHERE username = ?";
+//        try(Connection connection = ConnectionUtil.getConnection();
+//        PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+//            preparedStatement.setString(1,username);
+//            ResultSet resultSet = preparedStatement.executeQuery();
+//            if(resultSet.next()){
+//                int id = resultSet.getInt("id");
+//                String emri = resultSet.getString("first_name");
+//                String mbiemri = resultSet.getString("mbiemri");
+//                String perdoruesi = resultSet.getString("username");
+//                String email = resultSet.getString("email");
+//
+//
+//                return new Studenti (id, emri, mbiemri,perdoruesi,email);
+//
+//            }
+//        }
+//        return null;
+//
+//    }
 }

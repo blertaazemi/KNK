@@ -52,8 +52,6 @@ public class RegisterController implements Initializable {
     @FXML
     private Button mbyllButton;
     @FXML
-    private Button kycuNeseKiLlogari;
-    @FXML
     private Button krijoLlogariNeseSki;
 
     @FXML
@@ -75,6 +73,8 @@ public class RegisterController implements Initializable {
 
     @FXML
     private Label regjistrohuLabel;
+    @FXML
+    private Button test;
 
     public RegisterController() {
         this.studentRepository = new StudentRepository();
@@ -95,8 +95,9 @@ public class RegisterController implements Initializable {
         konfirmofjalekaliminLabel.setText(bundle.getString("konfirmofjalekaliminLabel"));
         registerButton.setText(bundle.getString("registerButton"));
         mbyllButton.setText(bundle.getString("mbyllButton"));
-        kycuNeseKiLlogari.setText(bundle.getString("kycuNeseKiLlogari"));
-        // Translate other elements in a similar manner
+        test.setText(bundle.getString("test"));
+        regjistrohuLabel.setText(bundle.getString("regjistrohuLabel"));
+
     }
 
     public void translateEn(ActionEvent event){

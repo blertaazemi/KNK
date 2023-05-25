@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 public class AdminDashboard extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(AdminDashboard.class.getResource("adminAplikimet.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(AdminDashboard.class.getResource("admin.fxml"));
 
         Scene scene = new Scene(fxmlLoader.load(), 650, 564);
         stage.setTitle("Sistemi Interaktiv për aplikimin dhe menaxhimin e bursave të studentëve\n");

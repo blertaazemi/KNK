@@ -73,6 +73,25 @@ public class AdminLogin implements Initializable {
         }
     }
 
+    private void translateElements() {
+        adminusernameLabel.setText(bundle.getString("adminusernameLabel"));
+        adminfjalekalimiLabel.setText(bundle.getString("adminfjalekalimiLabel"));
+        adminloginButton.setText(bundle.getString("adminloginButton"));
+        adminkthehuButton.setText(bundle.getString("adminkthehuButton"));
+    }
+
+    public void translateEn(ActionEvent event){
+        Locale.setDefault(new Locale("en"));
+        bundle = ResourceBundle.getBundle("translations.content", Locale.getDefault());
+        this.translateElements();
+    }
+
+    public void translateAl(ActionEvent event){
+        Locale.setDefault(new Locale("sq"));
+        bundle = ResourceBundle.getBundle("translations.content", Locale.getDefault());
+        this.translateElements();
+    }
+
     @FXML
     public void adminkthehuButtonOnAction(ActionEvent event) throws IOException {
         try {
@@ -97,7 +116,7 @@ public class AdminLogin implements Initializable {
                 boolean validlogin = adminloginRepository.login(loginModel, connection);
                 if (validlogin) {
                     try {
-                        FXMLLoader fxmlLoader = new FXMLLoader(AdminDashboard.class.getResource("students.fxml"));
+                        FXMLLoader fxmlLoader = new FXMLLoader(AdminDashboard.class.getResource("admin.fxml"));
                         Pane pane = fxmlLoader.load();
                         Scene scene = new Scene(pane);
                         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

@@ -51,8 +51,8 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="perdoruesiTextField" layoutX="57.0" layoutY="290.0" prefHeight="25.0" prefWidth="290.0" promptText="Emri i përdoruesit..." />
-            <PasswordField fx:id="enterPasswordField" layoutX="57.0" layoutY="360.0" prefHeight="25.0" prefWidth="290.0" promptText="Fjalëkalimi..." />
+            <TextField fx:id="perdoruesiTextField" layoutX="57.0" layoutY="290.0" prefHeight="25.0" prefWidth="290.0" />
+            <PasswordField fx:id="enterPasswordField" layoutX="57.0" layoutY="360.0" prefHeight="25.0" prefWidth="290.0" />
             <Button fx:id="loginButton" layoutX="57.0" layoutY="425.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="26.0" prefWidth="290.0" style="-fx-background-color: #94CDFF;" text="Kyçu">
                <font>
                   <Font size="14.0" />
@@ -68,7 +68,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="88.0" layoutY="527.0" text="Nuk keni llogari? Klikoni këtu për tu regjistruar:" />
+            <Label fx:id="loginMessage" layoutX="88.0" layoutY="527.0" text="Nuk keni llogari? Klikoni këtu për tu regjistruar:" />
             <Button fx:id="krijoLlogariNeseSki" layoutX="57.0" layoutY="545.0" mnemonicParsing="false" onAction="#regjistrohu" prefHeight="26.0" prefWidth="290.0" style="-fx-background-color: #94CDFF;" text="Regjistrohu">
                <font>
                   <Font size="14.0" />
@@ -79,6 +79,8 @@
                   <Font size="14.0" />
                </font>
             </Button>
+            <Button fx:id="tranlateEN" layoutX="428.0" layoutY="25.0" mnemonicParsing="false" onAction="#translateEn" prefHeight="26.0" prefWidth="66.0" text="English" />
+            <Button fx:id="tranlateAL" layoutX="431.0" layoutY="65.0" mnemonicParsing="false" onAction="#translateAl" prefHeight="26.0" prefWidth="62.0" text="Albanian" />
          </children>
       </AnchorPane>
    </right>
