@@ -36,9 +36,9 @@ public class BursatRepository {
     }
 
 
-    // fshirja e nje studenti nga databaza
+    // fshirja e nje burse nga databaza
 
-    public static boolean deleteStudent(int id) throws SQLException {
+    public static void deleteBursa(int id) throws SQLException {
         String deleteSql = "DELETE FROM tbl_bursa WHERE id = ?";
         Connection connection = ConnectionUtil.getConnection();
 
@@ -49,64 +49,35 @@ public class BursatRepository {
         deleteStatement.close();
         connection.close();
 
-        return rowsAffected > 0;
-
 
     }
 
-    // perditesimi-editimi i nje studenti
 
 
-//    public static boolean updateBursa(Bursat bursat) throws SQLException{
-//        String updatesql = "UPDATE tbl_students SET first_name=?, last_name=?, username=?, email=?, password=?, salt=? WHERE id=?";
-//        Connection connection = ConnectionUtil.getConnection();
-//        PreparedStatement statement = connection.prepareStatement(updatesql) ;
-//
-//        statement.setString(1, studentDto.getFirst_name());
-//        statement.setString(2, studentDto.getLast_name());
-//        statement.setString(3, studentDto.getUsername());
-//        statement.setString(4, studentDto.getEmail());
-//        statement.setString(5, studentDto.getPassword());
-//        statement.setString(6, studentDto.getSalt());
-//        statement.setInt(7, studentDto.getId());
-//
-//        int rowsAffected = statement.executeUpdate();
-//
-//        if (rowsAffected > 0) {
-//            System.out.println("Student updated successfully.");
-//        } else {
-//            System.out.println("Failed to update student.");
-//        }
-//
-//        return rowsAffected>0;
-//    }
+    public static void updateBursa(Bursat bursa) throws SQLException {
+        String updateSql = "UPDATE tbl_bursa SET name=?, nota_mesatare=?, description=?, amount=? WHERE id=?";
+        Connection connection = ConnectionUtil.getConnection();
+        PreparedStatement statement = connection.prepareStatement(updateSql);
+
+        statement.setString(1, bursa.getname());
+        statement.setDouble(2, bursa.getnota_mesatare());
+        statement.setString(3, bursa.getdescription());
+        statement.setDouble(4, bursa.getamount());
+        statement.setInt(5, bursa.getId());
+
+        int rowsAffected = statement.executeUpdate();
+
+        if (rowsAffected > 0) {
+            System.out.println("Bursa updated successfully.");
+        } else {
+            System.out.println("Failed to update bursa.");
+        }
+
+        statement.close();
+        connection.close();
+    }
 
 
-
-
-
-
-
-
-//    public static AdminStudent getByUsername(String username) throws SQLException {
-//        String sql = "SELECT * FROM tbl_students WHERE username=?";
-//        try (Connection connection = ConnectionUtil.getConnection();
-//             PreparedStatement statement = connection.prepareStatement(sql)) {
-//            statement.setString(1, username);
-//            ResultSet resultSet = statement.executeQuery();
-//            if (resultSet.next()) {
-//                int id = resultSet.getInt("id");
-//                String firstName = resultSet.getString("first_name");
-//                String lastName = resultSet.getString("last_name");
-//                String email=resultSet.getString("email");
-//                String password=resultSet.getString("password");
-//                String salt=resultSet.getString("salt");
-//                return new AdminStudent(id,firstName,lastName,username,email,password,salt);
-//            } else {
-//                return null;
-//            }
-//        }
-//    }
 }
 
 
