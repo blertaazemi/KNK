@@ -16,3 +16,5 @@ INSERT INTO tbl_admin (first_name, last_name, username, email, password, role)
 VALUES ('Admin3', 'Admin3', 'admin3', 'admin3@example.com', 'password123', 'admin');
 
 ALTER TABLE tbl_admin ADD salt VARCHAR(255) NOT NULL after password;
+
+ALTER TABLE tbl_aplikimet MODIFY date_submitted DATE NOT NULL;

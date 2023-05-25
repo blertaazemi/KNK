@@ -18,7 +18,7 @@
             <!-- Left Pane -->
             <VBox prefHeight="696.0" prefWidth="296.0" style="-fx-background-color: #3F2B63;">
                <children>
-                  <Pane prefHeight="200.0" prefWidth="274.0">
+                  <Pane prefHeight="200.0" prefWidth="200.0">
                      <children>
                         <ImageView fx:id="img1" fitHeight="91.0" fitWidth="106.0" layoutX="23.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -40,7 +40,7 @@
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="studentsbtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#studentsbtnClick" prefHeight="71.0" prefWidth="295.0" style="-fx-background-color: #3F2B63;" text="Studentet" textFill="WHITE">
+                  <Button fx:id="studentsbtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#studentsbtnClick" prefHeight="71.0" prefWidth="295.0" style="-fx-background-color: #3F2B63;" text="Students" textFill="WHITE">
                      <padding>
                         <Insets left="50.0" />
                      </padding>

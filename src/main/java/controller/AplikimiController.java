@@ -64,11 +64,19 @@ public class AplikimiController {
     @FXML
     void register(ActionEvent event) {
         alertMessage alert = new alertMessage();
+        double notaMesatare = Double.parseDouble(NotaMesatareTextField.getText());
+        int vitiStd = Integer.parseInt(VitiStudimiTextField.getText());
         try {
             if (EmriTextField.getText().isEmpty() || MbiemriTextField.getText().isEmpty() ||
                     idTextField.getText().isEmpty() || NotaMesatareTextField.getText().isEmpty()) {
                 alert.errorMessage("Duhet ti plotesoni te gjitha fushat!!");
                 return;
+            }
+            else if(notaMesatare>10.00 || notaMesatare<8.00){
+                alert.errorMessage("Nuk mund te aplikoni nese nota mesatare nuk eshte mes 8.00 dhe 10.00");
+
+            }else if (vitiStd<1 || vitiStd>3) {
+                alert.errorMessage("Viti i gabuar i studimeve");
             } else {
                 String student_id = idTextField.getText();
                 int bursa_id = 1;
