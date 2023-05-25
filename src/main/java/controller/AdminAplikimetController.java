@@ -29,6 +29,7 @@ import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import static java.time.LocalDate.now;
@@ -80,6 +81,18 @@ public class AdminAplikimetController implements Initializable {
    @FXML
    private Button updateAplikimBtn;
 
+   @FXML
+   private Label AplikimIdLabel;
+   @FXML
+   private Label StudentIdLabel;
+   @FXML
+   private Label BursaIdLabel;
+   @FXML
+   private Label VitiStudimeveLabel;
+   @FXML
+   private Label NotaMesatareLabel;
+
+   private ResourceBundle bundle;
 
     // Selektimi nga tableview qe ka te dhenat e databazes
     public void SelectAplikim() {
@@ -136,10 +149,36 @@ public class AdminAplikimetController implements Initializable {
             pagination.setVisible(true);
             return new Pane();
         });
-
-
+        Locale locale = Locale.getDefault();
+        ResourceBundle translate = ResourceBundle.getBundle("translations.content", locale);
 
     }
+    private void translateElements() {
+        filterAplikimBtn.setText(bundle.getString("filterAplikimButton"));
+        deleteAplikimBtn.setText(bundle.getString("deleteAplikimButton"));
+        updateAplikimBtn.setText(bundle.getString("updateAplikimButton"));
+        addAplikimBtn.setText(bundle.getString("addAplikimButton"));
+        AplikimIdLabel.setText(bundle.getString("AplikimIdLabel"));
+        StudentIdLabel.setText(bundle.getString("StudentiIdLabel"));
+        BursaIdLabel.setText(bundle.getString("BursaIdLabel"));
+        VitiStudimeveLabel.setText(bundle.getString("VitiStudimitLabel"));
+        NotaMesatareLabel.setText(bundle.getString("NotaMesatareLabel"));
+
+    }
+
+    public void translateEn(ActionEvent event){
+        Locale.setDefault(new Locale("en"));
+        bundle = ResourceBundle.getBundle("translations.content", Locale.getDefault());
+        this.translateElements();
+    }
+
+    public void translateAl(ActionEvent event){
+        Locale.setDefault(new Locale("sq"));
+        bundle = ResourceBundle.getBundle("translations.content", Locale.getDefault());
+        this.translateElements();
+    }
+
+
 
     public void addAplikimClick(ActionEvent event) {
       try{
@@ -295,7 +334,7 @@ public class AdminAplikimetController implements Initializable {
             throw new RuntimeException(e);
         }
 
-        // Update the table with the filtered data
+
         ObservableList<AdminAplikim> filteredList = FXCollections.observableList(aplikimModelList);
         aplikimTableView.setItems(filteredList);
     }

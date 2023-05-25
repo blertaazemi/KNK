@@ -17,31 +17,31 @@
             <TableColumn fx:id="col_aplikimId" prefWidth="84.80001449584961" text="Aplikim ID" />
             <TableColumn fx:id="col_StudentID" prefWidth="130.3999786376953" text="Student ID" />
             <TableColumn fx:id="col_bursaId" prefWidth="135.20001220703125" text="Bursa ID" />
-            <TableColumn fx:id="col_vstudimeve" prefWidth="139.199951171875" text="Viti i Studimeve" />
+            <TableColumn fx:id="col_vstudimeve" prefWidth="139.199951171875" text="Viti i Studimit" />
             <TableColumn fx:id="col_Nmes" prefWidth="165.60003662109375" text="Nota Mesatare" />
          </columns>
       </TableView>
       <AnchorPane layoutX="47.0" layoutY="364.0" prefHeight="324.0" prefWidth="838.0">
          <children>
-            <Label layoutX="62.0" layoutY="75.0" text="Student ID:">
+            <Label fx:id="StudentIdLabel" layoutX="62.0" layoutY="75.0" text="Student ID:">
                <font>
                   <Font name="Tahoma" size="14.0" />
                </font>
             </Label>
             <TextField fx:id="StudentIdField" layoutX="142.0" layoutY="71.0" prefHeight="26.0" prefWidth="95.0" />
-            <Label layoutX="68.0" layoutY="115.0" text="Bursa ID:">
+            <Label fx:id="BursaIdLabel" layoutX="68.0" layoutY="115.0" text="Bursa ID:">
                <font>
                   <Font name="Tahoma" size="14.0" />
                </font>
             </Label>
             <TextField fx:id="BursaField" layoutX="142.0" layoutY="111.0" prefHeight="26.0" prefWidth="95.0" />
-            <Label layoutX="29.0" layoutY="160.0" text="Viti i Studimeve:">
+            <Label fx:id="VitiStudimeveLabel" layoutX="43.0" layoutY="161.0" text="Viti i Studimit:">
                <font>
                   <Font name="Tahoma" size="14.0" />
                </font>
             </Label>
             <TextField fx:id="VstudimeveField" layoutX="142.0" layoutY="157.0" prefHeight="26.0" prefWidth="95.0" />
-            <Label layoutX="296.0" layoutY="62.0" text="Nota Mesatare:">
+            <Label fx:id="NotaMesatareLabel" layoutX="296.0" layoutY="62.0" text="Nota Mesatare:">
                <font>
                   <Font name="Tahoma" size="14.0" />
                </font>
@@ -61,7 +61,7 @@
                </font>
             </Label>
             <Button fx:id="filterAplikimBtn" layoutX="55.0" layoutY="264.0" mnemonicParsing="false" onAction="#filterAplikimClick" prefHeight="34.0" prefWidth="86.0" styleClass="update-btn" stylesheets="@admindashboard.css" text="Filter" />
-            <Label layoutX="62.0" layoutY="35.0" text="Aplikim ID:">
+            <Label fx:id="AplikimIdLabel" layoutX="62.0" layoutY="35.0" text="Aplikim ID:">
                <font>
                   <Font name="Tahoma" size="14.0" />
                </font>
@@ -70,5 +70,7 @@
          </children>
       </AnchorPane>
       <Pagination fx:id="pagination" layoutX="366.0" layoutY="318.0" prefHeight="46.0" prefWidth="200.0" />
+      <Button layoutX="629.0" layoutY="41.0" mnemonicParsing="false" onAction="#translateEn" text="English" />
+      <Button layoutX="710.0" layoutY="41.0" mnemonicParsing="false" onAction="#translateAl" text="Shqip" />
    </children>
 </AnchorPane>

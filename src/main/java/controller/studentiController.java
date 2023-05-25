@@ -18,6 +18,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import static service.ConnectionUtil.getConnection;
@@ -29,16 +30,71 @@ public class studentiController {
     @FXML
     private AnchorPane studentPane;
     @FXML
-    private Label emriLabel;
+    private Label emriid1;
     @FXML
-    private Label mbiemriLabel;
+    private Label mbiemriid1;
     @FXML
-    private Label usernameLabel;
+    private Label usernameid1;
     @FXML
-    private Label emailLabel;
+    private Label emailid1;
+
+    @FXML
+    private TextField emritxt;
+
+    @FXML
+    private TextField mbiemritxt;
+
+    @FXML
+    private TextField usernametxt;
+
+    @FXML
+    private TextField emailtxt;
+
+    @FXML
+    private Button studentibtn;
+
     @FXML
     private Button applyButton;
+    private ResourceBundle bundle;
 
+    @FXML
+    private Button translateAL;
+    @FXML
+    private Button translateEN;
+
+    private Connection connection;
+
+
+
+    private void translateElements() {
+
+        Locale locale = Locale.getDefault();
+        ResourceBundle translate = ResourceBundle.getBundle("translations.content", locale);
+
+        emriid1.setText(bundle.getString("emriid1"));
+        mbiemriid1.setText(bundle.getString("mbiemriid1"));
+        usernameid1.setText(bundle.getString("usernameid1"));
+        emailid1.setText(bundle.getString("emailid1"));
+        emritxt.setText(bundle.getString("emritxt"));
+        mbiemritxt.setText(bundle.getString("mbiemritxt"));
+        usernametxt.setText(bundle.getString("usernametxt"));
+        emailtxt.setText(bundle.getString("emailtxt"));
+        studentibtn.setText(bundle.getString("studentibtn"));
+
+    }
+
+
+    public void translateEn(ActionEvent event) {
+        Locale.setDefault(new Locale("en"));
+        bundle = ResourceBundle.getBundle("translations.content", Locale.getDefault());
+        this.translateElements();
+    }
+
+    public void translateAl(ActionEvent event) {
+        Locale.setDefault(new Locale("sq"));
+        bundle = ResourceBundle.getBundle("translations.content", Locale.getDefault());
+        this.translateElements();
+    }
     public void initializeStudentData(String username) {
         try {
             Connection connection = getConnection();
@@ -51,10 +107,10 @@ public class studentiController {
                 String mbiemri = resultSet.getString("last_name");
                 String email = resultSet.getString("email");
 
-                emriLabel.setText(emri);
-                mbiemriLabel.setText(mbiemri);
-                usernameLabel.setText(username);
-                emailLabel.setText(email);
+                emriid1.setText(emri);
+                mbiemriid1.setText(mbiemri);
+                usernameid1.setText(username);
+                emailid1.setText(email);
             }
 
             connection.close();
