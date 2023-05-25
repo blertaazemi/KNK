@@ -30,6 +30,8 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
+                        <Button layoutX="29.0" layoutY="162.0" mnemonicParsing="false" onAction="#translateEn" text="English" />
+                        <Button layoutX="122.0" layoutY="162.0" mnemonicParsing="false" onAction="#translateAl" text="Shqip" />
                      </children>
                   </Pane>
                   <Button fx:id="homebtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#homebtnClick" prefHeight="71.0" prefWidth="295.0" style="-fx-background-color: #3F2B63;" text="Home" textFill="WHITE">

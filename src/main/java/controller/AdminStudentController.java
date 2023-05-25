@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import models.AdminStudent;
+import models.dto.CreateAdminStudentDto;
 import models.dto.CreateStudentDto;
 import models.dto.UpdateStudentDto;
 import repository.AdminStudentRepository;
@@ -21,6 +22,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class AdminStudentController implements Initializable {
@@ -77,6 +79,22 @@ public class AdminStudentController implements Initializable {
     private Button filterStudentBtn;
     @FXML
     private Pagination pagination;
+
+    @FXML
+    private Label StudentIdLabel;
+    @FXML
+    private Label EmriLabel;
+    @FXML
+    private Label MbiemriLabel;
+    @FXML
+    private Label PerdoruesiLabel;
+    @FXML
+    private Label EmailLabel;
+    @FXML
+    private Label FjalekalimiLabel;
+
+    private ResourceBundle bundle;
+
 
 
 
@@ -209,19 +227,31 @@ public void updateStudentClick() {
 
     @FXML
     void filterStudentClick(ActionEvent event) throws SQLException {
+        String idFilter = StudentIdField.getText();
         String firstNameFilter = FirstNameField.getText();
         String lastNameFilter = LastNameField.getText();
         String usernameFilter = UsernameField.getText();
+        // Validate and parse the input values
+        int studentidFilter = 0;
+
+
+        if (!idFilter.isEmpty()) {
+            try {
+                studentidFilter = Integer.parseInt(idFilter);
+            } catch (NumberFormatException e) {
+
+                return;
+            }
+        }
 
         Connection connection = null;
-        try{
         try {
             connection = ConnectionUtil.getConnection();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
-        CreateStudentDto studentDto = new CreateStudentDto(firstNameFilter, lastNameFilter, usernameFilter, "", "", "");
+        CreateAdminStudentDto studentDto = new CreateAdminStudentDto(studentidFilter,firstNameFilter, lastNameFilter, usernameFilter, "", "", "");
         List<AdminStudent> studentModelList = null;
 
         try {
@@ -233,9 +263,6 @@ public void updateStudentClick() {
         // Update the table with the filtered data
         ObservableList<AdminStudent> filteredList = FXCollections.observableList(studentModelList);
         studentTableView.setItems(filteredList);
-    }catch(NoSuchAlgorithmException e){
-            e.printStackTrace();
-        }
     }
 
 
@@ -298,9 +325,34 @@ public void updateStudentClick() {
 
 
 
+        Locale locale = Locale.getDefault();
+        ResourceBundle translate = ResourceBundle.getBundle("translations.content", locale);}
 
 
+    private void translateElements() {
+        filterStudentBtn.setText(bundle.getString("filterStudentButton"));
+        deleteStudentBtn.setText(bundle.getString("deleteStudentButton"));
+        updateStudentBtn.setText(bundle.getString("updateStudentButton"));
+        addStudentBtn.setText(bundle.getString("addStudentButton"));
+        StudentIdLabel.setText(bundle.getString("StudentIdLabel"));
+        EmriLabel.setText(bundle.getString("EmriLabel"));
+        MbiemriLabel.setText(bundle.getString("MbiemriLabel"));
+        PerdoruesiLabel.setText(bundle.getString("PerdoruesiLabel"));
+        EmailLabel.setText(bundle.getString("EmailLabel"));
+        FjalekalimiLabel.setText(bundle.getString("FjalekalimiLabel"));
 
+    }
+
+    public void translateEn(ActionEvent event){
+        Locale.setDefault(new Locale("en"));
+        bundle = ResourceBundle.getBundle("translations.content", Locale.getDefault());
+        this.translateElements();
+    }
+
+    public void translateAl(ActionEvent event){
+        Locale.setDefault(new Locale("sq"));
+        bundle = ResourceBundle.getBundle("translations.content", Locale.getDefault());
+        this.translateElements();
     }
 
 

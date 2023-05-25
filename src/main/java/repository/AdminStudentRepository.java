@@ -1,6 +1,7 @@
 package repository;
 
 import models.AdminStudent;
+import models.dto.CreateAdminStudentDto;
 import models.dto.CreateStudentDto;
 import models.dto.UpdateStudentDto;
 import service.ConnectionUtil;
@@ -103,15 +104,17 @@ public class AdminStudentRepository {
         }
 
         // filtrimi i nje studenti
-        public static List<AdminStudent> filterTable(Connection connection, CreateStudentDto model) throws SQLException {
+        public static List<AdminStudent> filterTable(Connection connection, CreateAdminStudentDto model) throws SQLException {
             List<AdminStudent> studentList = new ArrayList<>();
             StringBuilder sqlBuilder = new StringBuilder("SELECT * FROM tbl_students WHERE 1=1");
 
-
-            if (model.getFirstName() != null && !model.getFirstName().isEmpty()) {
+            if (model.getId() != 0) {
+                sqlBuilder.append(" AND id= ?");
+            }
+            if (model.getFirst_name() != null && !model.getFirst_name().isEmpty()) {
                 sqlBuilder.append(" AND first_name LIKE ?");
             }
-            if (model.getLastName() != null && !model.getLastName().isEmpty()) {
+            if (model.getLast_name() != null && !model.getLast_name().isEmpty()) {
                 sqlBuilder.append(" AND last_name LIKE ?");
             }
             if (model.getUsername() != null && !model.getUsername().isEmpty()) {
@@ -121,12 +124,15 @@ public class AdminStudentRepository {
             PreparedStatement statement = connection.prepareStatement(sqlBuilder.toString());
             int parameterIndex = 1;
 
-
-            if (model.getFirstName() != null && !model.getFirstName().isEmpty()) {
-                statement.setString(parameterIndex++, "%" + model.getFirstName() + "%");
+            if (model.getId()!=0 ) {
+                statement.setInt(parameterIndex++,  model.getId());
             }
-            if (model.getLastName() != null && !model.getLastName().isEmpty()) {
-                statement.setString(parameterIndex++, "%" + model.getLastName() + "%");
+
+            if (model.getFirst_name() != null && !model.getFirst_name().isEmpty()) {
+                statement.setString(parameterIndex++, "%" + model.getFirst_name() + "%");
+            }
+            if (model.getLast_name() != null && !model.getLast_name().isEmpty()) {
+                statement.setString(parameterIndex++, "%" + model.getLast_name() + "%");
             }
             if (model.getUsername() != null && !model.getUsername().isEmpty()) {
                 statement.setString(parameterIndex++, "%" + model.getUsername() + "%");
