@@ -18,7 +18,7 @@ public class AdminRegisterController extends Application {
         //Locale.setDefault(new Locale("en", "KS"));
         //Locale.setDefault(new Locale("sq", "KS"));
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Register.class.getResource("adminregister.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(AdminRegisterController.class.getResource("adminregister.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 650, 564);
         stage.setTitle("Sistemi Interaktiv për aplikimin dhe menaxhimin e bursave të studentëve\n");
         stage.setScene(scene);
