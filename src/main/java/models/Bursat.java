@@ -3,13 +3,13 @@ package models;
 public class Bursat {
     private int id;
     private String name;
-    private Double nota_mesatare;
+    private double nota_mesatare;
     private String description;
 
-    private Double amount;
+    private double amount;
 
 
-    public Bursat(int id, String name, Double nota_mesatare, String description, Double amount) {
+    public Bursat(int id, String name, double nota_mesatare, String description, double amount) {
         this.id = id;
         this.name = name;
         this.nota_mesatare = nota_mesatare;
@@ -56,4 +56,6 @@ public class Bursat {
     public void setamount(Double amount) {
         this.amount = amount;
     }
+
+
 }
