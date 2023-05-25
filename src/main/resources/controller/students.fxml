@@ -22,34 +22,33 @@
             <TableColumn fx:id="col_password" prefWidth="171.199951171875" text="Password" />
         </columns>
       </TableView>
-      <TextField layoutX="46.0" layoutY="63.0" prefHeight="30.0" prefWidth="217.0" promptText="search.." styleClass="search" stylesheets="@admindashboard.css" />
       <AnchorPane layoutX="46.0" layoutY="366.0" prefHeight="324.0" prefWidth="838.0">
          <children>
-            <Label layoutX="62.0" layoutY="65.0" text="Student ID:">
+            <Label fx:id="StudentIdLabel" layoutX="62.0" layoutY="65.0" text="Student ID:">
                <font>
                   <Font name="Tahoma" size="14.0" />
                </font>
             </Label>
             <TextField fx:id="StudentIdField" layoutX="142.0" layoutY="61.0" prefHeight="26.0" prefWidth="95.0" />
-            <Label layoutX="62.0" layoutY="115.0" text="First Name:">
+            <Label fx:id="EmriLabel" layoutX="62.0" layoutY="115.0" text="First Name:">
                <font>
                   <Font name="Tahoma" size="14.0" />
                </font>
             </Label>
             <TextField fx:id="FirstNameField" layoutX="142.0" layoutY="111.0" prefHeight="26.0" prefWidth="95.0" />
-            <Label layoutX="62.0" layoutY="161.0" text="Last Name">
+            <Label fx:id="MbiemriLabel" layoutX="62.0" layoutY="161.0" text="Last Name">
                <font>
                   <Font name="Tahoma" size="14.0" />
                </font>
             </Label>
             <TextField fx:id="LastNameField" layoutX="142.0" layoutY="157.0" prefHeight="26.0" prefWidth="95.0" />
-            <Label layoutX="318.0" layoutY="62.0" text="Username:">
+            <Label fx:id="PerdoruesiLabel" layoutX="318.0" layoutY="62.0" text="Username:">
                <font>
                   <Font name="Tahoma" size="14.0" />
                </font>
             </Label>
             <TextField fx:id="UsernameField" layoutX="398.0" layoutY="58.0" prefHeight="26.0" prefWidth="95.0" />
-            <Label layoutX="318.0" layoutY="115.0" text="Email:">
+            <Label fx:id="EmailLabel" layoutX="318.0" layoutY="115.0" text="Email:">
                <font>
                   <Font name="Tahoma" size="14.0" />
                </font>
@@ -63,7 +62,7 @@
                </styleClass>
             </Button>
             <Button fx:id="deleteStudentBtn" layoutX="433.0" layoutY="264.0" mnemonicParsing="false" onAction="#deleteStudentClick" prefHeight="34.0" prefWidth="102.0" styleClass="delete-btn" stylesheets="@admindashboard.css" text="Delete" />
-            <Label layoutX="318.0" layoutY="170.0" text="Password:">
+            <Label fx:id="FjalekalimiLabel" layoutX="318.0" layoutY="170.0" text="Password:">
                <font>
                   <Font name="Tahoma" size="14.0" />
                </font>
@@ -73,5 +72,7 @@
          </children>
       </AnchorPane>
       <Pagination fx:id="pagination" layoutX="372.0" layoutY="319.0" prefHeight="46.0" prefWidth="200.0" />
+      <Button layoutX="670.0" layoutY="40.0" mnemonicParsing="false" onAction="#translateEn" text="English" />
+      <Button layoutX="759.0" layoutY="40.0" mnemonicParsing="false" onAction="#translateAl" text="Shqip" />
    </children>
 </AnchorPane>

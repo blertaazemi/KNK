@@ -19,25 +19,25 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <Label layoutX="224.0" layoutY="166.0" text="Emri:">
+      <Label fx:id="emriid1" layoutX="224.0" layoutY="166.0" text="Emri:">
          <font>
             <Font size="26.0" />
          </font>
       </Label>
       <TextField fx:id="emritxt" layoutX="224.0" layoutY="204.0" prefHeight="26.0" prefWidth="259.0" promptText="Emri i studentit..." />
-      <Label layoutX="224.0" layoutY="255.0" text="Mbiemri:">
+      <Label fx:id="mbiemriid1" layoutX="224.0" layoutY="255.0" text="Mbiemri:">
          <font>
             <Font size="26.0" />
          </font>
       </Label>
       <TextField fx:id="mbiemritxt" layoutX="224.0" layoutY="293.0" prefHeight="26.0" prefWidth="259.0" promptText="Mbiemri i studentit.." />
-      <Label layoutX="230.0" layoutY="352.0" text="Username:">
+      <Label fx:id="usernameid1" layoutX="230.0" layoutY="352.0" text="Username:">
          <font>
             <Font size="26.0" />
          </font>
       </Label>
       <TextField fx:id="usernametxt" layoutX="224.0" layoutY="409.0" prefHeight="26.0" prefWidth="259.0" promptText="Emri i perdoruesit.." />
-      <Label layoutX="226.0" layoutY="458.0" text="Email:">
+      <Label fx:id="emailid1" layoutX="226.0" layoutY="458.0" text="Email:">
          <font>
             <Font size="26.0" />
          </font>
@@ -48,5 +48,7 @@
             <Font size="15.0" />
          </font>
       </Button>
+      <Button fx:id="translateEN" layoutX="597.0" layoutY="125.0" mnemonicParsing="false" onAction="#translateEn" text="English" />
+      <Button fx:id="translateAL" layoutX="593.0" layoutY="84.0" mnemonicParsing="false" onAction="#translateAl" text="Albanian" />
    </children>
 </AnchorPane>

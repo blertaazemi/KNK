@@ -3,6 +3,7 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,9 +14,13 @@ import javafx.stage.Stage;
 import models.Student;
 import models.dto.CreateAplikimiDto;
 import repository.AplikimiRepository;
+import service.ConnectionUtil;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class AplikimiController {
 
@@ -46,7 +51,37 @@ public class AplikimiController {
     @FXML
     private RadioButton Universitare;
 
+    @FXML
+    private Label idid;
+
+    @FXML
+    private Label emriid;
+
+    @FXML
+    private Label mbiemriid;
+
+    @FXML
+    private Label notamesatareid;
+
+    @FXML
+    private Label vitistudimitid;
+
+
+    @FXML
+    private Label zgjedhbursenid;
+    @FXML
+    private Button translateAL;
+    @FXML
+    private Button translateEN;
+
+    @FXML
+    private Button aplikoid;
+
+    private ResourceBundle bundle;
+
+
     private Stage stage;
+    private Connection connection;
 
     public void setStage(Stage stage) {
         this.stage = stage;
@@ -61,6 +96,46 @@ public class AplikimiController {
     }
 
 
+// E kom shtu //
+
+
+    private void translateElements() {
+
+        Locale locale = Locale.getDefault();
+        ResourceBundle translate = ResourceBundle.getBundle("translations.content", locale);
+
+        idid.setText(bundle.getString("idid"));
+        emriid.setText(bundle.getString("emriid"));
+        mbiemriid.setText(bundle.getString("mbiemriid"));
+        notamesatareid.setText(bundle.getString("notamesatareid"));
+        zgjedhbursenid.setText(bundle.getString("zgjedhbursenid"));
+        vitistudimitid.setText(bundle.getString("vitistudimitid"));
+        idTextField.setText(bundle.getString("idTextField"));
+        EmriTextField.setText(bundle.getString("EmriTextField"));
+        MbiemriTextField.setText(bundle.getString("MbiemriTextField"));
+        NotaMesatareTextField.setText(bundle.getString("MbiemriTextField"));
+        Universitare.setText(bundle.getString("Universitare"));
+        aplikoid.setText(bundle.getString("MbiemriTextField"));
+
+
+    }
+
+
+    public void translateEn(ActionEvent event) {
+        Locale.setDefault(new Locale("en"));
+        bundle = ResourceBundle.getBundle("translations.content", Locale.getDefault());
+        this.translateElements();
+    }
+
+    public void translateAl(ActionEvent event) {
+        Locale.setDefault(new Locale("sq"));
+        bundle = ResourceBundle.getBundle("translations.content", Locale.getDefault());
+        this.translateElements();
+    }
+
+
+
+    ////////////////////
     @FXML
     void register(ActionEvent event) {
         alertMessage alert = new alertMessage();

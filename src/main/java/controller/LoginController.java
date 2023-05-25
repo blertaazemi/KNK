@@ -68,7 +68,6 @@ public class LoginController implements Initializable {
 
     private ResourceBundle bundle;
     private Connection connection;
-
     private PreparedStatement prepareStatement;
     private ResultSet resultSet;
     private Statement statement;
