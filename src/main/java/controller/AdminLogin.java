@@ -131,27 +131,13 @@ public class AdminLogin implements Initializable {
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
-        }catch(NoSuchAlgorithmException e) {  // try block per qit catch ku e ki
+        }catch(NoSuchAlgorithmException e) {
                 throw new RuntimeException(e);
         }
     }
 
 }
 
-    //qitu translate elements mi qit
-
-
-//    public void translateEn(ActionEvent event){
-//        Locale.setDefault(new Locale("en"));
-//        bundle = ResourceBundle.getBundle("translations.content", Locale.getDefault());
-//        this.translateElements();
-//    }
-//
-//    public void translateAl(ActionEvent event){
-//        Locale.setDefault(new Locale("sq"));
-//        bundle = ResourceBundle.getBundle("translations.content", Locale.getDefault());
-//        this.translateElements();
-//    }
 
 
 
