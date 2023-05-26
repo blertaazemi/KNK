@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Locale;
+//te repository merren te dhenat prej databaze
 
 public class Login extends Application {
 

@@ -96,7 +96,6 @@ public class AplikimiController {
     }
 
 
-// E kom shtu //
 
 
     private void translateElements() {
@@ -113,9 +112,10 @@ public class AplikimiController {
         idTextField.setText(bundle.getString("idTextField"));
         EmriTextField.setText(bundle.getString("EmriTextField"));
         MbiemriTextField.setText(bundle.getString("MbiemriTextField"));
-        NotaMesatareTextField.setText(bundle.getString("MbiemriTextField"));
+        NotaMesatareTextField.setText(bundle.getString("NotaMesatareTextField"));
         Universitare.setText(bundle.getString("Universitare"));
-        aplikoid.setText(bundle.getString("MbiemriTextField"));
+        VitiStudimiTextField.setText(bundle.getString("VitiStudimiTextField"));
+        aplikoid.setText(bundle.getString("aplikoid"));
 
 
     }
@@ -135,7 +135,6 @@ public class AplikimiController {
 
 
 
-    ////////////////////
     @FXML
     void register(ActionEvent event) {
         alertMessage alert = new alertMessage();
