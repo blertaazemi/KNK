@@ -84,17 +84,24 @@ public class updateBursaController {
     }
 
 
-    public void updateBursa(ActionEvent event){
+//    public void updateBursa(ActionEvent event) {
+//        Bursat bursat = new Bursat(Integer.parseInt(id.getText()), name.getText(), Double.parseDouble(nota_mesatare.getText()), description.getText(), Double.parseDouble(amount.getText()));
+//        try {
+//            BursatRepository.updateBursa(bursat);
+//            System.out.println("Bursa updated successfully");
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+
+
+    public void updateBursa(javafx.event.ActionEvent actionEvent) {
         Bursat bursat = new Bursat(Integer.parseInt(id.getText()), name.getText(), Double.parseDouble(nota_mesatare.getText()), description.getText(), Double.parseDouble(amount.getText()));
         try {
             BursatRepository.updateBursa(bursat);
+            System.out.println("Bursa updated successfully");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("Bursa updated successfully");
     }
-
-
-
-
-}
+    }

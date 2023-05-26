@@ -2,6 +2,7 @@ package controller;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -18,6 +19,9 @@ public class updateBursa extends Application {
         Locale.setDefault(new Locale("sq", "KS"));
 
         FXMLLoader fxmlLoader = new FXMLLoader(Bursat.class.getResource("updateBursa.fxml"));
+
+
+
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("\n");
         stage.setScene(scene);
