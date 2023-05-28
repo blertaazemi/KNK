@@ -29,6 +29,8 @@ import java.util.Base64;
 public class studentiController {
     @FXML
     private AnchorPane studentPane;
+
+    //ku shkruhen te dhenat e studentit:
     @FXML
     private Label emriid1;
     @FXML
@@ -37,18 +39,20 @@ public class studentiController {
     private Label usernameid1;
     @FXML
     private Label emailid1;
-
     @FXML
-    private TextField emritxt;
-
+    private Label emriid11;
     @FXML
-    private TextField mbiemritxt;
-
+    private Label mbiemriid11;
     @FXML
-    private TextField usernametxt;
-
+    private Label usernameid11;
     @FXML
-    private TextField emailtxt;
+    private Label emailid11;
+
+  @FXML
+  private Label idid1;
+
+  @FXML
+  private Label idid11;
 
     @FXML
     private Button studentibtn;
@@ -61,6 +65,8 @@ public class studentiController {
     private Button translateAL;
     @FXML
     private Button translateEN;
+    @FXML
+    private Button logoutStudenti;
 
     private Connection connection;
 
@@ -71,15 +77,16 @@ public class studentiController {
         Locale locale = Locale.getDefault();
         ResourceBundle translate = ResourceBundle.getBundle("translations.content", locale);
 
-        emriid1.setText(bundle.getString("emriid1"));
-        mbiemriid1.setText(bundle.getString("mbiemriid1"));
-        usernameid1.setText(bundle.getString("usernameid1"));
-        emailid1.setText(bundle.getString("emailid1"));
-        emritxt.setText(bundle.getString("emritxt"));
-        mbiemritxt.setText(bundle.getString("mbiemritxt"));
-        usernametxt.setText(bundle.getString("usernametxt"));
-        emailtxt.setText(bundle.getString("emailtxt"));
+        emriid11.setText(bundle.getString("emriid11"));
+        mbiemriid11.setText(bundle.getString("mbiemriid11"));
+        usernameid11.setText(bundle.getString("usernameid11"));
+        emailid11.setText(bundle.getString("emailid11"));
+//        emritxt.setText(bundle.getString("emritxt"));
+//        mbiemritxt.setText(bundle.getString("mbiemritxt"));
+//        usernametxt.setText(bundle.getString("usernametxt"));
+//        emailtxt.setText(bundle.getString("emailtxt"));
         studentibtn.setText(bundle.getString("studentibtn"));
+        logoutStudenti.setText(bundle.getString("logoutStudenti"));
 
     }
 
@@ -103,10 +110,12 @@ public class studentiController {
             ResultSet resultSet = statement.executeQuery(query);
 
             if (resultSet.next()) {
+                String id = resultSet.getString("id");
                 String emri = resultSet.getString("first_name");
                 String mbiemri = resultSet.getString("last_name");
                 String email = resultSet.getString("email");
 
+                idid1.setText(id);
                 emriid1.setText(emri);
                 mbiemriid1.setText(mbiemri);
                 usernameid1.setText(username);
@@ -119,12 +128,13 @@ public class studentiController {
         }
     }
 
-    private Connection getConnection() throws SQLException {
-        String url = "jdbc:mysql://localhost/projekti_knk";
-        String username = "your_username";
-        String password = "your_password";
-        return DriverManager.getConnection(url, username, password);
-    }
+
+//    private Connection getConnection() throws SQLException {
+//        String url = "jdbc:mysql://localhost/projekti_knk";
+//        String username = "your_username";
+//        String password = "your_password";
+//        return DriverManager.getConnection(url, username, password);
+//    }
 
     @FXML
     private void applyForScholarship() {
@@ -137,16 +147,39 @@ public class studentiController {
     @FXML
     private void navigateToAplikimi(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Aplikimi.class.getResource("Aplikimi.fxml"));
-        Pane pane = fxmlLoader.load();
-        ScrollPane scrollPane = new ScrollPane(pane);
-        scrollPane.setFitToWidth(true);
-        scrollPane.setFitToHeight(true);
+        Parent aplikimiPane = fxmlLoader.load();
+        AplikimiController aplikimiController = fxmlLoader.getController();
 
-        Scene scene = new Scene(scrollPane, 1400, 600);
+        // Pass the student data to the AplikimiController
+        aplikimiController.setStudentData(emriid1.getText(), mbiemriid1.getText(), usernameid1.getText(), emailid1.getText());
+
+        Scene scene = new Scene(aplikimiPane, 1400, 600);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
     }
+
+    public void handleLogout(ActionEvent event) {
+        // Load the login.fxml file
+        Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getResource("login.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        // Get the current stage
+        Stage stage = (Stage) logoutStudenti.getScene().getWindow();
+
+        // Set the login page as the new root of the stage
+        stage.setScene(new Scene(root));
+
+        // Show the updated stage
+        stage.show();
+    }
+
+
 
 
 }

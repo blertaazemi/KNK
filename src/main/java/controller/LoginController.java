@@ -133,50 +133,42 @@ public class LoginController implements Initializable {
     }
 
 
-    @FXML
     public void loginButtonOnAction(ActionEvent event) throws SQLException, IOException {
         if (!perdoruesiTextField.getText().isBlank() && !enterPasswordField.getText().isBlank()) {
-            login(event);
+            String username = perdoruesiTextField.getText(); // Get the entered username
+            if (login(event)) {
+                openStudentProfile(username, event); // Open the student profile if login is successful
+            }
         } else {
             loginMessageLabel.setText("Ju lutem shkruani emrin e përdoruesit dhe fjalëkalimin");
         }
     }
+
 
     public void cancelButtonOnAction(ActionEvent event) {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
 
-    void login(ActionEvent event) {
+    boolean login(ActionEvent event) {
         try {
             //Connection  connection = ConnectionUtil.getConnection();
             if (connection != null) {
                 Login loginModel = new Login(perdoruesiTextField.getText(), enterPasswordField.getText());
                 LoginRepository loginRepository = new LoginRepository();
                 boolean validlogin = loginRepository.login(loginModel, connection);
-                if(validlogin) {
-                    try {
-                        FXMLLoader fxmlLoader = new FXMLLoader(Studenti.class.getResource("studenti.fxml"));
-                        Pane pane = fxmlLoader.load();
-                        Scene scene = new Scene(pane);
-                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                        stage.setScene(scene);
-                        stage.show();
-
-                    } catch (IOException e) {
-                        System.err.println("Error loading FXML file: " + e.getMessage());
-                    }
-
+                if (validlogin) {
+                    return true;
                 }
             }
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             System.err.println(e.getMessage());
-
-        } catch (NoSuchAlgorithmException e) {  // try block per qit catch ku e ki
+        } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
+        return false;
     }
+
 
     @FXML
     public void regjistrohu(ActionEvent event) {
@@ -198,6 +190,20 @@ public class LoginController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(ButtonsLogin.class.getResource("buttonslogin.fxml"));
             Pane pane = fxmlLoader.load();
             Scene scene = new Scene(pane);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading FXML file: " + e.getMessage());
+        }
+    }
+    private void openStudentProfile(String username, ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Studenti.class.getResource("studenti.fxml"));
+            Parent root = fxmlLoader.load();
+            studentiController studentiController = fxmlLoader.getController();
+            studentiController.initializeStudentData(username); // Pass the username to the student profile controller
+            Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.show();

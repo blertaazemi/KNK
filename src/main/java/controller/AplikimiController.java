@@ -31,12 +31,6 @@ public class AplikimiController {
     private TextArea textArea;
 
     @FXML
-    private TextField EmriTextField;
-
-    @FXML
-    private TextField MbiemriTextField;
-
-    @FXML
     private TextField idTextField;
 
     @FXML
@@ -59,6 +53,11 @@ public class AplikimiController {
 
     @FXML
     private Label mbiemriid;
+    @FXML
+    private Label emriid12;
+
+    @FXML
+    private Label mbiemriid12;
 
     @FXML
     private Label notamesatareid;
@@ -104,14 +103,12 @@ public class AplikimiController {
         ResourceBundle translate = ResourceBundle.getBundle("translations.content", locale);
 
         idid.setText(bundle.getString("idid"));
-        emriid.setText(bundle.getString("emriid"));
-        mbiemriid.setText(bundle.getString("mbiemriid"));
+        emriid12.setText(bundle.getString("emriid12"));
+        mbiemriid12.setText(bundle.getString("mbiemriid12"));
         notamesatareid.setText(bundle.getString("notamesatareid"));
         zgjedhbursenid.setText(bundle.getString("zgjedhbursenid"));
         vitistudimitid.setText(bundle.getString("vitistudimitid"));
         idTextField.setText(bundle.getString("idTextField"));
-        EmriTextField.setText(bundle.getString("EmriTextField"));
-        MbiemriTextField.setText(bundle.getString("MbiemriTextField"));
         NotaMesatareTextField.setText(bundle.getString("NotaMesatareTextField"));
         Universitare.setText(bundle.getString("Universitare"));
         VitiStudimiTextField.setText(bundle.getString("VitiStudimiTextField"));
@@ -141,8 +138,7 @@ public class AplikimiController {
         double notaMesatare = Double.parseDouble(NotaMesatareTextField.getText());
         int vitiStd = Integer.parseInt(VitiStudimiTextField.getText());
         try {
-            if (EmriTextField.getText().isEmpty() || MbiemriTextField.getText().isEmpty() ||
-                    idTextField.getText().isEmpty() || NotaMesatareTextField.getText().isEmpty()) {
+            if (idTextField.getText().isEmpty() || NotaMesatareTextField.getText().isEmpty() || VitiStudimiTextField.getText().isEmpty()) {
                 alert.errorMessage("Duhet ti plotesoni te gjitha fushat!!");
                 return;
             }
@@ -168,6 +164,8 @@ public class AplikimiController {
                 AplikimiRepository aplikimiRepository = new AplikimiRepository();
                 aplikimiRepository.createapplication(createAplikimiDto);
 
+                alert.successMessage("Application Successful");
+
             }
         } catch (SQLException e) {
             // Handle the SQLException here
@@ -182,10 +180,32 @@ public class AplikimiController {
 
 
     }
+
+    private String emri;
+    private String mbiemri;
+    private String username;
+    private String email;
+
+    public void setStudentData(String emri, String mbiemri, String username, String email) {
+        this.emri = emri;
+        this.mbiemri = mbiemri;
+        this.username = username;
+        this.email = email;
+
+        // Update the labels or text fields in aplikimi.fxml with the student data
+        emriid.setText(emri);
+        mbiemriid.setText(mbiemri);
+        //usernameid.setText(username);
+        //emailid.setText(email);
+    }
     @FXML
     private void navigateToStudenti(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(Studenti.class.getResource("studenti.fxml"));
-        AnchorPane studentiPane = loader.load();
+        Parent studentiPane = loader.load();
+        studentiController studentiController = loader.getController();
+
+        // Pass the student data back to the studentiController
+        studentiController.initializeStudentData(username);
 
         Scene scene = new Scene(studentiPane, 650, 564);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
