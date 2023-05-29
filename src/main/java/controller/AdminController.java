@@ -102,6 +102,21 @@ public class AdminController {
 
 
     public void bursatbtnClick(ActionEvent actionEvent) {
+        try {
+
+            Parent root = FXMLLoader.load(getClass().getResource("bursat.fxml"));
+
+            AnchorPane newPane = new AnchorPane(root);
+
+            mainSplitPane.getItems().remove(currentPane);
+            mainSplitPane.getItems().add(newPane);
+            currentPane = newPane;
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
     }
 
     public void aplbtnClick(ActionEvent actionEvent) {

@@ -49,9 +49,9 @@ public class StudentRepository {
     public static String getPassword(String username) throws SQLException {
         Connection connection = ConnectionUtil.getConnection();
         String sql = "Select * from tbl_students where username = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1, username);
-        ResultSet resultSet = statement.executeQuery();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, username);
+        ResultSet resultSet = preparedStatement.executeQuery();
         if(resultSet.next()){
             String password = resultSet.getString("password");
             return password;

@@ -11,10 +11,10 @@ public class LoginRepository {
     public boolean login(Login loginModel, Connection connection) {
         String sql = "SELECT * FROM tbl_students WHERE username = ? and password = ?";
         try {
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, loginModel.getUsername());
-            statement.setString(2, loginModel.getPassword());
-            ResultSet resultSet = statement.executeQuery();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, loginModel.getUsername());
+            preparedStatement.setString(2, loginModel.getPassword());
+            ResultSet resultSet = preparedStatement.executeQuery();
             if (!resultSet.next()) {
                 // No rows returned, so username is incorrect
                 System.out.println("Username or password is incorrect.");
