@@ -27,29 +27,64 @@
                         <Font name="System Bold" size="32.0" />
                      </font>
                   </Text>
-                  <Button fx:id="homeButton" layoutX="138.0" layoutY="217.0" mnemonicParsing="false" text="HOME" />
-                  <Button fx:id="studentetButton" layoutX="138.0" layoutY="242.0" mnemonicParsing="false" text="STUDENTET" />
-                  <Button fx:id="bursa" layoutX="138.0" layoutY="267.0" mnemonicParsing="false" text="BURSAT" />
-                  <Button fx:id="aplikimetbtn" layoutX="138.0" layoutY="292.0" mnemonicParsing="false" text="APLIKIMET" />
+                   <Button fx:id="homeButton2" layoutY="216.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="324.0" style="-fx-background-color: #3f2b63;" text="HOME" textFill="WHITE">
+                       <font>
+                           <Font size="16.0" />
+                       </font>
+                   </Button>
+                   <Button fx:id="studentetButton2" layoutY="251.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="324.0" style="-fx-background-color: #3f2b63;" text="STUDENTET" textFill="WHITE">
+                       <font>
+                           <Font size="16.0" />
+                       </font>
+                   </Button>
+                   <Button fx:id="bursa" layoutY="286.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="324.0" style="-fx-background-color: #3f2b63;" text="BURSAT" textFill="WHITE">
+                       <font>
+                           <Font size="16.0" />
+                       </font>
+                   </Button>
+                   <Button fx:id="aplikimetbtn1" layoutY="321.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="324.0" style="-fx-background-color: #3f2b63;" text="APLIKIMET" textFill="WHITE">
+                       <font>
+                           <Font size="16.0" />
+                       </font>
+                   </Button>
                </children>
             </AnchorPane>
           <AnchorPane fx:id="updateBursa1" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <Label layoutX="200.0" layoutY="84.0" text="Bursa Id:" />
-                  <Label layoutX="209.0" layoutY="116.0" text="Name:" />
-                  <Label layoutX="169.0" layoutY="150.0" text="Nota mesatare:" />
-                  <Label layoutX="187.0" layoutY="192.0" text="Description:" />
-                  <Label layoutX="205.0" layoutY="313.0" text="amount:" />
-                  <TextField fx:id="id" layoutX="276.0" layoutY="80.0" />
-                  <TextField fx:id="name" layoutX="276.0" layoutY="112.0" />
-                  <TextField fx:id="nota_mesatare" layoutX="276.0" layoutY="146.0" />
-                  <TextArea fx:id="description" layoutX="280.0" layoutY="192.0" prefHeight="106.0" prefWidth="149.0" />
-                  <TextField fx:id="amount" layoutX="280.0" layoutY="318.0" />
-                   <Button fx:id="ubBtn" layoutX="325.0" layoutY="378.0" mnemonicParsing="false" onAction="#updateBursa" text="UPDATE" />
+                  <Label layoutX="198.0" layoutY="71.0" text="Bursa Id:">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label layoutX="214.0" layoutY="117.0" text="Name:">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label layoutX="145.0" layoutY="164.0" text="Nota mesatare:">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label layoutX="172.0" layoutY="219.0" text="Description:">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label layoutX="198.0" layoutY="367.0" text="Amount:">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <TextField fx:id="id" layoutX="280.0" layoutY="64.0" prefHeight="40.0" prefWidth="180.0" />
+                  <TextField fx:id="name" layoutX="280.0" layoutY="110.0" prefHeight="40.0" prefWidth="180.0" />
+                  <TextField fx:id="nota_mesatare" layoutX="281.0" layoutY="157.0" prefHeight="40.0" prefWidth="180.0" />
+                  <TextArea fx:id="description" layoutX="281.0" layoutY="219.0" prefHeight="120.0" prefWidth="180.0" />
+                  <TextField fx:id="amount" layoutX="281.0" layoutY="360.0" prefHeight="40.0" prefWidth="180.0" />
+                   <Button fx:id="ubBtn" layoutX="330.0" layoutY="468.0" mnemonicParsing="false" onAction="#updateBursa" prefHeight="30.0" prefWidth="80.0" text="UPDATE" />
+                  <Button fx:id="translateAL" layoutX="567.0" layoutY="14.0" mnemonicParsing="false" onAction="#translateAl" text="Shqip" />
+                  <Button fx:id="translateEN" layoutX="639.0" layoutY="14.0" mnemonicParsing="false" onAction="#translateEn" text="English" />
 
                </children>
+
             </AnchorPane>
         </items>
+
       </SplitPane>
    </children>
 </AnchorPane>
